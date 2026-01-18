@@ -1,63 +1,71 @@
+<?php if (session_status() === PHP_SESSION_NONE)
+    session_start(); ?>
 <!DOCTYPE html>
 <html lang="it">
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>CampusLaunch</title>
-    <link rel="stylesheet" href="../assets/css/style.css">
-    <style>
-        nav {
-            background: #333;
-            color: white;
-            padding: 10px;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        nav a {
-            color: white;
-            margin-right: 15px;
-            text-decoration: none;
-        }
-
-        .container {
-            max-width: 1000px;
-            margin: 20px auto;
-            padding: 0 20px;
-            font-family: sans-serif;
-        }
-
-        .project-card {
-            border: 1px solid #ddd;
-            padding: 15px;
-            margin-bottom: 20px;
-            border-radius: 8px;
-        }
-
-        .tag {
-            background: #e0e0e0;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 0.8em;
-        }
-    </style>
+    <link rel="stylesheet" href="../assets/css/mobile.css">
+    <link rel="stylesheet" href="../assets/css/desktop.css" media="(min-width: 769px)">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
 </head>
 
 <body>
-    <nav>
-        <div>
-            <strong>🚀 CampusLaunch</strong>
+
+    <nav class="top-nav">
+        <span class="top-menu-toggle material-icons-round" onclick="toggleDrawer()">menu</span>
+        <div class="brand">🚀 CampusLaunch</div>
+
+        <div class="desktop-links">
             <a href="index.php">Discovery</a>
             <a href="activity.php">News</a>
-        </div>
-        <div>
+            <a href="search.php">Cerca</a>
             <?php if (isset($_SESSION['user_id'])): ?>
-                <a href="profile.php">Mio Profilo</a>
+                <a href="create_project.php" class="btn-primary">Crea (+ )</a>
+                <a href="profile.php">Profilo</a>
                 <a href="../actions/logout.php">Logout</a>
             <?php else: ?>
                 <a href="login.php">Login</a>
-                <a href="register.php">Registrati</a>
+                <a href="register.php" class="btn-primary">Registrati</a>
             <?php endif; ?>
         </div>
+
+        <a href="search.php" class="material-icons-round"
+            style="color: var(--text-dark); text-decoration: none;">search</a>
     </nav>
-    <div class="container"></div>
+
+    <div class="mobile-drawer" id="mobileDrawer">
+        <div class="drawer-header">
+            <span class="brand">Menu</span>
+            <span class="drawer-close material-icons-round" onclick="toggleDrawer()">close</span>
+        </div>
+        <a href="index.php"><span class="material-icons-round"
+                style="vertical-align: middle; margin-right: 10px;">explore</span> Discovery</a>
+        <a href="activity.php"><span class="material-icons-round"
+                style="vertical-align: middle; margin-right: 10px;">rss_feed</span> News</a>
+        <a href="search.php"><span class="material-icons-round"
+                style="vertical-align: middle; margin-right: 10px;">search</span> Cerca</a>
+        <?php if (isset($_SESSION['user_id'])): ?>
+            <a href="create_project.php"><span class="material-icons-round"
+                    style="vertical-align: middle; margin-right: 10px;">add_circle</span> Crea Progetto</a>
+            <a href="profile.php"><span class="material-icons-round"
+                    style="vertical-align: middle; margin-right: 10px;">person</span> Mio Profilo</a>
+            <hr>
+            <a href="../actions/logout.php" style="color: var(--secondary-orange);"><span class="material-icons-round"
+                    style="vertical-align: middle; margin-right: 10px;">logout</span> Logout</a>
+        <?php else: ?>
+            <hr>
+            <a href="login.php">Login</a>
+            <a href="register.php" style="color: var(--primary-green); font-weight: bold;">Registrati</a>
+        <?php endif; ?>
+    </div>
+
+    <div class="container">
+
+        <script>
+            function toggleDrawer() {
+                document.getElementById('mobileDrawer').classList.toggle('active');
+            }
+        </script>

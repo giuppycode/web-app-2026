@@ -15,8 +15,11 @@ $user = $stmt->get_result()->fetch_assoc();
 <h2>Profilo di <?= htmlspecialchars($user['username']) ?></h2>
 <section>
     <h3>La tua Bio</h3>
-    <p><?= htmlspecialchars($user['biography'] ?: 'Nessuna bio inserita.') ?></p>
-    <button>Modifica Info</button>
+    <p><?= nl2br(htmlspecialchars($user['biography'] ?: 'Nessuna bio inserita.')) ?></p>
+    
+    <a href="edit_profile.php" style="display: inline-block; padding: 8px 16px; background-color: #eee; color: #333; text-decoration: none; border-radius: 5px; border: 1px solid #ccc;">
+        ✏️ Modifica Info
+    </a>
 </section>
 
 <section>

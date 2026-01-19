@@ -2,17 +2,12 @@
 
 ## hard
 - project view / join page
-- founder page
 - single profile view overlay
 
 
 ## medium
 - home notifications
 - responsive desktop
-- account setting updates
-- fix filters
-- filters / search template
-- profile search
 
 
 ## easy
@@ -33,3 +28,10 @@
 - members administration
 - check discovery design / features
 - member roles for project
+
+## giuppy
+- founder page
+- profile search
+- account setting updates
+- fix filters
+- filters / search template

@@ -1,64 +1,34 @@
 <?php
 require_once '../includes/db.php';
+require_once '../includes/ProjectsHelper.php'; // Fondamentale!
 include '../includes/header.php';
 
-// Assicuriamoci che l'utente sia loggato per calcolare le sue stelle
 $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : 0;
 
-// Gestione Ricerca interna
+// Setup Variabili
 $searchQuery = $_GET['q'] ?? '';
-$whereClause = "";
-$params = [$user_id]; // Primo parametro è sempre l'user_id per la subquery
-$types = "i";         // Tipo integer per user_id
+$filterTag = $_GET['tag'] ?? '';
+$filterAvailable = isset($_GET['available']);
+$sortOrder = $_GET['sort'] ?? 'newest';
 
-if ($searchQuery) {
-    $whereClause = "WHERE p.name LIKE ? OR p.intro LIKE ? OR t.name LIKE ?";
-    $searchTerm = "%" . $searchQuery . "%";
-    $params[] = $searchTerm;
-    $params[] = $searchTerm;
-    $params[] = $searchTerm;
-    $types .= "sss";
-}
-
-// QUERY AGGIORNATA:
-// 1. Calcola se l'utente ha messo star (is_starred)
-// 2. Conta il totale delle stelle (star_count)
-$sql = "SELECT DISTINCT p.*, 
-        (SELECT COUNT(*) FROM project_stars WHERE project_id = p.id AND user_id = ?) as is_starred,
-        (SELECT COUNT(*) FROM project_stars WHERE project_id = p.id) as star_count,
-        GROUP_CONCAT(t.name) as tags 
-        FROM projects p 
-        LEFT JOIN project_tags pt ON p.id = pt.project_id 
-        LEFT JOIN tags t ON pt.tag_id = t.id 
-        $whereClause
-        GROUP BY p.id 
-        ORDER BY p.created_at DESC";
-
-// Esecuzione query parametrica
-$stmt = $db->prepare($sql);
-$stmt->bind_param($types, ...$params);
-$stmt->execute();
-$res = $stmt->get_result();
+// Usa Helper
+$res = ProjectsHelper::getProjects($db, $user_id, $_GET);
+$allTags = ProjectsHelper::getAllTags($db);
 ?>
 
 <div class="discovery-container">
-
     <div class="discovery-header-row">
-        <form action="discovery.php" method="GET" class="search-form-flex">
-            <div class="search-wrapper">
-                <span class="material-icons-round search-icon">search</span>
-                <input type="text" name="q" value="<?= htmlspecialchars($searchQuery) ?>"
-                    placeholder="Cerca progetti..." class="search-input-clean">
-            </div>
-        </form>
-        <button class="filter-btn">
+        <?php include '../includes/searchbar.php'; ?>
+        <button class="filter-btn" type="button" onclick="toggleFilters()">
             <span class="material-icons-round">tune</span>
+            <?php if ($filterTag || $filterAvailable): ?>
+                <span
+                    style="position:absolute; top:0; right:0; width:10px; height:10px; background:red; border-radius:50%; border:2px solid white;"></span>
+            <?php endif; ?>
         </button>
     </div>
 
-    <h2 class="section-title" style="margin-left: 5px;">
-        <?= $searchQuery ? 'Risultati per "' . htmlspecialchars($searchQuery) . '"' : "What's New" ?>
-    </h2>
+    <?php include '../includes/filter_panel.php'; ?>
 
     <div class="vertical-list">
         <?php if ($res && $res->num_rows > 0): ?>
@@ -67,29 +37,23 @@ $res = $stmt->get_result();
                     <div class="cd-image-container">
                         <img src="https://picsum.photos/seed/<?= $p['id'] ?>/600/350" alt="Cover" class="cd-image">
                     </div>
-
                     <div class="cd-body">
                         <h3 class="cd-title"><?= htmlspecialchars($p['name']) ?></h3>
                         <p class="cd-desc"><?= htmlspecialchars($p['intro']) ?></p>
-
                         <div class="cd-stats-row">
                             <div class="cd-stat">
                                 <span class="material-icons-round">group</span>
                                 <span><?= $p['occupied_slots'] ?>/<?= $p['total_slots'] ?></span>
                             </div>
-
                             <a href="../actions/star_project.php?id=<?= $p['id'] ?>"
                                 class="cd-stat star-btn <?= $p['is_starred'] ? 'active' : '' ?>">
-                                <span class="material-icons-round">
-                                    <?= $p['is_starred'] ? 'star' : 'star_border' ?>
-                                </span>
+                                <span class="material-icons-round"><?= $p['is_starred'] ? 'star' : 'star_border' ?></span>
                                 <span><?= $p['star_count'] ?></span>
                             </a>
                         </div>
-
                         <a href="project.php?id=<?= $p['id'] ?>" class="cd-action-btn">
                             <span class="material-icons-round">person_add</span>
-                            <span>Unisciti (+<?= $p['total_slots'] - $p['occupied_slots'] ?>)</span>
+                            <span>Unisciti</span>
                         </a>
                     </div>
                 </div>
@@ -97,11 +61,20 @@ $res = $stmt->get_result();
         <?php else: ?>
             <div style="text-align: center; padding: 40px; color: #888;">
                 <p>Nessun progetto trovato.</p>
+                <a href="discovery.php" style="color: var(--primary-green); font-weight: bold;">Reset filtri</a>
             </div>
         <?php endif; ?>
     </div>
-
     <div style="height: 80px;"></div>
 </div>
+
+<script>
+    function toggleFilters() {
+        const panel = document.getElementById('filterPanel');
+        const overlay = document.getElementById('filterOverlay');
+        if (panel) panel.classList.toggle('active');
+        if (overlay) overlay.classList.toggle('active');
+    }
+</script>
 
 <?php include '../includes/footer.php'; ?>

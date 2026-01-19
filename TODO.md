@@ -1,19 +1,17 @@
 # Todo
 
 ## hard
-- project view / join page
-- single profile view overlay
+
 
 
 ## medium
-- home notifications
-- responsive desktop
+
 
 
 ## easy
-- accessibility options
+
 - test mobile
-- login / signup design
+
 
 
 ## bonus
@@ -28,6 +26,7 @@
 - members administration
 - check discovery design / features
 - member roles for project
+- project view / join page
 
 ## giuppy
 - founder page
@@ -35,3 +34,10 @@
 - account setting updates
 - fix filters
 - filters / search template
+
+## dev
+- login / signup design
+- home notifications
+- responsive desktop
+- accessibility options
+- single profile view overlay

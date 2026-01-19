@@ -1,4 +1,21 @@
 @media (min-width: 769px) {
+
+    /* RIPRISTINO HEADER SU DESKTOP */
+    .top-nav {
+        display: flex !important;
+        /* Torna visibile su schermi grandi */
+    }
+
+    /* Nascondiamo invece la Bottom Bar che su PC non serve */
+    .bottom-nav {
+        display: none !important;
+    }
+
+    /* Reset del padding del body per desktop */
+    body {
+        padding-top: 0;
+    }
+
     :root {
         --nav-height: 70px;
     }

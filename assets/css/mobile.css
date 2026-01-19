@@ -6,6 +6,17 @@
     -webkit-tap-highlight-color: transparent;
 }
 
+/* --- HEADER CLEANING (Mobile Only) --- */
+/* Nascondiamo la Top Bar e il Menu Laterale SOLO se siamo su mobile (max-width: 768px) */
+@media (max-width: 768px) {
+
+    .top-nav,
+    .mobile-drawer,
+    .mobile-drawer.active {
+        display: none !important;
+    }
+}
+
 :root {
     --primary-green: #28a745;
     --light-green-bg: #dcfce7;
@@ -500,24 +511,28 @@ h2.section-title {
 .filter-panel {
     background: #ffffff;
     border-radius: 24px;
-    overflow: hidden; /* FONDAMENTALE: nasconde il contenuto quando si chiude */
-    
+    overflow: hidden;
+    /* FONDAMENTALE: nasconde il contenuto quando si chiude */
+
     /* STATO INIZIALE (CHIUSO) */
-    max-height: 0;           
-    opacity: 0;              
-    padding: 0 20px;         /* Padding orizzontale ok, verticale a 0 */
+    max-height: 0;
+    opacity: 0;
+    padding: 0 20px;
+    /* Padding orizzontale ok, verticale a 0 */
     margin-bottom: 0;
-    border: 1px solid transparent; 
-    
+    border: 1px solid transparent;
+
     /* ANIMAZIONE FLUIDA */
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* CLASSE CHE ATTIVA IL PANNELLO (APERTO) */
 .filter-panel.open {
-    max-height: 500px;       /* Un valore alto a sufficienza per contenere tutto */
+    max-height: 500px;
+    /* Un valore alto a sufficienza per contenere tutto */
     opacity: 1;
-    padding: 20px;           /* Ripristina il padding */
+    padding: 20px;
+    /* Ripristina il padding */
     margin-bottom: 25px;
     border-color: rgba(0, 0, 0, 0.05);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
@@ -555,7 +570,8 @@ h2.section-title {
     font-size: 0.95rem;
     color: var(--text-dark);
     outline: none;
-    appearance: none; /* Rimuove freccia default brutta */
+    appearance: none;
+    /* Rimuove freccia default brutta */
     /* Icona freccetta personalizzata */
     background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%231f2937%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
     background-repeat: no-repeat;
@@ -591,4 +607,244 @@ h2.section-title {
     transition: opacity 0.2s;
 }
 
-.apply-btn:hover { opacity: 0.9; }
+.apply-btn:hover {
+    opacity: 0.9;
+}
+
+/* --- PROFILE PAGE STYLES (Figma Match) --- */
+
+.profile-page-container {
+    padding: 20px;
+    background-color: #f5f5f5;
+    /* Sfondo grigio chiaro mockup */
+    min-height: 100vh;
+}
+
+/* Card Base Style */
+.profile-card {
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    margin-bottom: 15px;
+}
+
+/* 1. Main Stats Card */
+.main-stats-card {
+    display: flex;
+    justify-content: space-between;
+    /* Avatar a sx, Stats a dx */
+    align-items: center;
+}
+
+.profile-identity {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40%;
+}
+
+.profile-avatar-large {
+    width: 80px;
+    height: 80px;
+    background-color: #bbf7d0;
+    /* Verde molto chiaro */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    color: #166534;
+}
+
+.profile-avatar-large .material-icons-round {
+    font-size: 3rem;
+}
+
+.profile-username {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 2px;
+    text-align: center;
+}
+
+.profile-role-badge {
+    font-size: 0.8rem;
+    color: #6b7280;
+}
+
+.profile-numbers {
+    width: 55%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.stat-row {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-row strong {
+    font-size: 1.1rem;
+    font-weight: 800;
+}
+
+.stat-row span {
+    font-size: 0.85rem;
+    color: #4b5563;
+}
+
+.stat-divider {
+    height: 1px;
+    background-color: #e5e7eb;
+    width: 100%;
+}
+
+/* 2. Middle Row (Grid) */
+.profile-grid-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.small-card {
+    flex: 1;
+    /* 50% width each */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 15px;
+    margin-bottom: 0;
+}
+
+.big-number {
+    font-size: 2.5rem;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 5px;
+}
+
+.small-label {
+    font-size: 0.8rem;
+    color: #4b5563;
+    line-height: 1.2;
+}
+
+/* Chart Styles */
+.chart-card-container {
+    align-items: flex-start;
+    /* Allinea a sinistra */
+    text-align: left;
+}
+
+.chart-header {
+    margin-bottom: 10px;
+}
+
+.chart-title {
+    font-weight: 700;
+    display: block;
+    font-size: 0.9rem;
+}
+
+.chart-subtitle {
+    font-size: 0.7rem;
+    color: #6b7280;
+    display: block;
+    line-height: 1.1;
+}
+
+.mini-bar-chart {
+    display: flex;
+    align-items: flex-end;
+    gap: 4px;
+    height: 50px;
+    width: 100%;
+}
+
+.bar {
+    flex: 1;
+    background-color: #86efac;
+    /* Verde mockup */
+    border-radius: 4px;
+    opacity: 0.8;
+}
+
+/* 3. Promo Card */
+.promo-card {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s;
+}
+
+.promo-card:active {
+    transform: scale(0.98);
+}
+
+.promo-icon {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #86efac 0%, #22c55e 100%);
+    border-radius: 50%;
+    /* O forma a fiore con clip-path se vuoi spingere */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+
+.promo-text strong {
+    display: block;
+    font-size: 1rem;
+    margin-bottom: 2px;
+}
+
+.promo-text p {
+    font-size: 0.8rem;
+    color: #6b7280;
+    margin: 0;
+}
+
+/* 4. Settings List */
+.settings-list {
+    margin-top: 10px;
+}
+
+.setting-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5px;
+    text-decoration: none;
+    color: #1f2937;
+    transition: background 0.2s;
+}
+
+.setting-item:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+.setting-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.setting-divider {
+    border: 0;
+    border-top: 1px solid #e5e7eb;
+    margin: 5px 0;
+}
+
+.setting-item .arrow {
+    color: #9ca3af;
+}

@@ -1,21 +1,15 @@
 <?php
 require_once '../includes/db.php';
+require_once '../includes/ProjectsHelper.php';
 include '../includes/header.php';
 
 $project_id = $_GET['id'] ?? 0;
-$stmt = $db->prepare("SELECT * FROM projects WHERE id = ?");
-$stmt->bind_param("i", $project_id);
-$stmt->execute();
-$project = $stmt->get_result()->fetch_assoc();
+$project = ProjectsHelper::getDetails($db, $project_id);
 
 if (!$project)
     die("Progetto non trovato.");
 
-// Recupera i ruoli
-$roles_stmt = $db->prepare("SELECT * FROM project_roles WHERE project_id = ?");
-$roles_stmt->bind_param("i", $project_id);
-$roles_stmt->execute();
-$roles = $roles_stmt->get_result();
+$roles = ProjectsHelper::getRoles($db, $project_id);
 ?>
 
 <h1><?= htmlspecialchars($project['name']) ?></h1>
@@ -34,5 +28,4 @@ $roles = $roles_stmt->get_result();
     <?php endwhile; ?>
 </ul>
 
-<h3>News del Progetto</h3>
 <?php include '../includes/footer.php'; ?>

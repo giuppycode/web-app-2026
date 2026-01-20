@@ -58,3 +58,11 @@ h2.section-title {
     color: #4b5563;
     font-weight: 500;
 }
+
+/* Assicura che chi usa la tastiera veda dove si trova */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+    outline: 2px solid var(--text-dark);
+    outline-offset: 2px;
+}

@@ -32,5 +32,21 @@ class UserHelper
             'updates' => $updates
         ];
     }
+    public static function searchByUsername($db, $query, $exclude_user_id)
+    {
+        // Cerca utenti che contengono la parola chiave ($query)
+        // LIMIT 10 per non intasare la lista
+        $stmt = $db->prepare("SELECT id, username, email FROM users WHERE username LIKE ? AND id != ? LIMIT 10");
+        $searchTerm = "%" . $query . "%";
+        $stmt->bind_param("si", $searchTerm, $exclude_user_id);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+        $users = [];
+        while ($row = $result->fetch_assoc()) {
+            $users[] = $row;
+        }
+        return $users;
+    }
 }
 ?>

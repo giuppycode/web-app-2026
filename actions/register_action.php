@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($result->num_rows > 0) {
         // Se troviamo una riga, l'utente esiste già
         echo "<h3>Errore: Username o Email già utilizzati.</h3>";
-        echo "<a href='../pages/register.php'>Torna alla registrazione</a>";
+        echo "<a href='../public/register.php'>Torna alla registrazione</a>";
         exit;
     }
     $stmt->close();
@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['email'] = $email;
 
             // Reindirizziamo alla pagina Discovery (o al Profilo)
-            header("Location: ../pages/discovery.php");
+            header("Location: ../public/discovery.php");
             exit;
         } else {
             echo "Errore durante la registrazione: " . $stmt->error;
@@ -73,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 } else {
     // Se qualcuno prova ad aprire questa pagina direttamente senza passare dal form
-    header("Location: ../pages/register.php");
+    header("Location: ../public/register.php");
     exit;
 }
 ?>

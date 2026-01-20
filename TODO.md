@@ -29,11 +29,11 @@
 - project view / join page
 
 ## giuppy
-- founder page
-- profile search
-- account setting updates
-- fix filters
-- filters / search template
+- ~~founder page~~
+- ~~profile search~~
+- account setting updates (maybe dont need)
+- ~~fix filters~~
+- ~~filters / search template~~
 
 ## dev
 - login / signup design

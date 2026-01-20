@@ -193,5 +193,46 @@ class ProjectsHelper
                 ORDER BY n.created_at DESC";
         return $db->query($sql);
     }
+    // --- FOUNDER PAGE ---
+
+    // Recupera SOLO i progetti dove l'utente è Founder
+    public static function getFoundedProjects($db, $user_id)
+    {
+        $sql = "SELECT * FROM projects p 
+                JOIN project_members pm ON p.id = pm.project_id 
+                WHERE pm.user_id = ? AND pm.membership_type = 'founder'
+                ORDER BY p.created_at DESC";
+        $stmt = $db->prepare($sql);
+        $stmt->bind_param("i", $user_id);
+        $stmt->execute();
+        return $stmt->get_result();
+    }
+
+    // Recupera le ultime news dai progetti fondati (per la sezione Notifications)
+    public static function getFounderNotifications($db, $user_id)
+    {
+        $sql = "SELECT n.description, p.name as project_name 
+                FROM project_news n
+                JOIN projects p ON n.project_id = p.id
+                JOIN project_members pm ON p.id = pm.project_id
+                WHERE pm.user_id = ? AND pm.membership_type = 'founder'
+                ORDER BY n.created_at DESC LIMIT 3";
+        $stmt = $db->prepare($sql);
+        $stmt->bind_param("i", $user_id);
+        $stmt->execute();
+        return $stmt->get_result();
+    }
+    // Recupera SOLO i progetti dove l'utente è Membro (NON Founder)
+    public static function getMemberProjects($db, $user_id)
+    {
+        $sql = "SELECT p.* FROM projects p 
+                JOIN project_members pm ON p.id = pm.project_id 
+                WHERE pm.user_id = ? AND pm.membership_type != 'founder'
+                ORDER BY p.created_at DESC";
+        $stmt = $db->prepare($sql);
+        $stmt->bind_param("i", $user_id);
+        $stmt->execute();
+        return $stmt->get_result();
+    }
 }
 ?>

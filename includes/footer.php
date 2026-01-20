@@ -19,7 +19,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
         <span class="material-icons-round">grid_view</span>
     </a>
 
-    <a href="founder_panel.php" class="nav-item <?= $currentPage == 'founder_panel.php' ? 'active' : '' ?>">
+    <a href="founder.php" class="nav-item <?= $currentPage == 'founder.php' ? 'active' : '' ?>">
         <span class="material-icons-round">local_police</span>
     </a>
 

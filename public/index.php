@@ -1,15 +1,25 @@
 <?php
 require_once '../includes/db.php';
-require_once '../includes/ProjectsHelper.php'; // Fondamentale!
+require_once '../includes/ProjectsHelper.php';
 include '../includes/header.php';
 
-if (!isset($_SESSION['user_id']))
+if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
+    exit;
+}
 $user_id = $_SESSION['user_id'];
 
-// Usa la classe Helper
+// 1. Recupero parametri Home (Search + Filters)
+// Passiamo tutto $_GET all'helper che cercherà le chiavi 'q_fav', 'tag_fav', ecc.
+$favorites = ProjectsHelper::getFavorites($db, $user_id, $_GET);
+
+// 2. Recupero altri dati
 $participating = ProjectsHelper::getParticipating($db, $user_id);
-$favorites = ProjectsHelper::getFavorites($db, $user_id);
+$allTags = ProjectsHelper::getAllTags($db); // Serve per il filter_panel_home
+
+// Variabili per la UI (per mostrare pallino rosso se filtrato)
+$favTag = $_GET['tag_fav'] ?? '';
+$favAvailable = isset($_GET['available_fav']);
 ?>
 
 <style>
@@ -30,6 +40,7 @@ $favorites = ProjectsHelper::getFavorites($db, $user_id);
 </div>
 
 <div class="home-container">
+
     <h2 class="section-title">Participating</h2>
     <?php if ($participating->num_rows > 0): ?>
         <div class="horizontal-scroll">
@@ -53,13 +64,32 @@ $favorites = ProjectsHelper::getFavorites($db, $user_id);
         <p class="empty-state">Non partecipi ancora a nessun progetto.</p>
     <?php endif; ?>
 
-    <div class="section-header-row">
-        <h2 class="section-title">Yours favorite</h2>
-        <div class="action-icons mobile-only">
-            <button class="icon-btn"><span class="material-icons-round">search</span></button>
-            <button class="icon-btn"><span class="material-icons-round">filter_list</span></button>
+    <div class="section-header-row"
+        style="display: flex; justify-content: space-between; align-items: center; margin-top: 30px; margin-bottom: 15px;">
+
+        <h2 class="section-title" style="margin: 0;">Yours favorite</h2>
+
+        <div style="display: flex; align-items: center; gap: 10px;">
+
+            <?php include '../includes/searchbar_home.php'; ?>
+
+            <button class="filter-btn" type="button" onclick="toggleFiltersHome()">
+                <span class="material-icons-round">tune</span>
+                <?php if ($favTag || $favAvailable): ?>
+                    <span class="filter-badge"></span>
+                <?php endif; ?>
+            </button>
         </div>
     </div>
+
+    <?php include '../includes/filter_panel_home.php'; ?>
+
+    <?php if (!empty($_GET['q_fav']) || $favTag || $favAvailable): ?>
+        <p style="margin-bottom: 15px; color: #666; font-size: 0.9rem;">
+            Filtri attivi sui preferiti. <a href="index.php"
+                style="color: var(--primary-green); font-weight: 600;">Reset</a>
+        </p>
+    <?php endif; ?>
 
     <div class="favorites-list">
         <?php if ($favorites->num_rows > 0): ?>
@@ -73,10 +103,7 @@ $favorites = ProjectsHelper::getFavorites($db, $user_id);
                     </div>
                     <div class="cf-news-section">
                         <h4>Latest news</h4>
-                        <?php
-                        // Usa Helper anche qui per le news
-                        $news_res = ProjectsHelper::getLatestNews($db, $fav['id']);
-                        ?>
+                        <?php $news_res = ProjectsHelper::getLatestNews($db, $fav['id']); ?>
                         <?php if ($news_res->num_rows > 0): ?>
                             <ul class="news-list">
                                 <?php while ($news = $news_res->fetch_assoc()): ?>
@@ -93,7 +120,9 @@ $favorites = ProjectsHelper::getFavorites($db, $user_id);
                 </div>
             <?php endwhile; ?>
         <?php else: ?>
-            <p class="empty-state">Non hai ancora progetti preferiti.</p>
+            <p class="empty-state" style="text-align:center; padding: 20px;">
+                Nessun progetto preferito trovato con questi filtri.
+            </p>
         <?php endif; ?>
     </div>
 </div>

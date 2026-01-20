@@ -70,19 +70,64 @@ class ProjectsHelper
         return $stmt->get_result();
     }
 
-    public static function getFavorites($db, $user_id)
+    // In includes/ProjectsHelper.php
+
+    // Aggiungiamo il parametro $search con default vuoto
+    public static function getFavorites($db, $user_id, $filters = [])
     {
-        $sql = "SELECT p.*, 
+        // Recuperiamo i parametri specifici per i preferiti (con suffisso _fav)
+        $search = $filters['q_fav'] ?? '';
+        $tag = $filters['tag_fav'] ?? '';
+        $sort = $filters['sort_fav'] ?? 'newest';
+        $available = isset($filters['available_fav']);
+
+        // Query Base
+        $sql = "SELECT DISTINCT p.*, 
                 (SELECT COUNT(*) FROM project_stars WHERE project_id = p.id) as star_count
                 FROM projects p 
                 JOIN project_stars ps ON p.id = ps.project_id 
+                LEFT JOIN project_tags pt ON p.id = pt.project_id 
                 WHERE ps.user_id = ?";
+
+        $params = [$user_id];
+        $types = "i";
+
+        // 1. Filtro Ricerca
+        if ($search) {
+            $sql .= " AND (p.name LIKE ? OR p.intro LIKE ?)";
+            $searchTerm = "%" . $search . "%";
+            $params[] = $searchTerm;
+            $params[] = $searchTerm;
+            $types .= "ss";
+        }
+
+        // 2. Filtro Tag
+        if ($tag) {
+            $sql .= " AND pt.tag_id = ?";
+            $params[] = $tag;
+            $types .= "i";
+        }
+
+        // 3. Filtro Disponibilità
+        if ($available) {
+            $sql .= " AND p.occupied_slots < p.total_slots";
+        }
+
+        // Raggruppiamo per evitare duplicati dovuti al JOIN dei tag
+        $sql .= " GROUP BY p.id";
+
+        // 4. Ordinamento
+        if ($sort === 'stars') {
+            $sql .= " ORDER BY star_count DESC, p.created_at DESC";
+        } else {
+            $sql .= " ORDER BY p.created_at DESC"; // Default: Più recenti
+        }
+
         $stmt = $db->prepare($sql);
-        $stmt->bind_param("i", $user_id);
+        $stmt->bind_param($types, ...$params);
         $stmt->execute();
         return $stmt->get_result();
     }
-
     public static function getLatestNews($db, $project_id)
     {
         $stmt = $db->prepare("SELECT description, DATE_FORMAT(created_at, '%b %d') as date_fmt FROM project_news WHERE project_id = ? ORDER BY created_at DESC LIMIT 3");

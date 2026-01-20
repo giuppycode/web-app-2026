@@ -39,8 +39,6 @@
         echo 'Risultati per "' . htmlspecialchars($searchQuery) . '"';
     elseif ($filterTag)
         echo 'Progetti filtrati';
-    else
-        echo "What's New";
     ?>
 </h2>
 

@@ -17,6 +17,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
 
     <a href="create_project.php" class="nav-item <?= $currentPage == 'create_project.php' ? 'active' : '' ?>">
         <span class="material-icons-round">add</span>
+        <span class="label">Create</span>
     </a>
 
     <a href="founder.php" class="nav-item <?= $currentPage == 'founder.php' ? 'active' : '' ?>">

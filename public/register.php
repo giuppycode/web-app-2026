@@ -1,12 +1,23 @@
 <?php require_once '../includes/db.php';
 include '../includes/header.php'; ?>
-<h2>Unisciti alla Community</h2>
-<form action="../actions/register_action.php" method="POST">
-    <input type="text" name="username" placeholder="Username" required><br><br>
-    <input type="email" name="email" placeholder="Email universitaria" required><br><br>
-    <input type="password" name="password" placeholder="Password" required><br><br>
-    <textarea name="biography" placeholder="Raccontaci brevemente chi sei..."></textarea><br><br>
-    <button type="submit">Registrati</button>
-</form>
-<p>Hai già un account? <a href="login.php">Accedi qui</a></p>
+
+<div class="container">
+    <h2 class="section-title">Unisciti alla Community</h2>
+    
+    <form action="../actions/register_action.php" method="POST" class="auth-form">
+        <input type="text" name="username" placeholder="Username" required class="auth-input">
+        <input type="email" name="email" placeholder="Email universitaria" required class="auth-input">
+        <input type="password" name="password" placeholder="Password" required class="auth-input">
+        
+        <textarea name="biography" placeholder="Raccontaci brevemente chi sei..." class="auth-input" rows="3"></textarea>
+        
+        <button type="submit" class="btn-full-width">Registrati</button>
+    </form>
+
+    <div class="auth-footer">
+        <p>Hai già un account?</p>
+        <a href="login.php" class="link-highlight">Accedi qui</a>
+    </div>
+</div>
+
 <?php include '../includes/footer.php'; ?>

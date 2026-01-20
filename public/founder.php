@@ -83,32 +83,6 @@ $notifications = ProjectsHelper::getFounderNotifications($db, $user_id);
     <div style="height: 100px;"></div>
 </div>
 
-<style>
-    .bottom-nav {
-        display: none !important;
-    }
 
-    .bottom-nav-founder {
-        display: flex !important;
-    }
-</style>
 
-<div class="bottom-nav bottom-nav-founder" style="
-    position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
-    width: 90%; max-width: 400px;
-    background: #ffffff; border-radius: 30px;
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 10px 20px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    z-index: 1000;">
-
-    <a href="index.php" class="nav-item"><span class="material-icons-round">home</span></a>
-    <a href="discovery.php" class="nav-item"><span class="material-icons-round">search</span></a>
-    <a href="activity.php" class="nav-item"><span class="material-icons-round">grid_view</span></a>
-    <a href="founder.php" class="nav-item active">
-        <span class="material-icons-round">local_florist</span>
-        <span class="label">Founder</span>
-    </a>
-    <a href="profile.php" class="nav-item"><span class="material-icons-round">person</span></a>
-</div>
-
-<?php echo '<script src="../assets/js/main.js"></script></body></html>'; ?>
+<?php include '../includes/footer.php'; ?>

@@ -19,16 +19,13 @@ $allTags = ProjectsHelper::getAllTags($db);
 <div class="discovery-container">
     <div class="discovery-header-row">
         <?php include '../includes/searchbar.php'; ?>
-        <button class="filter-btn" type="button" onclick="toggleFilters()">
-            <span class="material-icons-round">tune</span>
-            <?php if ($filterTag || $filterAvailable): ?>
-                <span
-                    style="position:absolute; top:0; right:0; width:10px; height:10px; background:red; border-radius:50%; border:2px solid white;"></span>
-            <?php endif; ?>
-        </button>
+
+        <?php include '../includes/filter_button.php'; ?>
     </div>
 
     <?php include '../includes/filter_panel.php'; ?>
+
+    <div class="vertical-list"></div>
 
     <div class="vertical-list">
         <?php if ($res && $res->num_rows > 0): ?>
@@ -67,14 +64,5 @@ $allTags = ProjectsHelper::getAllTags($db);
     </div>
     <div style="height: 80px;"></div>
 </div>
-
-<script>
-    function toggleFilters() {
-        const panel = document.getElementById('filterPanel');
-        const overlay = document.getElementById('filterOverlay');
-        if (panel) panel.classList.toggle('active');
-        if (overlay) overlay.classList.toggle('active');
-    }
-</script>
 
 <?php include '../includes/footer.php'; ?>

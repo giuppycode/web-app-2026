@@ -43,3 +43,18 @@
         echo "What's New";
     ?>
 </h2>
+
+<div id="filterOverlay" class="filter-overlay" onclick="toggleFilters()"></div>
+
+<script>
+    function toggleFilters() {
+        const panel = document.getElementById('filterPanel');
+        const overlay = document.getElementById('filterOverlay');
+
+        // CORREZIONE: Usa 'open' perché nel tuo mobile.css hai scritto .filter-panel.open
+        if (panel) panel.classList.toggle('open');
+
+        // L'overlay usa ancora 'active' nel CSS
+        if (overlay) overlay.classList.toggle('active');
+    }
+</script>

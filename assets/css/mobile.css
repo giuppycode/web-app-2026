@@ -864,3 +864,80 @@ h2.section-title {
 .setting-item .arrow {
     color: #9ca3af;
 }
+
+/* --- SEARCHBAR ESPANDIBILE (HOME) --- */
+
+/* Il contenitore principale (inizialmente sembra un bottone tondo) */
+.search-expand-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    /* Icona allineata a destra */
+    width: 48px;
+    /* Larghezza iniziale = altezza (cerchio) */
+    height: 48px;
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 24px;
+    /* Raggio metà dell'altezza per farlo tondo */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Animazione fluida */
+    overflow: hidden;
+    /* Nasconde l'input che esce */
+}
+
+/* Stato Espanso */
+.search-expand-wrapper.expanded {
+    width: 100%;
+    /* Si allarga per occupare lo spazio disponibile */
+    max-width: 300px;
+    /* Larghezza massima per non esagerare su tablet */
+    border-color: var(--primary-green);
+    /* Evidenzia il bordo */
+}
+
+/* L'input text vero e proprio */
+.search-input-expanded {
+    flex-grow: 1;
+    /* Occupa tutto lo spazio rimanente a sinistra dell'icona */
+    border: none;
+    background: transparent;
+    outline: none;
+    padding: 0;
+    /* Nascosto inizialmente */
+    width: 0;
+    /* Nascosto inizialmente */
+    opacity: 0;
+    /* Invisibile inizialmente */
+    font-size: 1rem;
+    color: #374151;
+    transition: all 0.3s ease;
+    /* Deve animarsi insieme al wrapper */
+}
+
+/* Input text quando il wrapper è espanso */
+.search-expand-wrapper.expanded .search-input-expanded {
+    width: auto;
+    opacity: 1;
+    padding-left: 15px;
+    /* Spazio a sinistra per il testo */
+}
+
+/* Il bottone con l'icona della lente */
+.search-trigger-btn {
+    width: 48px;
+    /* Quadrato perfetto per stare nel cerchio */
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #374151;
+    flex-shrink: 0;
+    /* Non deve mai rimpicciolirsi */
+    padding: 0;
+}

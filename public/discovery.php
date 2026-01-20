@@ -18,7 +18,7 @@ $allTags = ProjectsHelper::getAllTags($db);
 
 <div class="discovery-container">
     <div class="discovery-header-row">
-        <?php include '../includes/searchbar.php'; ?>
+        <?php include '../includes/searchbar_discovery.php'; ?>
 
         <?php include '../includes/filter_button.php'; ?>
     </div>

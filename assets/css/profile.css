@@ -1,9 +1,12 @@
+/* --- PROFILE PAGE CONTAINER --- */
 .profile-page-container {
     padding: 20px;
     background-color: #f5f5f5;
+    /* Grigio default, sovrascritto a bianco nella edit page */
     min-height: 100vh;
 }
 
+/* --- CARD BASE --- */
 .profile-card {
     background: white;
     border-radius: 20px;
@@ -12,6 +15,7 @@
     margin-bottom: 15px;
 }
 
+/* --- MAIN STATS (Avatar, Username, Follower) --- */
 .main-stats-card {
     display: flex;
     justify-content: space-between;
@@ -81,7 +85,7 @@
     width: 100%;
 }
 
-/* Grid */
+/* --- GRID STATS (Piccole card quadrate) --- */
 .profile-grid-row {
     display: flex;
     gap: 15px;
@@ -111,7 +115,7 @@
     line-height: 1.2;
 }
 
-/* Charts */
+/* --- CHARTS --- */
 .chart-card-container {
     align-items: flex-start;
     text-align: left;
@@ -149,7 +153,7 @@
     opacity: 0.8;
 }
 
-/* Promo & Settings */
+/* --- PROMO CARD & SETTINGS LIST --- */
 .promo-card {
     display: flex;
     align-items: center;
@@ -187,7 +191,6 @@
     margin: 0;
 }
 
-/* SETTINGS LIST (Mancava prima!) */
 .settings-list {
     margin-top: 10px;
 }
@@ -218,7 +221,7 @@
     color: #9ca3af;
 }
 
-/* User Search */
+/* --- USER SEARCH (Per la pagina search) --- */
 .search-card {
     background: white;
     padding: 20px;
@@ -308,4 +311,154 @@
     font-weight: bold;
     cursor: pointer;
     display: none;
+}
+
+
+/* ============================================================
+   --- EDIT PROFILE / SETTINGS PAGE STYLES (NUOVI) ---
+   ============================================================ */
+
+/* Header specifico con freccia indietro */
+.settings-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+}
+
+.settings-header h2 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0;
+    color: #1f2937;
+}
+
+.back-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #1f2937;
+    display: flex;
+    align-items: center;
+    padding: 0;
+}
+
+/* Titoli delle sezioni (Personal info, Contact...) */
+.settings-section-title {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #000;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+/* Righe di input stile "List Item" */
+.input-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.input-label {
+    font-size: 0.85rem;
+    color: #4b5563;
+    margin-bottom: 4px;
+    font-weight: 500;
+}
+
+/* L'input sembra testo normale ma è modificabile */
+.input-field-clean {
+    border: none;
+    background: transparent;
+    font-size: 1rem;
+    color: #1f2937;
+    font-weight: 500;
+    width: 100%;
+    outline: none;
+    padding: 0;
+}
+
+.input-field-clean:focus {
+    border-bottom: 2px solid var(--primary-green);
+}
+
+.edit-icon {
+    color: #9ca3af;
+    margin-left: 10px;
+}
+
+/* Box Biografia */
+.bio-container {
+    background-color: #fce7f3;
+    /* Rosa chiarissimo del mockup */
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 16px;
+    padding: 15px;
+    margin-top: 10px;
+}
+
+.bio-textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    resize: none;
+    font-size: 0.95rem;
+    color: #4b5563;
+    line-height: 1.5;
+    outline: none;
+    font-family: inherit;
+}
+
+/* Roles / Tags */
+.roles-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.role-tag {
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border: 1px solid #e5e7eb;
+    background: transparent;
+    color: #4b5563;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.role-tag.active {
+    background-color: #86efac;
+    color: #064e3b;
+    border-color: #86efac;
+    font-weight: 600;
+}
+
+/* Bottone Salva */
+.save-btn-container {
+    margin-top: 40px;
+    padding-bottom: 30px;
+}
+
+.save-btn-primary {
+    width: 100%;
+    background: #000;
+    color: white;
+    padding: 15px;
+    border-radius: 12px;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
 }

@@ -4,10 +4,17 @@ class UserHelper
     // Recupera dati anagrafici
     public static function getData($db, $user_id)
     {
-        $stmt = $db->prepare("SELECT username, email, biography FROM users WHERE id = ?");
+        // Usiamo SELECT * per prendere automaticamente anche firstname, lastname, number, ecc.
+        $stmt = $db->prepare("SELECT * FROM users WHERE id = ?");
         $stmt->bind_param("i", $user_id);
         $stmt->execute();
-        return $stmt->get_result()->fetch_assoc();
+        $result = $stmt->get_result();
+
+        if ($row = $result->fetch_assoc()) {
+            return $row;
+        }
+
+        return null;
     }
 
     // Calcola le statistiche per la dashboard

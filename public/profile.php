@@ -69,10 +69,16 @@ if (!$user)
             </div>
             <span class="material-icons-round arrow">chevron_right</span>
         </a>
+        <a href="accessibility.php" class="setting-item">
+            <div class="setting-left"><span class="material-icons-round">accessibility_new</span><span>Accessibility</span>
+            </div>
+            <span class="material-icons-round arrow">chevron_right</span>
+        </a>
         <a href="../actions/logout.php" class="setting-item">
             <div class="setting-left"><span class="material-icons-round">logout</span><span>Log out</span></div>
             <span class="material-icons-round arrow">chevron_right</span>
         </a>
+        
     </div>
     <div style="height: 80px;"></div>
 </div>

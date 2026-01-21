@@ -13,31 +13,39 @@
 
 <body class="bg-light-green-bg text-text-dark font-sans pb-[90px]">
 
-    <nav
-        class="group h-[70px] w-full bg-white shadow-md fixed top-0 left-0 z-50 flex items-center justify-between px-5 transition-all duration-300">
-        <div class="text-2xl font-bold bg-gradient-to-r from-primary-green to-green-400 bg-clip-text text-transparent">
-            🚀 CampusLaunch</div>
+    <a href="#main-content"
+        class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[60] focus:px-4 focus:py-2 focus:bg-white focus:text-primary-green focus:shadow-lg focus:rounded-md">
+        Vai al contenuto principale
+    </a>
 
-        <div class="hidden md:flex items-center gap-5">
-            <a href="index.php"
-                class="text-text-dark font-medium hover:text-primary-green transition-colors no-underline">Discovery</a>
-            <a href="activity.php"
-                class="text-text-dark font-medium hover:text-primary-green transition-colors no-underline">News</a>
-            <?php if (isset($_SESSION['user_id'])): ?>
-                <a href="create_project.php"
-                    class="px-5 py-2 bg-gradient-to-r from-primary-green to-green-400 text-white rounded-full font-bold shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all no-underline">Crea
-                    (+ )</a>
-                <a href="profile.php"
-                    class="text-text-dark font-medium hover:text-primary-green transition-colors no-underline">Profilo</a>
-                <a href="../actions/logout.php"
-                    class="text-text-dark font-medium hover:text-primary-green transition-colors no-underline">Logout</a>
-            <?php else: ?>
-                <a href="login.php"
-                    class="text-text-dark font-medium hover:text-primary-green transition-colors no-underline">Login</a>
-                <a href="register.php"
-                    class="px-5 py-2 bg-gradient-to-r from-primary-green to-green-400 text-white rounded-full font-bold shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all no-underline">Registrati</a>
-            <?php endif; ?>
-        </div>
-    </nav>
+    <header>
+        <nav
+            class="group h-[70px] w-full bg-white shadow-md fixed top-0 left-0 z-50 flex items-center justify-between px-5 transition-all duration-300">
+            <div
+                class="text-2xl font-bold bg-gradient-to-r from-primary-green to-green-400 bg-clip-text text-transparent">
+                🚀 CampusLaunch</div>
 
-    <div class="container">
+            <div class="hidden md:flex items-center gap-5">
+                <a href="index.php"
+                    class="text-text-dark font-medium hover:text-primary-green transition-colors no-underline">Discovery</a>
+                <a href="activity.php"
+                    class="text-text-dark font-medium hover:text-primary-green transition-colors no-underline">News</a>
+                <?php if (isset($_SESSION['user_id'])): ?>
+                    <a href="create_project.php"
+                        class="px-5 py-2 bg-gradient-to-r from-primary-green to-green-400 text-white rounded-full font-bold shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all no-underline">Crea
+                        (+ )</a>
+                    <a href="profile.php"
+                        class="text-text-dark font-medium hover:text-primary-green transition-colors no-underline">Profilo</a>
+                    <a href="../actions/logout.php"
+                        class="text-text-dark font-medium hover:text-primary-green transition-colors no-underline">Logout</a>
+                <?php else: ?>
+                    <a href="login.php"
+                        class="text-text-dark font-medium hover:text-primary-green transition-colors no-underline">Login</a>
+                    <a href="register.php"
+                        class="px-5 py-2 bg-gradient-to-r from-primary-green to-green-400 text-white rounded-full font-bold shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all no-underline">Registrati</a>
+                <?php endif; ?>
+            </div>
+        </nav>
+    </header>
+
+    <main id="main-content" class="container">

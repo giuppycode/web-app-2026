@@ -13,7 +13,8 @@ try {
         $userId = intval($_GET['id']);
         
         // 1. Prendo Dati Utente (Uso 'biography' come da DB)
-        $stmt = $db->prepare("SELECT username, email, biography FROM users WHERE id = ?");
+       // Esempio di query corretta in get_user_details.php     
+        $stmt = $db->prepare("SELECT username, biography, faculty FROM users WHERE id = ?");
         $stmt->bind_param("i", $userId);
         $stmt->execute();
         $user = $stmt->get_result()->fetch_assoc();

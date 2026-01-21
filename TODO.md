@@ -36,7 +36,7 @@
 - ~~filters / search template~~
 
 ## dev
-- login / signup design
+- login / signup design(done)
 - home notifications
 - responsive desktop
 - accessibility options

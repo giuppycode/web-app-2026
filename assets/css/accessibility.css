@@ -8,15 +8,15 @@
 body.high-contrast {
     /* Usiamo 'background' shorthand per sovrascrivere sia color che image (gradiente) */
     background: #000000 !important; 
-    color: #ffffff !important;
+    color: #ffff00 !important;
 }
 
 /* 2. Regola Universale: Tutto nero, testo bianco */
 body.high-contrast *:not(img):not(video):not(.material-icons-round) {
     background-color: #000000 !important;
     background-image: none !important; /* Rimuove sfumature dai div */
-    color: #ffffff !important;
-    border-color: #ffffff !important;
+    color: #ffff00 !important;
+    border-color: #ffff00 !important;
     box-shadow: none !important;
 }
 
@@ -30,7 +30,7 @@ body.high-contrast .notification-bell,
 body.high-contrast .filter-panel,
 body.high-contrast .news-list li {
     background-color: #000000 !important;
-    border: 1px solid #ffffff !important; /* Bordo bianco obbligatorio per vedere i box */
+    border: 1px solid #ffff00 !important; /* Bordo bianco obbligatorio per vedere i box */
     margin-bottom: 15px !important;
 }
 
@@ -52,8 +52,8 @@ body.high-contrast .filter-badge {
 /* 5. Input e Ricerca */
 body.high-contrast input {
     background-color: #000000 !important;
-    border: 1px solid #ffffff !important;
-    color: #ffffff !important;
+    border: 1px solid #ffff00 !important;
+    color: #ffff00 !important;
 }
 
 /* 6. Link e Testi cliccabili (Verde) */

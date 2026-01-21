@@ -938,3 +938,194 @@ h2.section-title {
     display: inline-block;
     margin-top: 5px;
 }
+
+/* --- USER PROFILE MODAL --- */
+
+/* Sfondo scuro che copre tutto */
+.modal-overlay {
+    display: none; /* Nascosto di default */
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 9999; /* Altissimo */
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(5px); /* Effetto sfocato moderno */
+    padding: 20px;
+}
+
+/* La Card Bianca */
+.user-card-modal {
+    background: white;
+    width: 100%;
+    max-width: 350px; /* Larghezza tipo mobile */
+    border-radius: 24px;
+    padding: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    position: relative;
+    animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Header Avatar + Nome */
+.uc-header {
+    margin-bottom: 15px;
+}
+
+.uc-avatar-area {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.uc-avatar {
+    width: 60px;
+    height: 60px;
+    background-color: #86efac; /* Verde chiaro */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #064e3b;
+}
+
+.uc-avatar .material-icons-round { font-size: 32px; }
+
+.uc-info {
+    flex-grow: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.uc-info h3 {
+    margin: 0;
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.uc-menu-icon { color: #6b7280; cursor: pointer; }
+
+/* Tags */
+.uc-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.uc-tag {
+    font-size: 0.75rem;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+/* Colori specifici per i tag (come screenshot) */
+.tag-blue { background: #dbeafe; color: #1e40af; }
+.tag-green { background: #dcfce7; color: #166534; }
+.tag-orange { background: #ffedd5; color: #9a3412; }
+
+/* Sections */
+.uc-section { margin-bottom: 20px; }
+
+.uc-section h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #111;
+}
+
+.uc-text {
+    font-size: 0.9rem;
+    color: #4b5563;
+    line-height: 1.5;
+}
+
+.btn-close-modal {
+    width: 100%;
+    padding: 12px;
+    background: #f3f4f6;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/*Edit Profile*/
+.auth-input, 
+.auth-textarea {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    background-color: #fff;
+    font-family: inherit;
+    font-size: 1rem;
+    color: #1f2937;
+    transition: all 0.2s ease;
+    outline: none;
+}
+
+.auth-textarea {
+    resize: vertical;
+    min-height: 120px;
+    line-height: 1.6;
+}
+
+.secondary-text{
+color: #72777f; 
+font-size:small;
+}
+
+.auth-input:focus, 
+.auth-textarea:focus {
+    border-color: var(--primary-green, #28a745);
+    box-shadow: 0 0 0 4px rgba(40, 167, 69, 0.1);
+}
+
+.tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+/* Nasconde la vera checkbox brutta */
+.tag-checkbox input[type="checkbox"] {
+    display: none;
+}
+.tag-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 18px;
+    background-color: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 50px;
+    color: #4b5563;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    user-select: none;
+}
+
+/* Hover sulla pillola */
+.tag-pill:hover {
+    background-color: #f3f4f6;
+    border-color: #d1d5db;
+}
+
+/* STATO ATTIVO: Quando la checkbox è selezionata */
+.tag-checkbox input[type="checkbox"]:checked + .tag-pill {
+    background-color: #dcfce7;
+    color: #166534;
+    border-color: #86efac;     
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    transform: translateY(-1px);
+}

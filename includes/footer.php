@@ -1,5 +1,4 @@
-</div>
-<?php
+</div> <?php
 $currentPage = basename($_SERVER['PHP_SELF']);
 ?>
 
@@ -29,6 +28,103 @@ $currentPage = basename($_SERVER['PHP_SELF']);
 
 </nav>
 
-</body>
+<div id="userProfileModal" class="modal-overlay" onclick="closeUserProfile(event)">
+    
+    <div class="user-card-modal">
+        
+        <div class="uc-header">
+            <div class="uc-avatar-area">
+                <div class="uc-avatar" id="modalAvatar">
+                    <span class="material-icons-round">person</span>
+                </div>
+                <div class="uc-info">
+                    <h3 id="modalUsername">Caricamento...</h3>
+                    <span class="material-icons-round uc-menu-icon">more_vert</span>
+                </div>
+            </div>
+        </div>
 
+        <div class="uc-tags" id="modalTags">
+            </div>
+
+        <div class="uc-section">
+            <h4>Biography</h4>
+            <p id="modalBio" class="uc-text">...</p>
+        </div>
+
+        <div class="uc-section">
+            <h4>Active Projects</h4>
+            <div id="modalProjects" class="uc-projects-list">
+                </div>
+        </div>
+
+        <button onclick="closeUserProfile(null)" class="btn-close-modal">Chiudi</button>
+    </div>
+</div>
+
+<script>
+    function openUserProfile(userId) {
+        const modal = document.getElementById('userProfileModal');
+        modal.style.display = 'flex';
+        
+        // Reset
+        document.getElementById('modalUsername').innerText = "Caricamento...";
+        document.getElementById('modalBio').innerText = "";
+        document.getElementById('modalTags').innerHTML = "";
+        document.getElementById('modalProjects').innerHTML = ""; 
+        
+        fetch('../actions/get_user_details.php?id=' + userId)
+            .then(response => response.json())
+            .then(data => {
+                if(data.success) {
+                    const user = data.data;
+                    
+                    // Dati base
+                    document.getElementById('modalUsername').innerText = user.username;
+                    document.getElementById('modalBio').innerText = user.biography;
+                    
+                    // 1. Render Tags
+                    let tagsHtml = '';
+                    if(user.tags && user.tags.length > 0) {
+                        const colors = ['tag-blue', 'tag-green', 'tag-orange'];
+                        user.tags.forEach((tag, index) => {
+                            const colorClass = colors[index % colors.length];
+                            tagsHtml += `<span class="uc-tag ${colorClass}">${tag}</span>`;
+                        });
+                    } else {
+                        tagsHtml = '<span style="color:#999; font-size:0.8rem;">Nessun tag</span>';
+                    }
+                    document.getElementById('modalTags').innerHTML = tagsHtml;
+
+                    // 2. Render Projects (NUOVO)
+                    let projHtml = '';
+                    if(user.projects && user.projects.length > 0) {
+                        user.projects.forEach(projName => {
+                            // Creiamo un piccolo badge o lista per i progetti
+                            projHtml += `<div style="background:#f9fafb; padding:8px; border-radius:8px; margin-bottom:5px; font-size:0.9rem; border:1px solid #eee;">📂 ${projName}</div>`;
+                        });
+                    } else {
+                        projHtml = '<p class="uc-text">Nessun progetto attivo.</p>';
+                    }
+                    document.getElementById('modalProjects').innerHTML = projHtml;
+
+                } else {
+                    document.getElementById('modalUsername').innerText = "Errore";
+                    document.getElementById('modalBio').innerText = data.message;
+                }
+            })
+            .catch(error => {
+                console.error('ERRORE JS:', error);
+                document.getElementById('modalUsername').innerText = "Errore di connessione";
+            });
+    }
+
+    function closeUserProfile(event) {
+        if (!event || event.target.id === 'userProfileModal') {
+            document.getElementById('userProfileModal').style.display = 'none';
+        }
+    }
+</script>
+
+</body>
 </html>

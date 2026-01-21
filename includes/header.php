@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>CampusLaunch</title>
-    <link rel="stylesheet" href="../assets/css/mobile.css?v=2">
+    <link rel="stylesheet" href="../assets/css/mobile.css?v=3">
     <link rel="stylesheet" href="../assets/css/desktop.css" media="(min-width: 769px)">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
 </head>

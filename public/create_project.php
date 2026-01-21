@@ -1,8 +1,15 @@
 <?php
 require_once '../includes/db.php';
-include '../includes/header.php';
-if (!isset($_SESSION['user_id']))
+if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
+    exit;
+}
+
+$error = $_SESSION['create_project_error'] ?? null;
+$success = $_SESSION['create_project_success'] ?? null;
+unset($_SESSION['create_project_error'], $_SESSION['create_project_success']);
+
+include '../includes/header.php';
 ?>
 
 <h2>Lancia la tua Idea 🚀</h2>

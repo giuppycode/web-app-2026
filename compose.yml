@@ -1,0 +1,44 @@
+services:
+  web:
+    build: .
+    container_name: webapp_web
+    ports:
+      - "80:80"
+    volumes:
+      - ./:/var/www/html/
+    networks:
+      - webapp_network
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0
+    container_name: webapp_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: webappdb
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./db/webappdb.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - webapp_network
+
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: webapp_phpmyadmin
+    ports:
+      - "8080:80"
+    environment:
+      PMA_HOST: ${HOST}
+      PMA_USER: ${PMA_USER}
+      PMA_PASSWORD: ${PMA_PASSWORD}
+    networks:
+      - webapp_network
+
+networks:
+  webapp_network:
+    driver: bridge
+
+volumes:
+  db_data:

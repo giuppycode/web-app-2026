@@ -4,10 +4,16 @@ include '../includes/header.php'; ?>
     <h2 class="section-title">Accedi a CampusLaunch</h2>
 
     <?php if (isset($_GET['error'])): ?>
-        <div style="background-color: #fee2e2; color: #b91c1c; padding: 12px; border-radius: 12px; margin-bottom: 20px; text-align: center; border: 1px solid #fca5a5; font-weight: 600;">
-            ⚠️ Email o Password non corretti.
-        </div>
-    <?php endif; ?>
+            <div class="error-alert">
+                ⚠️ <?= htmlspecialchars($_GET['error']) ?>
+            </div>
+        <?php endif; ?>
+
+        <?php if (isset($_GET['success'])): ?>
+            <div class="success-alert">
+                ✅ <?= htmlspecialchars($_GET['success']) ?>
+            </div>
+        <?php endif; ?>
 
     <form action="../actions/login_action.php" method="POST" class="auth-form">
         <input type="email" name="email" placeholder="Email" required class="auth-input">

@@ -1,78 +1,102 @@
 <?php
-session_start(); // Avviamo la sessione per loggare l'utente subito dopo la registrazione
+// actions/register_action.php
+
+// 1. Configurazione Errori (utile per vedere se qualcosa si rompe nel backend)
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
 require_once '../includes/db.php';
 
-// Verifichiamo che la pagina sia stata chiamata via POST (clic sul bottone)
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+// Avvio sessione
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
-    // 1. RACCOLTA E PULIZIA DATI
-    $username = trim($_POST['username']);
-    $email = trim($_POST['email']);
-    $password = $_POST['password'];
+// Verifica Connessione
+if (!isset($db)) {
+    die("Errore Fatale: Variabile \$db non trovata in db.php.");
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
-    // Qui gestiamo la BIOGRAPHY facoltativa.
-    // Se l'utente ha scritto qualcosa la prendiamo, altrimenti salviamo una stringa vuota.
+    // --- A. RECUPERO DATI DAL TUO NUOVO FORM ---
+    $firstname = trim($_POST['firstname']);
+    $lastname  = trim($_POST['lastname']);
+    $faculty   = trim($_POST['faculty']);
+    $number    = trim($_POST['number']);
+    $username  = trim($_POST['username']);
+    $email     = trim($_POST['email']);
+    $password  = $_POST['password'];
+    // La biografia è opzionale, quindi controlliamo se esiste
     $biography = isset($_POST['biography']) ? trim($_POST['biography']) : '';
 
-    // Validazione base
-    if (empty($username) || empty($email) || empty($password)) {
-        die("Errore: Compila tutti i campi obbligatori.");
-    }
-
-    // 2. CONTROLLO SE L'UTENTE ESISTE GIÀ
-    // Controlliamo sia username che email per evitare duplicati
-    $checkQuery = "SELECT id FROM users WHERE email = ? OR username = ?";
-    $stmt = $db->prepare($checkQuery);
-    $stmt->bind_param("ss", $email, $username);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    if ($result->num_rows > 0) {
-        // Se troviamo una riga, l'utente esiste già
-        echo "<h3>Errore: Username o Email già utilizzati.</h3>";
-        echo "<a href='../public/register.php'>Torna alla registrazione</a>";
+    // --- B. VALIDAZIONE ---
+    // Controlliamo che i campi obbligatori non siano vuoti
+    if (empty($firstname) || empty($lastname) || empty($faculty) || empty($number) || empty($username) || empty($email) || empty($password)) {
+        $errorMsg = urlencode("Compila tutti i campi obbligatori.");
+        header("Location: ../public/register.php?error=$errorMsg");
         exit;
     }
-    $stmt->close();
 
-    // 3. SICUREZZA PASSWORD (HASHING)
-    // Non salviamo mai la password in chiaro! Usiamo password_hash
-    $password_hash = password_hash($password, PASSWORD_DEFAULT);
+    try {
+        // --- C. CONTROLLO DUPLICATI ---
+        // Controlliamo se Email o Username esistono già
+        $checkStmt = $db->prepare("SELECT id FROM users WHERE email = ? OR username = ?");
+        if (!$checkStmt) {
+            throw new Exception("Errore SQL Check: " . $db->error);
+        }
+        
+        $checkStmt->bind_param("ss", $email, $username);
+        $checkStmt->execute();
+        
+        if ($checkStmt->get_result()->num_rows > 0) {
+            throw new Exception("Username o Email già registrati.");
+        }
+        $checkStmt->close();
 
-    // 4. INSERIMENTO NEL DATABASE
-    // Inseriamo anche la colonna 'biography'
-    $sql = "INSERT INTO users (username, email, password, biography) VALUES (?, ?, ?, ?)";
-    $stmt = $db->prepare($sql);
-    
-    if ($stmt) {
-        // "ssss" significa: 4 parametri di tipo Stringa
-        $stmt->bind_param("ssss", $username, $email, $password_hash, $biography);
+        // --- D. INSERIMENTO NEL DB ---
+        // Hash della password per sicurezza
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+        
+        // Query aggiornata con TUTTI i campi del tuo database
+        $query = "INSERT INTO users (firstname, lastname, faculty, number, username, email, password, biography) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        
+        $insertStmt = $db->prepare($query);
+        if (!$insertStmt) {
+            throw new Exception("Errore SQL Insert Prepare: " . $db->error);
+        }
 
-        if ($stmt->execute()) {
-            // REGISTRAZIONE AVVENUTA CON SUCCESSO
-            
-            // 5. LOGIN AUTOMATICO
-            // Recuperiamo l'ID appena creato dal database
-            $new_user_id = $stmt->insert_id;
-            
-            // Salviamo i dati nella sessione
-            $_SESSION['user_id'] = $new_user_id;
-            $_SESSION['username'] = $username;
-            $_SESSION['email'] = $email;
+        // Bind dei parametri: 8 stringhe ("ssssssss")
+        $insertStmt->bind_param("ssssssss", 
+            $firstname, 
+            $lastname, 
+            $faculty, 
+            $number, 
+            $username, 
+            $email, 
+            $hashed_password, 
+            $biography
+        );
 
-            // Reindirizziamo alla pagina Discovery (o al Profilo)
-            header("Location: ../public/discovery.php");
+        if ($insertStmt->execute()) {
+            // SUCCESSO!
+            // Reindirizziamo al login con un messaggio
+            $msg = urlencode("Registrazione completata! Ora puoi accedere.");
+            header("Location: ../public/login.php?success=$msg"); 
             exit;
         } else {
-            echo "Errore durante la registrazione: " . $stmt->error;
+            throw new Exception("Errore durante il salvataggio: " . $insertStmt->error);
         }
-        $stmt->close();
-    } else {
-        echo "Errore di connessione al database.";
+
+    } catch (Exception $e) {
+        // ERRORE: Torniamo al form di registrazione con il messaggio di errore
+        $errorMsg = urlencode($e->getMessage());
+        header("Location: ../public/register.php?error=$errorMsg");
+        exit;
     }
 
 } else {
-    // Se qualcuno prova ad aprire questa pagina direttamente senza passare dal form
+    // Se qualcuno prova ad aprire la pagina direttamente senza usare il form
     header("Location: ../public/register.php");
     exit;
 }

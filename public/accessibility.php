@@ -4,7 +4,9 @@ require_once '../includes/db.php';
 include '../includes/header.php';
 ?>
 
-<link rel="stylesheet" href="../assets/css/accessibility.css?v=1">
+<link rel="stylesheet" href="../assets/css/accessibility-page.css?v=2">
+
+<link rel="stylesheet" href="../assets/css/userCard.css?v=2">
 
 <div class="acc-container">
     
@@ -23,8 +25,8 @@ include '../includes/header.php';
                 <span>Grandezza Testo</span>
             </div>
             <div class="acc-toggle-group">
-                <button class="acc-btn active" onclick="setAccessibility('fontSize', 'normal', this)">Aa</button>
-                <button class="acc-btn" onclick="setAccessibility('fontSize', 'large', this)" style="font-size: 1.2rem;">Aa</button>
+                <button id="btn-text-normal" class="acc-btn" onclick="setAccessibility('text', false)">Aa</button>
+                <button id="btn-text-large" class="acc-btn" onclick="setAccessibility('text', true)" style="font-size: 1.2rem;">Aa</button>
             </div>
         </div>
 
@@ -34,9 +36,8 @@ include '../includes/header.php';
                 <span>Contrasto</span>
             </div>
             <div class="acc-toggle-group">
-                <button class="acc-btn active" onclick="setAccessibility('contrast', 'normal', this)">Standard</button>
-                <button class="acc-btn" onclick="setAccessibility('contrast', 'high', this)">Alto</button>
-            </div>
+                <button id="btn-contrast-normal" class="acc-btn" onclick="setAccessibility('contrast', false)">Standard</button>
+                <button id="btn-contrast-high" class="acc-btn" onclick="setAccessibility('contrast', true)">Alto</button></div>
         </div>
     </div>
 
@@ -62,56 +63,58 @@ include '../includes/header.php';
     </a>
 
 </div>
-
 <script>
-    // 1. Al caricamento della pagina, controlliamo se ci sono preferenze salvate
+    // Al caricamento, illumina i bottoni se le opzioni sono attive
     document.addEventListener('DOMContentLoaded', () => {
-        const savedSize = localStorage.getItem('acc_fontSize');
-        const savedContrast = localStorage.getItem('acc_contrast');
-
-        if (savedSize === 'large') document.body.classList.add('font-large');
-        if (savedContrast === 'high') document.body.classList.add('high-contrast');
-
-        // Aggiorna visivamente i bottoni (opzionale, logica semplificata qui sotto)
-        updateButtonsUI(savedSize, savedContrast);
+        updateButtonsUI();
     });
 
-    // 2. Funzione chiamata al click dei bottoni
-    function setAccessibility(type, value, btnElement) {
-        // Gestione Logica CSS
-        if (type === 'fontSize') {
-            if (value === 'large') {
-                document.body.classList.add('font-large');
-                localStorage.setItem('acc_fontSize', 'large');
-            } else {
-                document.body.classList.remove('font-large');
-                localStorage.setItem('acc_fontSize', 'normal');
-            }
-        } 
-        else if (type === 'contrast') {
-            if (value === 'high') {
+    // Funzione chiamata dal CLICK dei bottoni
+    function setAccessibility(type, isActive) {
+        console.log("Click rilevato:", type, isActive); // Debug
+
+        if (type === 'contrast') {
+            if (isActive) {
+                // Attiva visivamente subito
                 document.body.classList.add('high-contrast');
-                localStorage.setItem('acc_contrast', 'high');
+                // SALVA IN MEMORIA (Chiave: highContrast)
+                localStorage.setItem('highContrast', 'true');
             } else {
                 document.body.classList.remove('high-contrast');
-                localStorage.setItem('acc_contrast', 'normal');
+                localStorage.setItem('highContrast', 'false');
+            }
+        } 
+        else if (type === 'text') {
+            if (isActive) {
+                document.body.classList.add('large-text');
+                localStorage.setItem('largeText', 'true'); // Chiave: largeText
+            } else {
+                document.body.classList.remove('large-text');
+                localStorage.setItem('largeText', 'false');
             }
         }
 
-        // Gestione Visiva Bottoni (Sposta la classe .active)
-        const parent = btnElement.parentElement;
-        const buttons = parent.getElementsByClassName('acc-btn');
-        for (let btn of buttons) {
-            btn.classList.remove('active');
-        }
-        btnElement.classList.add('active');
+        // Aggiorna i colori dei bottoni
+        updateButtonsUI();
     }
 
-    // Funzione ausiliaria per settare i bottoni giusti al caricamento
-    function updateButtonsUI(size, contrast) {
-        // Questa è una logica base per evidenziare il bottone giusto se ricarichi la pagina
-        // Per semplicità, in questo esempio base i bottoni tornano su "Standard" visivamente
-        // ma l'effetto sulla pagina rimane.
+    function updateButtonsUI() {
+        // Legge lo stato attuale
+        const isHighContrast = localStorage.getItem('highContrast') === 'true';
+        const isLargeText = localStorage.getItem('largeText') === 'true';
+
+        // Gestione classi 'active' sui bottoni (per farli vedere premuti)
+        // Bottoni Contrasto
+        const btnContrastNorm = document.getElementById('btn-contrast-normal');
+        const btnContrastHigh = document.getElementById('btn-contrast-high');
+        if(btnContrastNorm) btnContrastNorm.classList.toggle('active', !isHighContrast);
+        if(btnContrastHigh) btnContrastHigh.classList.toggle('active', isHighContrast);
+
+        // Bottoni Testo
+        const btnTextNorm = document.getElementById('btn-text-normal');
+        const btnTextLarge = document.getElementById('btn-text-large');
+        if(btnTextNorm) btnTextNorm.classList.toggle('active', !isLargeText);
+        if(btnTextLarge) btnTextLarge.classList.toggle('active', isLargeText);
     }
 </script>
 

@@ -1,59 +1,56 @@
+// assets/js/prova.js
+
 function openUserProfile(userId) {
-    // 1. Trova la finestra modale
     const modal = document.getElementById('userProfileModal');
-    if (!modal) {
-        console.error("ERRORE: HTML modale non trovato nel footer!");
-        return;
-    }
     
-    modal.style.display = 'flex';
-    
-    // 2. Resetta i campi
+    // QUESTA È LA RIGA MAGICA CHE MANCAVA O CHE IL BROWSER NON HA AGGIORNATO
+    modal.style.display = 'flex'; 
+
+    // Reset testi
     document.getElementById('modalUsername').innerText = "Caricamento...";
-    document.getElementById('modalFaculty').innerText = ""; 
+    document.getElementById('modalFaculty').innerText = "";
     document.getElementById('modalBio').innerText = "";
-    document.getElementById('modalProjects').innerHTML = ""; 
-    
-    // 3. Chiama il backend
-    // Il percorso ../actions parte dalla cartella 'public' dove viene eseguito lo script
+    document.getElementById('modalProjects').innerHTML = "";
+
+    // Chiamata AJAX
     fetch('../actions/get_user_details.php?id=' + userId)
         .then(response => response.json())
         .then(data => {
-            if(data.success) {
+            if (data.success) {
                 const user = data.data;
-                
                 document.getElementById('modalUsername').innerText = user.username;
+                document.getElementById('modalFaculty').innerText = user.faculty || "Nessuna facoltà";
+                document.getElementById('modalBio').innerText = user.biography;
+
+                // Progetti
+                const projectsContainer = document.getElementById('modalProjects');
+                projectsContainer.innerHTML = ""; // Pulisci vecchi
                 
-                // Mostra Facoltà
-                document.getElementById('modalFaculty').innerText = user.faculty ? user.faculty : "Facoltà non specificata";
-
-                document.getElementById('modalBio').innerText = user.biography || "Nessuna biografia.";
-
-                // Render Projects
-                let projHtml = '';
-                if(user.projects && user.projects.length > 0) {
+                if (user.projects && user.projects.length > 0) {
                     user.projects.forEach(projName => {
-                        projHtml += `<div style="background:#f9fafb; padding:8px; border-radius:8px; margin-bottom:5px; font-size:0.9rem; border:1px solid #eee;">📂 ${projName}</div>`;
+                        const span = document.createElement('span');
+                        span.className = 'uc-tag'; // Assicurati che questa classe esista nel CSS userCard
+                        span.innerText = projName;
+                        projectsContainer.appendChild(span);
                     });
                 } else {
-                    projHtml = '<p class="uc-text">Nessun progetto attivo.</p>';
+                    projectsContainer.innerHTML = "<span style='color:#999'>Nessun progetto attivo</span>";
                 }
-                document.getElementById('modalProjects').innerHTML = projHtml;
-
             } else {
                 document.getElementById('modalUsername').innerText = "Errore";
                 document.getElementById('modalBio').innerText = data.message;
             }
         })
         .catch(error => {
-            console.error('ERRORE JS:', error);
+            console.error('Errore:', error);
             document.getElementById('modalUsername').innerText = "Errore Connessione";
         });
 }
 
 function closeUserProfile(event) {
-    // Chiude se clicchi fuori dalla card (sull'overlay scuro) o sul bottone chiudi
-    if (!event || event.target.id === 'userProfileModal') {
-        document.getElementById('userProfileModal').style.display = 'none';
+    const modal = document.getElementById('userProfileModal');
+    // Chiudi se clicchi sulla X (event null) o sull'ombra scura (event.target === modal)
+    if (event === null || event.target === modal) {
+        modal.style.display = 'none';
     }
 }

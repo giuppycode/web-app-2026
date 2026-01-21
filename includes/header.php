@@ -7,6 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>CampusLaunch</title>
+     
     <link rel="stylesheet" href="../assets/css/base.css">
     <link rel="stylesheet" href="../assets/css/components.css">
 
@@ -14,10 +15,11 @@
     <link rel="stylesheet" href="../assets/css/discovery.css">
     <link rel="stylesheet" href="../assets/css/profile.css">
     <link rel="stylesheet" href="../assets/css/userCard.css">
-    <link rel="stylesheet" href="../assets/css/accessibility.css">
+
     <link rel="stylesheet" href="../assets/css/founder.css">
     <link rel="stylesheet" href="../assets/css/desktop.css" media="(min-width: 769px)">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+       <link rel="stylesheet" href="../assets/css/accessibility.css">
 </head>
 
 <body>

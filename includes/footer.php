@@ -25,7 +25,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
     </a>
 </nav>
 
-<div id="userProfileModal" class="modal-overlay" onclick="closeUserProfile(event)">
+<div id="userProfileModal" class="modal-overlay" onclick="closeUserProfile(event)" style="display: none;">
     <div class="user-card-modal">
         
         <div class="uc-header">
@@ -54,7 +54,9 @@ $currentPage = basename($_SERVER['PHP_SELF']);
     </div>
 </div>
 
-<script src="../assets/js/prova.js?v=5"></script>
+<script src="../assets/js/accessibility-manager.js?v=5"></script>
+
+<script src="../assets/js/prova.js"></script>
 
 </body>
 </html>

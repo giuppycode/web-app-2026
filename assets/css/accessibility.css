@@ -1,144 +1,96 @@
-/* =========================================
-   ACCESSIBILITY PAGE STYLES
-   ========================================= */
+/* assets/css/accessibility.css - VERSIONE INDEX FIX */
 
-/* Contenitore principale */
-.acc-container {
-    padding: 20px;
-    max-width: 600px;
-    margin: 0 auto;
-    padding-bottom: 100px; /* Spazio per il menu in basso */
-}
+/* ==============================================
+   1. CONTRASTO ELEVATO (FORCE MODE)
+   ============================================== */
 
-/* Header della pagina con l'icona grande */
-.acc-header {
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-.acc-main-icon {
-    font-size: 64px;
-    color: var(--primary-green, #10b981); /* Usa il verde del tuo brand */
-    background: #ecfdf5;
-    padding: 20px;
-    border-radius: 50%;
-    margin-bottom: 15px;
-    display: inline-block;
-}
-
-.acc-header h1 {
-    margin: 10px 0 5px;
-    font-size: 1.8rem;
-    color: #111;
-}
-
-.acc-header p {
-    color: #6b7280;
-    font-size: 1rem;
-}
-
-/* Card bianca stile Settings */
-.acc-card {
-    background: #fff;
-    border-radius: 20px;
-    padding: 24px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-    margin-bottom: 20px;
-}
-
-.acc-card h2 {
-    font-size: 1.1rem;
-    margin-top: 0;
-    margin-bottom: 20px;
-    color: #374151;
-    border-bottom: 1px solid #f3f4f6;
-    padding-bottom: 10px;
-}
-
-/* Righe delle opzioni */
-.acc-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.acc-label {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-weight: 600;
-    color: #4b5563;
-}
-
-/* Gruppo pulsanti (Toggle) */
-.acc-toggle-group {
-    display: flex;
-    background: #f3f4f6;
-    border-radius: 12px;
-    padding: 4px;
-}
-
-.acc-btn {
-    border: none;
-    background: transparent;
-    padding: 8px 16px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 600;
-    color: #6b7280;
-    transition: all 0.2s ease;
-}
-
-/* Stato Attivo del pulsante */
-.acc-btn.active {
-    background: #fff;
-    color: #10b981; /* Verde */
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-/* Sezione testo descrittivo */
-.acc-text p {
-    line-height: 1.6;
-    color: #4b5563;
-    margin-bottom: 15px;
-}
-
-.contact-link {
-    color: #10b981;
-    font-weight: bold;
-    text-decoration: none;
-}
-
-/* --- CLASSI DI UTILITÀ PER LE MODIFICHE --- */
-/* Queste classi vengono attivate dal JS sul body */
-
-/* Testo Grande */
-body.font-large {
-    font-size: 1.2rem !important;
-}
-body.font-large h1 { font-size: 2.2rem; }
-body.font-large h2 { font-size: 1.5rem; }
-
-/* Alto Contrasto */
+/* 1. Uccidiamo il gradiente del body */
 body.high-contrast {
-    background-color: #000 !important;
-    color: #fff !important;
+    /* Usiamo 'background' shorthand per sovrascrivere sia color che image (gradiente) */
+    background: #000000 !important; 
+    color: #ffffff !important;
 }
-body.high-contrast .acc-card {
-    background: #111;
-    border: 1px solid #333;
+
+/* 2. Regola Universale: Tutto nero, testo bianco */
+body.high-contrast *:not(img):not(video):not(.material-icons-round) {
+    background-color: #000000 !important;
+    background-image: none !important; /* Rimuove sfumature dai div */
+    color: #ffffff !important;
+    border-color: #ffffff !important;
+    box-shadow: none !important;
 }
-body.high-contrast h1, 
-body.high-contrast h2, 
-body.high-contrast p, 
-body.high-contrast .acc-label {
-    color: #fff !important;
+
+/* 3. FIX SPECIFICO PER INDEX.PHP (Le Card) */
+/* Elenco tutte le classi che usi nella Home per forzarle */
+body.high-contrast .card-participating,
+body.high-contrast .card-favorite,
+body.high-contrast .home-header,
+body.high-contrast .searchbar-container,
+body.high-contrast .notification-bell,
+body.high-contrast .filter-panel,
+body.high-contrast .news-list li {
+    background-color: #000000 !important;
+    border: 1px solid #ffffff !important; /* Bordo bianco obbligatorio per vedere i box */
+    margin-bottom: 15px !important;
 }
-body.high-contrast .acc-toggle-group {
-    background: #333;
+
+/* 4. Bottoni e Filtri (Giallo) */
+body.high-contrast .filter-btn,
+body.high-contrast button,
+body.high-contrast .btn {
+    border: 2px solid #ffff00 !important;
+    color: #ffff00 !important;
+    background-color: #000000 !important;
 }
-body.high-contrast .acc-btn.active {
-    background: #ffff00; /* Giallo acceso */
-    color: #000;
+
+/* Indicatore pallino rosso (filtro attivo) diventa giallo */
+body.high-contrast .filter-badge {
+    background-color: #ffff00 !important;
+    border: none !important;
+}
+
+/* 5. Input e Ricerca */
+body.high-contrast input {
+    background-color: #000000 !important;
+    border: 1px solid #ffffff !important;
+    color: #ffffff !important;
+}
+
+/* 6. Link e Testi cliccabili (Verde) */
+body.high-contrast a,
+body.high-contrast .cp-title,
+body.high-contrast .cf-title {
+    color: #00ff00 !important;
+    text-decoration: none !important;
+}
+
+/* Sottolineiamo i link veri per chiarezza */
+body.high-contrast a:hover {
+    text-decoration: underline !important;
+}
+
+/* 7. Icone (Devono essere visibili) */
+body.high-contrast .material-icons-round {
+    color: inherit !important; /* Prende il colore del testo genitore (bianco o giallo) */
+    background: transparent !important;
+}
+
+/* 8. Avatar utente */
+body.high-contrast .user-avatar,
+body.high-contrast .cp-header .user-avatar {
+    border: 1px solid #fff !important;
+    background-color: #333 !important; /* Grigio scuro per stacco */
+}
+
+/* ==============================================
+   2. TESTO GRANDE
+   ============================================== */
+body.large-text {
+    font-size: 110% !important;
+}
+
+body.large-text h1, 
+body.large-text h2, 
+body.large-text h3 {
+    line-height: 1.4 !important;
 }

@@ -184,7 +184,8 @@
 .auth-form {
     display: flex;
     flex-direction: column;
-    gap: 15px; /* Spazio tra gli input */
+    gap: 15px;
+    /* Spazio tra gli input */
     margin-top: 10px;
 }
 
@@ -192,7 +193,8 @@
     width: 100%;
     padding: 14px;
     border: 1px solid #e5e7eb;
-    border-radius: 12px; /* Coerente con il resto dell'app */
+    border-radius: 12px;
+    /* Coerente con il resto dell'app */
     background: white;
     font-size: 1rem;
     outline: none;
@@ -206,7 +208,8 @@
 .btn-full-width {
     width: 100%;
     padding: 14px;
-    background-color: #1f2937; /* Grigio scuro/Nero elegante */
+    background-color: #1f2937;
+    /* Grigio scuro/Nero elegante */
     color: white;
     border: none;
     border-radius: 12px;
@@ -222,7 +225,8 @@
 .auth-form {
     display: flex;
     flex-direction: column;
-    gap: 15px; /* Spazio tra gli input */
+    gap: 15px;
+    /* Spazio tra gli input */
     margin-top: 10px;
 }
 
@@ -230,7 +234,8 @@
     width: 100%;
     padding: 14px;
     border: 1px solid #e5e7eb;
-    border-radius: 12px; /* Coerente con il resto dell'app */
+    border-radius: 12px;
+    /* Coerente con il resto dell'app */
     background: white;
     font-size: 1rem;
     outline: none;
@@ -244,7 +249,8 @@
 .btn-full-width {
     width: 100%;
     padding: 14px;
-    background-color: #1f2937; /* Grigio scuro/Nero elegante */
+    background-color: #1f2937;
+    /* Grigio scuro/Nero elegante */
     color: white;
     border: none;
     border-radius: 12px;
@@ -268,8 +274,11 @@
     display: inline-block;
     margin-top: 5px;
 }
+
 .row-2 {
     display: flex;
-    gap: 10px; /* Spazio tra i due input */
-    margin-bottom: 8px; /* Spazio sotto la riga */
+    gap: 10px;
+    /* Spazio tra i due input */
+    margin-bottom: 8px;
+    /* Spazio sotto la riga */
 }

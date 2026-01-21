@@ -1,0 +1,29 @@
+{
+  "name": "web-app-2026",
+  "version": "1.0.0",
+  "description": "Project for the Web Technology Coursework at University of Bologna",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tailwindcss -i assets/css/input.css -o assets/css/output.css",
+    "watch": "tailwindcss -i assets/css/input.css -o assets/css/output.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/giuppycode/web-app-2026.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/giuppycode/web-app-2026/issues"
+  },
+  "homepage": "https://github.com/giuppycode/web-app-2026#readme",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.18",
+    "autoprefixer": "^10.4.23",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.18"
+  }
+}

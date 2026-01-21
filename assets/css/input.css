@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+@theme {
+    --color-primary-green: #28a745;
+    --color-light-green-bg: #dcfce7;
+    --color-text-dark: #1f2937;
+    --color-text-muted: #6b7280;
+    --color-secondary-orange: #fd7e14;
+}
+
+/* Custom base styles mimicking the old base.css */
+@layer base {
+    body {
+        background-color: #f0fdf4;
+        /* green-50 essentially, but keeping exact hex if needed */
+        font-family: 'Segoe UI', sans-serif;
+        color: var(--color-text-dark);
+    }
+}
+
+/* 
+  We will delete these custom component classes and replace them with utilities in the HTML 
+  as we migrate. For now, we can keep some global resets if needed.
+*/

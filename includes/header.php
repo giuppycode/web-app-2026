@@ -7,71 +7,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>CampusLaunch</title>
-    <link rel="stylesheet" href="../assets/css/base.css">
-    <link rel="stylesheet" href="../assets/css/components.css">
-
-    <link rel="stylesheet" href="../assets/css/home.css">
-    <link rel="stylesheet" href="../assets/css/discovery.css">
-    <link rel="stylesheet" href="../assets/css/profile.css">
-    <link rel="stylesheet" href="../assets/css/founder.css">
-    <link rel="stylesheet" href="../assets/css/desktop.css" media="(min-width: 769px)">
+    <link rel="stylesheet" href="../assets/css/output.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
 </head>
 
-<body>
+<body class="bg-light-green-bg text-text-dark font-sans pb-[90px]">
 
-    <nav class="top-nav">
-        <span class="top-menu-toggle material-icons-round" onclick="toggleDrawer()">menu</span>
-        <div class="brand">🚀 CampusLaunch</div>
+    <nav
+        class="group h-[70px] w-full bg-white shadow-md fixed top-0 left-0 z-50 flex items-center justify-between px-5 transition-all duration-300">
+        <div class="text-2xl font-bold bg-gradient-to-r from-primary-green to-green-400 bg-clip-text text-transparent">
+            🚀 CampusLaunch</div>
 
-        <div class="desktop-links">
-            <a href="index.php">Discovery</a>
-            <a href="activity.php">News</a>
-            <a href="search.php">Cerca</a>
+        <div class="hidden md:flex items-center gap-5">
+            <a href="index.php"
+                class="text-text-dark font-medium hover:text-primary-green transition-colors no-underline">Discovery</a>
+            <a href="activity.php"
+                class="text-text-dark font-medium hover:text-primary-green transition-colors no-underline">News</a>
             <?php if (isset($_SESSION['user_id'])): ?>
-                <a href="create_project.php" class="btn-primary">Crea (+ )</a>
-                <a href="profile.php">Profilo</a>
-                <a href="../actions/logout.php">Logout</a>
+                <a href="create_project.php"
+                    class="px-5 py-2 bg-gradient-to-r from-primary-green to-green-400 text-white rounded-full font-bold shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all no-underline">Crea
+                    (+ )</a>
+                <a href="profile.php"
+                    class="text-text-dark font-medium hover:text-primary-green transition-colors no-underline">Profilo</a>
+                <a href="../actions/logout.php"
+                    class="text-text-dark font-medium hover:text-primary-green transition-colors no-underline">Logout</a>
             <?php else: ?>
-                <a href="login.php">Login</a>
-                <a href="register.php" class="btn-primary">Registrati</a>
+                <a href="login.php"
+                    class="text-text-dark font-medium hover:text-primary-green transition-colors no-underline">Login</a>
+                <a href="register.php"
+                    class="px-5 py-2 bg-gradient-to-r from-primary-green to-green-400 text-white rounded-full font-bold shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all no-underline">Registrati</a>
             <?php endif; ?>
         </div>
-
-        <a href="search.php" class="material-icons-round"
-            style="color: var(--text-dark); text-decoration: none;">search</a>
     </nav>
 
-    <div class="mobile-drawer" id="mobileDrawer">
-        <div class="drawer-header">
-            <span class="brand">Menu</span>
-            <span class="drawer-close material-icons-round" onclick="toggleDrawer()">close</span>
-        </div>
-        <a href="index.php"><span class="material-icons-round"
-                style="vertical-align: middle; margin-right: 10px;">explore</span> Discovery</a>
-        <a href="activity.php"><span class="material-icons-round"
-                style="vertical-align: middle; margin-right: 10px;">rss_feed</span> News</a>
-        <a href="search.php"><span class="material-icons-round"
-                style="vertical-align: middle; margin-right: 10px;">search</span> Cerca</a>
-        <?php if (isset($_SESSION['user_id'])): ?>
-            <a href="create_project.php"><span class="material-icons-round"
-                    style="vertical-align: middle; margin-right: 10px;">add_circle</span> Crea Progetto</a>
-            <a href="profile.php"><span class="material-icons-round"
-                    style="vertical-align: middle; margin-right: 10px;">person</span> Mio Profilo</a>
-            <hr>
-            <a href="../actions/logout.php" style="color: var(--secondary-orange);"><span class="material-icons-round"
-                    style="vertical-align: middle; margin-right: 10px;">logout</span> Logout</a>
-        <?php else: ?>
-            <hr>
-            <a href="login.php">Login</a>
-            <a href="register.php" style="color: var(--primary-green); font-weight: bold;">Registrati</a>
-        <?php endif; ?>
-    </div>
-
     <div class="container">
-
-        <script>
-            function toggleDrawer() {
-                document.getElementById('mobileDrawer').classList.toggle('active');
-            }
-        </script>

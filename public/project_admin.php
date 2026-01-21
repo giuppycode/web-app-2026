@@ -21,44 +21,52 @@ $members = ProjectsHelper::getMembers($db, $project_id);
 $project = ProjectsHelper::getDetails($db, $project_id);
 ?>
 
-<h2>Gestione Progetto: <?= htmlspecialchars($project['name']) ?></h2>
+<div class="px-5 pb-[100px] mt-[80px] md:max-w-4xl md:mx-auto md:mt-[100px]">
+    <h2 class="text-[1.8rem] font-bold text-gray-800 mb-[25px]">Gestione Progetto:
+        <?= htmlspecialchars($project['name']) ?></h2>
 
-<h3>Membri del Team</h3>
-<ul>
-    <?php while ($m = $members->fetch_assoc()): ?>
-        <li>
-            <?= htmlspecialchars($m['username']) ?>
-            <span style="font-size: 0.8em; color: #666;">(<?= $m['membership_type'] ?>)</span>
+    <div class="bg-white rounded-[20px] p-[25px] shadow-sm mb-[30px]">
+        <h3 class="text-[1.2rem] font-bold text-gray-700 mb-[15px]">Membri del Team</h3>
+        <ul class="flex flex-col gap-[10px]">
+            <?php while ($m = $members->fetch_assoc()): ?>
+                <li class="flex items-center justify-between p-[12px] bg-gray-50 rounded-[10px] border border-gray-100">
+                    <span class="font-medium text-gray-800">
+                        <?= htmlspecialchars($m['username']) ?>
+                        <span
+                            class="text-xs text-gray-500 font-normal ml-[5px] uppercase tracking-wider">(<?= $m['membership_type'] ?>)</span>
+                    </span>
 
-            <?php if ($m['membership_type'] != 'founder'): ?>
-                <button
-                    style="color: red; border: 1px solid red; background: white; border-radius: 4px; padding: 2px 5px; cursor: pointer;">Rimuovi</button>
-            <?php endif; ?>
-        </li>
-    <?php endwhile; ?>
-</ul>
+                    <?php if ($m['membership_type'] != 'founder'): ?>
+                        <button
+                            class="bg-white text-red-500 border border-red-200 rounded-[6px] px-[10px] py-[4px] text-xs font-bold cursor-pointer transition-colors hover:bg-red-50 hover:border-red-300">Rimuovi</button>
+                    <?php endif; ?>
+                </li>
+            <?php endwhile; ?>
+        </ul>
+    </div>
 
-<hr>
+    <div class="bg-white rounded-[20px] p-[25px] shadow-sm mb-[30px]">
+        <h3 class="text-[1.2rem] font-bold text-gray-700 mb-[15px]">Aggiungi un Aggiornamento (News)</h3>
+        <form action="../actions/post_news.php" method="POST" class="flex flex-col gap-[10px]">
+            <input type="hidden" name="project_id" value="<?= $project_id ?>">
+            <textarea name="news_text" placeholder="Cosa è successo di nuovo?" rows="3" required
+                class="w-full bg-gray-50 border-none rounded-[15px] p-[15px] text-base font-sans resize-y min-h-[100px] outline-none transition-all placeholder-gray-400 focus:bg-white focus:ring-2 focus:ring-green-100"></textarea>
+            <button type="submit"
+                class="self-end bg-primary-green text-white border-none px-[20px] py-[10px] rounded-[10px] font-bold shadow-md cursor-pointer transition-transform hover:shadow-lg hover:translate-y-[-2px] active:scale-95">Pubblica
+                Update</button>
+        </form>
+    </div>
 
-<h3>Aggiungi un Aggiornamento (News)</h3>
-<form action="../actions/post_news.php" method="POST">
-    <input type="hidden" name="project_id" value="<?= $project_id ?>">
-    <textarea name="news_text" placeholder="Cosa è successo di nuovo?" rows="3" required
-        style="width: 100%; padding: 10px; margin-bottom: 10px;"></textarea>
-    <button type="submit"
-        style="background: var(--primary-green); color: white; border: none; padding: 8px 15px; border-radius: 5px;">Pubblica
-        Update</button>
-</form>
-<hr>
-
-<h3>Gestione Ruoli Ricercati</h3>
-<form action="../actions/add_role.php" method="POST">
-    <input type="hidden" name="project_id" value="<?= $project_id ?>">
-    <input type="text" name="role_name" placeholder="Es. UX Designer" required
-        style="padding: 8px; border: 1px solid #ccc; border-radius: 5px;">
-    <button type="submit"
-        style="background: #333; color: white; border: none; padding: 8px 15px; border-radius: 5px;">Aggiungi
-        Posizione</button>
-</form>
+    <div class="bg-white rounded-[20px] p-[25px] shadow-sm mb-[30px]">
+        <h3 class="text-[1.2rem] font-bold text-gray-700 mb-[15px]">Gestione Ruoli Ricercati</h3>
+        <form action="../actions/add_role.php" method="POST" class="flex items-center gap-[10px]">
+            <input type="hidden" name="project_id" value="<?= $project_id ?>">
+            <input type="text" name="role_name" placeholder="Es. UX Designer" required
+                class="flex-1 bg-gray-50 border-none rounded-[10px] px-[15px] py-[12px] text-base outline-none transition-all placeholder-gray-400 focus:bg-white focus:ring-2 focus:ring-gray-200">
+            <button type="submit"
+                class="bg-gray-800 text-white border-none px-[20px] py-[12px] rounded-[10px] font-bold shadow-md cursor-pointer transition-transform hover:shadow-lg hover:translate-y-[-2px] active:scale-95">Aggiungi</button>
+        </form>
+    </div>
+</div>
 
 <?php include '../includes/footer.php'; ?>

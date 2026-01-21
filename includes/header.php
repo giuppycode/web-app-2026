@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="../assets/css/home.css">
     <link rel="stylesheet" href="../assets/css/discovery.css">
     <link rel="stylesheet" href="../assets/css/profile.css">
+    <link rel="stylesheet" href="../assets/css/userCard.css">
     <link rel="stylesheet" href="../assets/css/founder.css">
     <link rel="stylesheet" href="../assets/css/desktop.css" media="(min-width: 769px)">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">

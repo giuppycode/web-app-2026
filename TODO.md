@@ -40,4 +40,4 @@
 - home notifications
 - responsive desktop
 - accessibility options
-- single profile view overlay
+- single profile view overlay(done)

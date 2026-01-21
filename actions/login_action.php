@@ -15,7 +15,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['username'] = $user['username'];
         header("Location: ../public/index.php");
     } else {
-        echo "Credenziali errate.";
+        header("Location: ../public/login.php?error=1&email=" . urlencode($email));
+        exit;
     }
 }
 ?>

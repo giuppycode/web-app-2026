@@ -6,7 +6,7 @@
 
 ## medium
 
-- responsive desktop
+- ~~responsive desktop~~
 - look at style
 - home notifications
 - conform code to AA level (last to do)
@@ -19,7 +19,7 @@
 
 ## bonus
 - view / search archived projects
-- landing design / implementation
+- ~~landing design / implementation~~
 
 # Task
 

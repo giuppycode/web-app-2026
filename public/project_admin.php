@@ -106,6 +106,39 @@ include '../includes/header.php';
                 </div>
             </div>
 
+            <div class="form-group">
+                <label>Project Image</label>
+                <div class="upload-area" id="uploadArea">
+                    <input 
+                        type="file" 
+                        id="project_image" 
+                        name="project_image" 
+                        accept="image/jpeg,image/png,image/jpg,image/webp"
+                        class="file-input">
+                    
+                    <div class="current-image-container" id="currentImageContainer">
+                        <img 
+                            src="<?= htmlspecialchars(ImageHelper::getProjectImageUrl($project['image_url'])) ?>" 
+                            alt="Current project image"
+                            id="currentImage"
+                            class="current-project-image">
+                        <div class="image-overlay">
+                            <span class="material-icons-round">edit</span>
+                            <span>Change image</span>
+                        </div>
+                    </div>
+                    
+                    <div class="preview-container" id="previewContainer" style="display: none;">
+                        <img id="imagePreview" src="" alt="Preview">
+                        <button type="button" class="remove-image-btn" id="removeImageBtn">
+                            <span class="material-icons-round">close</span>
+                        </button>
+                    </div>
+                </div>
+                <small class="form-hint">Click to replace image (max 5MB)</small>
+            </div>
+        </section>
+
 </div>
 
 <script src="../assets/js/project_admin.js"></script>

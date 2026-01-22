@@ -22,6 +22,7 @@ Local / Remote deployment with internal docker network and *some* extended secur
 volume.
 
 To deploy the application via docker ensure the following:
+- Ensure docker and docker compose are installed on the system
 - Create a `.env` to store the compose users following the `.env.example`
 - Change /include/db.php `$host = 'db';` and the rest according to the `.env`
 

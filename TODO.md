@@ -6,12 +6,13 @@
 
 ## medium
 
-
+- responsive desktop
+- look at style
+- home notifications
+- conform code to AA level (last to do)
+- minimmum refactoring (last  to do)
 
 ## easy
-
-- test mobile
-
 
 
 ## bonus
@@ -31,13 +32,11 @@
 ## giuppy
 - ~~founder page~~
 - ~~profile search~~
-- account setting updates (maybe dont need)
+- ~~account setting updates (maybe dont need)~~
 - ~~fix filters~~
 - ~~filters / search template~~
 
 ## dev
-- login / signup design(done)
-- home notifications
-- responsive desktop
-- accessibility options
-- single profile view overlay(done)
+- ~~login / signup design(done)~~
+- ~~accessibility options~~
+- ~~single profile view overlay(done)~~

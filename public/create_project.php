@@ -128,6 +128,20 @@ include '../includes/header.php';
                 <!-- Hidden input to store co-founder IDs -->
                 <input type="hidden" name="co_founders" id="coFoundersInput" value="">
             </div>
+
+            <!-- Members (empty during creation, shown after project exists) -->
+            <div class="team-subsection">
+                <h3 class="subsection-title">Members</h3>
+                <div id="membersContainer" class="team-members-container">
+                    <p class="empty-members-text">No members yet. Add co-founders or create roles to expand your team.</p>
+                </div>
+                
+                <button type="button" class="add-members-btn" id="addMembersBtn">
+                    <span class="material-icons-round">person_add</span>
+                    <span>Add new Members</span>
+                    <span class="material-icons-round">arrow_forward</span>
+                </button>
+            </div>
         </section>
 
         <button type="submit" class="btn-launch">

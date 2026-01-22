@@ -269,6 +269,126 @@ include '../includes/header.php';
     </form>
 </div>
 
+<!-- Post News Modal -->
+<div id="newsModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>Post an Update</h3>
+            <button type="button" class="modal-close" onclick="closeNewsModal()">
+                <span class="material-icons-round">close</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form action="../actions/post_news.php" method="POST" id="newsForm">
+                <input type="hidden" name="project_id" value="<?= $project_id ?>">
+                <div class="form-group">
+                    <label for="news_text">Update message</label>
+                    <textarea 
+                        id="news_text" 
+                        name="news_text" 
+                        class="form-textarea" 
+                        rows="4"
+                        placeholder="Share what's new with your followers..."
+                        required></textarea>
+                </div>
+                <button type="submit" class="btn-primary">
+                    <span class="material-icons-round">send</span>
+                    <span>Post Update</span>
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Add Role Modal -->
+<div id="addRoleModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>Add New Role</h3>
+            <button type="button" class="modal-close" onclick="closeAddRoleModal()">
+                <span class="material-icons-round">close</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form action="../actions/add_role.php" method="POST">
+                <input type="hidden" name="project_id" value="<?= $project_id ?>">
+                <div class="form-group">
+                    <label for="role_name">Role Name</label>
+                    <input 
+                        type="text" 
+                        id="role_name" 
+                        name="role_name"
+                        class="form-input" 
+                        placeholder="e.g., Frontend Developer, Designer..."
+                        maxlength="100"
+                        required>
+                </div>
+                <button type="submit" class="btn-primary">
+                    <span class="material-icons-round">add</span>
+                    <span>Add Role</span>
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Member Actions Modal -->
+<div id="memberModal" class="modal" style="display: none;">
+    <div class="modal-content modal-small">
+        <div class="modal-header">
+            <h3 id="memberModalTitle">Member Actions</h3>
+            <button type="button" class="modal-close" onclick="closeMemberModal()">
+                <span class="material-icons-round">close</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="action-list">
+                <button type="button" class="action-item" onclick="editMemberRole()">
+                    <span class="material-icons-round">edit</span>
+                    <span>Change Role</span>
+                </button>
+                <button type="button" class="action-item danger" onclick="removeMember()">
+                    <span class="material-icons-round">person_remove</span>
+                    <span>Remove Member</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Role Actions Modal -->
+<div id="roleModal" class="modal" style="display: none;">
+    <div class="modal-content modal-small">
+        <div class="modal-header">
+            <h3 id="roleModalTitle">Role Actions</h3>
+            <button type="button" class="modal-close" onclick="closeRoleModal()">
+                <span class="material-icons-round">close</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="action-list">
+                <button type="button" class="action-item danger" onclick="deleteRole()">
+                    <span class="material-icons-round">delete</span>
+                    <span>Delete Role</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Applications Modal (Placeholder for now) -->
+<div id="applicationsModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>Role Applications</h3>
+            <button type="button" class="modal-close" onclick="closeApplicationsModal()">
+                <span class="material-icons-round">close</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <p class="empty-state-text">No applications yet. This feature will show users who applied for roles.</p>
+        </div>
+    </div>
 </div>
 
 <script src="../assets/js/project_admin.js"></script>

@@ -48,7 +48,7 @@
         left: 0;
         width: 100%;
         height: var(--header-height);
-        background: #ffffff;
+        background: rgb(255, 246, 246);
         box-shadow: 0 1px 3px rgba(0,0,0,0.08);
         padding: 0 max(24px, calc((100% - var(--container-width)) / 2));
         justify-content: space-between;
@@ -275,6 +275,9 @@
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
         gap: 25px;
+        width: auto;           /* Lascia che si calcoli da solo */
+    margin-left: -24px;    /* Esce a sinistra ignorando il padding del padre */
+    margin-right: -24px;
     }
 
     .project-card, .card-favorite, .card-participating {
@@ -299,6 +302,9 @@
         overflow-x: auto;
         padding-bottom: 20px;
         scrollbar-width: thin;
+        width: auto;           /* Lascia che si calcoli da solo */
+    margin-left: -24px;    /* Esce a sinistra ignorando il padding del padre */
+    margin-right: -24px;
     }
     .card-participating { min-width: 300px; }
 
@@ -350,4 +356,54 @@
         color: red;
         padding-left: 50;
     }
+
+    .section-header-row {
+    background-color: #86efac;
+    border-radius: 25px;
+    
+    /* TRUCCO PER ALLARGARE: */
+    width: auto;           /* Lascia che si calcoli da solo */
+    margin-left: -24px;    /* Esce a sinistra ignorando il padding del padre */
+    margin-right: -24px;   /* Esce a destra */
+    
+    /* TRUCCO ESTETICO: */
+    padding: 15px 30px;    /* Aggiungi aria interna così il testo non tocca i bordi */
+    margin-bottom: 25px;   /* Spazio sotto */
+    
+    /* Mantieni il layout flex */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    }
+
+    .card-participating {
+        min-width: 320px;
+        background-color: #f8fafc; /* Sfondo leggermente grigio per contrasto col bianco */
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        box-shadow: none;          /* Rimuoviamo ombra card, usiamo quella del box */
+        transition: transform 0.2s, background-color 0.2s;
+    }
+
+    .card-participating:hover {
+        transform: translateY(-3px);
+        background-color: #fff;    /* Diventa bianca al passaggio */
+        border-color: #10b981;     /* Bordo verde */
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
+    .cp-desc {
+    /* 1. Obbliga il testo ad andare a capo normalmente */
+    white-space: normal;
+
+    /* 2. Spezza le parole troppo lunghe per non rompere il layout */
+    overflow-wrap: break-word;
+    word-break: break-word;
+
+    /* 3. Aggiunge i tre puntini (...) dopo 3 righe */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;        /* Mostra massimo 3 righe */
+    -webkit-box-orient: vertical;
+    overflow: hidden;             /* Nasconde il testo in eccesso */
+}
+
 }

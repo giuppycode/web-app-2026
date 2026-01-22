@@ -14,7 +14,8 @@
 
 ## easy
 - verify accessibility project creation
-- refactor create_project_action.php qurry section to use UserHelper
+- fix why project with preset role if edited shows less slots than it should
+- refactor create_project_action.php query section to use UserHelper / role action
 
 ## bonus
 - view / search archived projects
@@ -24,8 +25,9 @@
 
 ## art
 - project view / join page
-- project administration / modification page
-- members administration
+- send request to join role
+- ~~members administration~~
+- ~~project administration / modification page~~
 - ~~project creation page~~
 - ~~check discovery design / features~~
 - ~~member roles for project~~

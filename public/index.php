@@ -45,7 +45,7 @@ $favAvailable = isset($_GET['available_fav']);
     <?php if ($participating->num_rows > 0): ?>
         <div class="horizontal-scroll">
             <?php while ($p = $participating->fetch_assoc()): ?>
-                <a href="project.php?id=<?= $p['id'] ?>" class="card-participating">
+                <a href="project_member.php?id=<?= $p['id'] ?>" class="card-participating">
                     <div class="cp-header">
                         <div class="user-avatar"><span class="material-icons-round">person</span></div>
                         <div class="user-role"><?= ucfirst($p['membership_type']) ?></div>

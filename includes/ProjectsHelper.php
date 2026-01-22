@@ -151,10 +151,18 @@ class ProjectsHelper
         return $stmt->get_result();
     }
 
-    // --- ADMIN PAGE LOGIC ---
+
     public static function isFounder($db, $project_id, $user_id)
     {
         $stmt = $db->prepare("SELECT membership_type FROM project_members WHERE project_id = ? AND user_id = ? AND membership_type = 'founder'");
+        $stmt->bind_param("ii", $project_id, $user_id);
+        $stmt->execute();
+        return $stmt->get_result()->fetch_assoc();
+    }
+
+    public static function isMember($db, $project_id, $user_id)
+    {
+        $stmt = $db->prepare("SELECT membership_type FROM project_members WHERE project_id = ? AND user_id = ?");
         $stmt->bind_param("ii", $project_id, $user_id);
         $stmt->execute();
         return $stmt->get_result()->fetch_assoc();
@@ -221,7 +229,7 @@ class ProjectsHelper
         $stmt->execute();
         return $stmt->get_result();
     }
-    
+
     // Recupera SOLO i progetti dove l'utente è Membro (NON Founder)
     public static function getMemberProjects($db, $user_id)
     {

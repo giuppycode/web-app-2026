@@ -32,6 +32,21 @@ try {
         throw new Exception("A project with this name already exists. Please choose a different title.");
     }
 
+    $image_url = null;
+    
+    if (isset($_FILES['project_image']) && $_FILES['project_image']['error'] === UPLOAD_ERR_OK) {
+        $upload_result = FileUploadHelper::uploadProjectImage($_FILES['project_image']);
+        
+        if ($upload_result['success']) {
+            $image_url = $upload_result['path'];
+        } else {
+            throw new Exception($upload_result['error']);
+        }
+    } else {
+        // Fallback image if not provided
+        $image_url = 'https://picsum.photos/400/200?' . time();
+    }
+
     $stmt = $db->prepare("INSERT INTO projects (name, intro, description, image_url, total_slots, occupied_slots) VALUES (?, ?, ?, ?, ?, 1)");
     $stmt->bind_param("ssssi", $name, $intro, $description, $image_url, $total_slots);
     

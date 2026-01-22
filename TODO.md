@@ -13,7 +13,8 @@
 - minimmum refactoring (last  to do)
 
 ## easy
-
+- verify accessibility project creation
+- refactor create_project_action.php qurry section to use UserHelper
 
 ## bonus
 - view / search archived projects
@@ -22,12 +23,12 @@
 # Task
 
 ## art
-- project administration / modification page
-- project creation page
-- members administration
-- check discovery design / features
-- member roles for project
 - project view / join page
+- project administration / modification page
+- members administration
+- ~~project creation page~~
+- ~~check discovery design / features~~
+- ~~member roles for project~~
 
 ## giuppy
 - ~~founder page~~

@@ -28,7 +28,7 @@
 
     <nav class="top-nav">
         <span class="top-menu-toggle material-icons-round" onclick="toggleDrawer()">menu</span>
-        <div class="brand">CampusLaunch</div>
+        <img src="../assets/img/brand/logotype.svg" alt="UniSeed" srcset="" class="brand">
 
         <div class="desktop-links">
 

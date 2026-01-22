@@ -493,4 +493,9 @@
     .cd-action-btn:hover {
         background-color: #10b981; /* Verde al passaggio */
     }
+
+    .discovery-container{
+        background-color: transparent;
+
+    }
 }

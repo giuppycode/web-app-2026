@@ -195,7 +195,9 @@ include '../includes/header.php';
                                 </div>
                                 <div class="chip-info">
                                     <span class="chip-name"><?= htmlspecialchars($member['username']) ?></span>
-                                    <span class="chip-role">Founder</span>
+                                    <span class="chip-role">
+                                        <?= htmlspecialchars($member['role_name'] ?? 'Member') ?>
+                                    </span>
                                 </div>
                                 <button type="button" class="member-menu-btn"
                                     onclick="openMemberMenu(<?= $member['user_id'] ?>, '<?= htmlspecialchars($member['username']) ?>')">

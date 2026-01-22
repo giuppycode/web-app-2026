@@ -144,41 +144,43 @@ CREATE TABLE `project_members` (
   `project_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `membership_type` enum('founder','member') DEFAULT 'member',
-  `joined_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `role_id` int(11) DEFAULT NULL,
+  `joined_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  CONSTRAINT `fk_project_members_role` FOREIGN KEY (`role_id`) REFERENCES `project_roles` (`id`) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `project_members`
 --
 
-INSERT INTO `project_members` (`project_id`, `user_id`, `membership_type`, `joined_at`) VALUES
-(1, 1, 'founder', '2026-01-17 14:32:46'),
-(1, 2, 'member', '2026-01-17 14:32:46'),
-(1, 5, 'member', '2026-01-17 14:32:46'),
-(2, 2, 'member', '2026-01-17 14:32:46'),
-(2, 3, 'founder', '2026-01-17 14:32:46'),
-(3, 1, 'member', '2026-01-17 14:32:46'),
-(3, 2, 'member', '2026-01-17 14:32:46'),
-(3, 3, 'member', '2026-01-17 14:32:46'),
-(3, 4, 'founder', '2026-01-17 14:32:46'),
-(4, 1, 'member', '2026-01-17 14:32:46'),
-(4, 5, 'founder', '2026-01-17 14:32:46'),
+INSERT INTO `project_members` (`project_id`, `user_id`, `membership_type`, `role_id`, `joined_at`) VALUES
+(1, 1, 'founder', NULL, '2026-01-17 14:32:46'),
+(1, 2, 'member', 2, '2026-01-17 14:32:46'), -- Bob: Backend Dev
+(1, 5, 'member', 3, '2026-01-17 14:32:46'), -- Eva: UX Designer
+(2, 2, 'member', 5, '2026-01-17 14:32:46'), -- Bob: Mobile Dev
+(2, 3, 'founder', NULL, '2026-01-17 14:32:46'),
+(3, 1, 'member', 6, '2026-01-17 14:32:46'), -- Alice: Security Eng
+(3, 2, 'member', 7, '2026-01-17 14:32:46'), -- Bob: DevOps
+(3, 3, 'member', NULL, '2026-01-17 14:32:46'),
+(3, 4, 'founder', NULL, '2026-01-17 14:32:46'),
+(4, 1, 'member', 8, '2026-01-17 14:32:46'), -- Alice: Game Dev
+(4, 5, 'founder', NULL, '2026-01-17 14:32:46'),
 -- NUOVI MEMBRI
-(5, 7, 'founder', '2026-01-18 17:30:00'), -- Luca B. founder EcoTrack
-(5, 8, 'member', '2026-01-18 17:30:05'),
-(5, 14, 'member', '2026-01-18 17:30:10'),
-(6, 15, 'founder', '2026-01-18 17:31:00'), -- Davide E. founder CryptoDash
-(6, 13, 'member', '2026-01-18 17:31:05'),
-(7, 12, 'founder', '2026-01-18 17:32:00'), -- Chiara R. founder UniEat
-(7, 1, 'member', '2026-01-18 17:32:10'),
-(7, 2, 'member', '2026-01-18 17:32:15'),
-(7, 20, 'member', '2026-01-18 17:32:20'),
-(8, 23, 'founder', '2026-01-18 17:33:00'), -- Giacomo M. founder RoboArm
-(8, 21, 'member', '2026-01-18 17:33:05'),
-(9, 16, 'founder', '2026-01-18 17:34:00'), -- Sara C. founder MusicMatch
-(10, 26, 'founder', '2026-01-18 17:35:00'), -- Beatrice S. founder VR Museum
-(10, 5, 'member', '2026-01-18 17:35:05'),
-(10, 11, 'member', '2026-01-18 17:35:10');
+(5, 7, 'founder', NULL, '2026-01-18 17:30:00'), -- Luca B. founder EcoTrack
+(5, 8, 'member', 11, '2026-01-18 17:30:05'), -- Giulia V: Mobile Dev
+(5, 14, 'member', 10, '2026-01-18 17:30:10'), -- Martina R: Sustainability Expert
+(6, 15, 'founder', NULL, '2026-01-18 17:31:00'), -- Davide E. founder CryptoDash
+(6, 13, 'member', 12, '2026-01-18 17:31:05'), -- Alessandro F: Blockchain Dev
+(7, 12, 'founder', NULL, '2026-01-18 17:32:00'), -- Chiara R. founder UniEat
+(7, 1, 'member', 14, '2026-01-18 17:32:10'), -- Alice: Community Manager
+(7, 2, 'member', NULL, '2026-01-18 17:32:15'),
+(7, 20, 'member', NULL, '2026-01-18 17:32:20'),
+(8, 23, 'founder', NULL, '2026-01-18 17:33:00'), -- Giacomo M. founder RoboArm
+(8, 21, 'member', 15, '2026-01-18 17:33:05'), -- Andrea R: Embedded Eng
+(9, 16, 'founder', NULL, '2026-01-18 17:34:00'), -- Sara C. founder MusicMatch
+(10, 26, 'founder', NULL, '2026-01-18 17:35:00'), -- Beatrice S. founder VR Museum
+(10, 5, 'member', 17, '2026-01-18 17:35:05'), -- Eva: 3D Artist
+(10, 11, 'member', 9, '2026-01-18 17:35:10'); -- Francesco: Level Designer
 
 -- --------------------------------------------------------
 

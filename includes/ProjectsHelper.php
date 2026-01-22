@@ -170,9 +170,10 @@ class ProjectsHelper
 
     public static function getMembers($db, $project_id)
     {
-        $stmt = $db->prepare("SELECT u.username, pm.membership_type, pm.user_id 
+        $stmt = $db->prepare("SELECT u.username, pm.membership_type, pm.user_id, pr.role_name 
                               FROM project_members pm 
                               JOIN users u ON pm.user_id = u.id 
+                              LEFT JOIN project_roles pr ON pm.role_id = pr.id
                               WHERE pm.project_id = ?");
         $stmt->bind_param("i", $project_id);
         $stmt->execute();

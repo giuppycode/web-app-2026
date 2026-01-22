@@ -37,7 +37,7 @@
             <?php if (isset($_SESSION['user_id'])): ?>
                 <a href="create_project.php" class="btn-primary">Crea (+ )</a>
                 <a href="profile.php">Profilo</a>
-                <a href="../actions/logout.php">Logout</a>
+                <a href="../actions/logout.php" class="logout-button" style="color: red;">Logout</a>
             <?php else: ?>
                 <a href="login.php">Login</a>
                 <a href="register.php" class="btn-primary">Registrati</a>

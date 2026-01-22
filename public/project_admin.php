@@ -138,6 +138,32 @@ include '../includes/header.php';
                 <small class="form-hint">Click to replace image (max 5MB)</small>
             </div>
         </section>
+        
+        <section class="form-section">
+            <h2 class="section-title">Latest news</h2>
+            
+            <?php
+            $news_result = ProjectsHelper::getLatestNews($db, $project_id);
+            if ($news_result->num_rows > 0):
+            ?>
+                <div class="news-display">
+                    <?php while ($news = $news_result->fetch_assoc()): ?>
+                        <div class="news-item">
+                            <span class="news-date"><?= $news['date_fmt'] ?></span>
+                            <p class="news-text"><?= htmlspecialchars($news['description']) ?></p>
+                        </div>
+                    <?php endwhile; ?>
+                </div>
+            <?php else: ?>
+                <p class="empty-state-text">No news posted yet</p>
+            <?php endif; ?>
+
+            <button type="button" class="post-update-btn" onclick="openNewsModal()">
+                <span>Post an update</span>
+                <span class="update-subtitle">News for the followers</span>
+                <span class="material-icons-round">arrow_forward</span>
+            </button>
+        </section>
 
 </div>
 

@@ -16,99 +16,102 @@ class ProjectValidation
         $result = $stmt->get_result();
         $exists = $result->num_rows > 0;
         $stmt->close();
-        
-        return $exists;
+
+        if ($exists) {
+            throw new Exception('Project name already exists');
+        }
+        return;
     }
 
     /**
      * Validate project name format
      * 
      * @param string $name Project name
-     * @return array ['valid' => bool, 'error' => string|null]
+     * @return
      */
     public static function validateProjectName($name)
     {
         if (empty($name)) {
-            return ['valid' => false, 'error' => 'Project name is required'];
+            throw new Exception('Project name is required');
         }
 
         if (strlen($name) > 100) {
-            return ['valid' => false, 'error' => 'Project name must not exceed 100 characters'];
+            throw new Exception('Project name must not exceed 100 characters');
         }
 
         if (strlen($name) < 3) {
-            return ['valid' => false, 'error' => 'Project name must be at least 3 characters'];
+            throw new Exception('Project name must be at least 3 characters');
         }
 
         // Check for valid characters (letters, numbers, spaces, hyphens, underscores)
         if (!preg_match('/^[a-zA-Z0-9\s\-_]+$/', $name)) {
-            return ['valid' => false, 'error' => 'Project name can only contain letters, numbers, spaces, hyphens and underscores'];
+            throw new Exception('Project name can only contain letters, numbers, spaces, hyphens and underscores');
         }
 
-        return ['valid' => true, 'error' => null];
+        return;
     }
 
     /**
      * Validate summary text
      * 
      * @param string $intro Summary text
-     * @return array ['valid' => bool, 'error' => string|null]
+     * @return 
      */
-    public static function validateSummary($intro)
+    public static function validateIntro($intro)
     {
         if (empty($intro)) {
-            return ['valid' => false, 'error' => 'Summary is required'];
+            throw new Exception('Summary is required');
         }
 
         if (strlen($intro) > 255) {
-            return ['valid' => false, 'error' => 'Summary must not exceed 255 characters'];
+            throw new Exception('Summary must not exceed 255 characters');
         }
 
-        return ['valid' => true, 'error' => null];
+        return;
     }
 
     /**
      * Validate description text
      * 
      * @param string $description Description text
-     * @return array ['valid' => bool, 'error' => string|null]
+     * @return 
      */
     public static function validateDescription($description)
     {
         if (empty($description)) {
-            return ['valid' => false, 'error' => 'Description is required'];
+            throw new Exception('Description is required');
         }
 
         if (strlen($description) < 20) {
-            return ['valid' => false, 'error' => 'Description must be at least 20 characters'];
+            throw new Exception('Description must be at least 20 characters');
         }
 
-        return ['valid' => true, 'error' => null];
+        return;
     }
 
     /**
      * Validate total slots
      * 
      * @param int $slots Number of slots
-     * @return array ['valid' => bool, 'error' => string|null]
+     * @return
      */
     public static function validateTotalSlots($slots)
     {
         if (!is_numeric($slots)) {
-            return ['valid' => false, 'error' => 'Total slots must be a number'];
+            throw new Exception('Total slots must be a number');
         }
 
         $slots = intval($slots);
 
         if ($slots < 1) {
-            return ['valid' => false, 'error' => 'Total slots must be at least 1'];
+
+            throw new Exception('Total slots must be at least 1');
         }
 
         if ($slots > 50) {
-            return ['valid' => false, 'error' => 'Total slots cannot exceed 50'];
+            throw new Exception('Total slots cannot exceed 50');
         }
 
-        return ['valid' => true, 'error' => null];
+        return;
     }
 }
-?>

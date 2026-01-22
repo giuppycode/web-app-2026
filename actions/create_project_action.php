@@ -16,21 +16,11 @@ try {
     $description = trim($_POST['description'] ?? '');
     $total_slots = intval($_POST['total_slots'] ?? 1);
 
-    if (empty($name) || empty($intro) || empty($description)) {
-        throw new Exception("All fields are required.");
-    }
-
-    if ($total_slots < 1 || $total_slots > 50) {
-        throw new Exception("Total slots must be between 1 and 50.");
-    }
-
-    if (strlen($intro) > 255) {
-        throw new Exception("Summary must not exceed 255 characters.");
-    }
-
-    if (ProjectValidation::projectNameExists($db, $name)) {
-        throw new Exception("A project with this name already exists. Please choose a different title.");
-    }
+    ProjectValidation::validateIntro($intro);
+    ProjectValidation::validateDescription($description);
+    ProjectValidation::validateTotalSlots($total_slots);
+    ProjectValidation::validateProjectName($db, $name);
+    ProjectValidation::projectNameExists($db, $name);
 
     $image_url = null;
     

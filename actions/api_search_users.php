@@ -16,8 +16,6 @@ if (strlen($q) < 1) {
     echo json_encode([]);
     exit;
 }
-
-// Usa l'helper
 $users = UserHelper::searchByUsername($db, $q, $current_user);
 
 echo json_encode($users);

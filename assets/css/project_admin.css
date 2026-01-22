@@ -1,0 +1,287 @@
+/* assets/css/project_admin.css */
+
+/* Dropdown-style inputs */
+.dropdown-input {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.dropdown-input:hover {
+    border-color: var(--primary-green);
+    background: #f9fafb;
+}
+
+.dropdown-display {
+    flex: 1;
+    font-size: 14px;
+    color: var(--text-dark);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.dropdown-input .material-icons-round {
+    color: var(--text-medium);
+    font-size: 20px;
+    transition: transform 0.2s;
+}
+
+.dropdown-input.open .material-icons-round {
+    transform: rotate(180deg);
+}
+
+.edit-container {
+    margin-top: 12px;
+    animation: slideDown 0.2s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Current image display */
+.current-image-container {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.current-project-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+}
+
+.image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    opacity: 0;
+    transition: opacity 0.2s;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.current-image-container:hover .image-overlay {
+    opacity: 1;
+}
+
+.image-overlay .material-icons-round {
+    font-size: 32px;
+}
+
+/* News section */
+.news-display {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 20px;
+    max-height: 300px;
+    overflow-y: auto;
+    padding: 16px;
+    background: var(--bg-light);
+    border-radius: 12px;
+}
+
+.news-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px;
+    background: white;
+    border-radius: 8px;
+    border-left: 3px solid var(--primary-green);
+}
+
+.news-date {
+    font-size: 12px;
+    color: var(--text-medium);
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.news-text {
+    font-size: 14px;
+    color: var(--text-dark);
+    line-height: 1.5;
+    margin: 0;
+}
+
+.empty-state-text {
+    text-align: center;
+    color: var(--text-light);
+    font-size: 14px;
+    padding: 24px;
+    background: var(--bg-light);
+    border-radius: 8px;
+}
+
+.post-update-btn {
+    width: 100%;
+    padding: 16px 20px;
+    background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.post-update-btn:hover {
+    background: linear-gradient(135deg, #a7f3d0 0%, #86efac 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+}
+
+.post-update-btn > span:first-child {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.update-subtitle {
+    font-size: 12px;
+    color: var(--text-medium);
+    margin-left: auto;
+}
+
+.post-update-btn .material-icons-round {
+    color: var(--primary-green);
+}
+
+/* Role chips (larger for admin) */
+.role-chip-large {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    transition: all 0.2s;
+}
+
+.role-chip-large:hover {
+    border-color: var(--primary-green);
+    box-shadow: 0 2px 8px rgba(16, 185, 129, 0.1);
+}
+
+.role-icon-container {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--bg-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-medium);
+}
+
+.role-name {
+    flex: 1;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-dark);
+}
+
+.role-menu-btn {
+    background: none;
+    border: none;
+    color: var(--text-medium);
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: all 0.2s;
+}
+
+.role-menu-btn:hover {
+    background: var(--bg-light);
+    color: var(--text-dark);
+}
+
+/* Modal variations */
+.modal-small .modal-content {
+    max-width: 360px;
+}
+
+.action-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.action-item {
+    width: 100%;
+    padding: 14px 16px;
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-dark);
+}
+
+.action-item:hover {
+    background: var(--bg-light);
+    border-color: var(--primary-green);
+}
+
+.action-item.danger {
+    color: var(--error-color);
+}
+
+.action-item.danger:hover {
+    background: #fee2e2;
+    border-color: var(--error-color);
+}
+
+.action-item .material-icons-round {
+    font-size: 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .current-image-container {
+        max-width: 100%;
+    }
+    
+    .news-display {
+        max-height: 200px;
+    }
+}

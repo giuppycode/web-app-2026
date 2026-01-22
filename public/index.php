@@ -4,7 +4,7 @@ require_once '../includes/ProjectsHelper.php';
 include '../includes/header.php';
 
 if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
+    header("Location: landing.php");
     exit;
 }
 $user_id = $_SESSION['user_id'];
@@ -23,10 +23,6 @@ $favAvailable = isset($_GET['available_fav']);
 ?>
 
 <style>
-    body {
-        background: linear-gradient(180deg, #d8f5e5 0%, #a7f3d0 60%, #86efac 100%);
-    }
-
     @media (min-width: 769px) {
         body {
             background: #f4f7f6;

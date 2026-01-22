@@ -1,7 +1,4 @@
 .env
 
 # exclude user images from repo tracking
-assets/img/projects/*.webp
-assets/img/projects/*.jpeg
-assets/img/projects/*.jpg
-assets/img/projects/*.png
+assets/img/projects/project_*

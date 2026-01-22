@@ -142,6 +142,23 @@ include '../includes/header.php';
                     <span class="material-icons-round">arrow_forward</span>
                 </button>
             </div>
+
+            <!-- Open Positions -->
+            <div class="team-subsection">
+                <h3 class="subsection-title">Open positions</h3>
+                <div id="rolesContainer" class="roles-container">
+                    <!-- Roles will be added here dynamically -->
+                </div>
+                
+                <button type="button" class="add-role-btn" id="addRoleBtn">
+                    <span class="material-icons-round">add_circle</span>
+                    <span>Add new roles</span>
+                    <span class="material-icons-round">arrow_forward</span>
+                </button>
+                
+                <!-- Hidden input to store roles data -->
+                <input type="hidden" name="roles" id="rolesInput" value="">
+            </div>
         </section>
 
         <button type="submit" class="btn-launch">

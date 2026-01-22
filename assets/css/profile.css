@@ -1,7 +1,6 @@
 /* --- PROFILE PAGE CONTAINER --- */
 .profile-page-container {
     padding: 20px;
-    background-color: #f5f5f5;
     /* Grigio default, sovrascritto a bianco nella edit page */
     min-height: 100vh;
 }

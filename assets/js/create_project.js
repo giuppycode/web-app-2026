@@ -27,7 +27,7 @@ if (fileInput) {
                 fileInput.value = '';
                 return;
             }
-            
+
             const reader = new FileReader();
             reader.onload = (e) => {
                 imagePreview.src = e.target.result;
@@ -70,33 +70,33 @@ function closeAddMembersModal() {
 document.getElementById('memberSearch').addEventListener('input', (e) => {
     clearTimeout(searchTimeout);
     const query = e.target.value.trim();
-    
+
     if (query.length < 2) {
         document.getElementById('searchResults').innerHTML = '<p class="search-hint">Type at least 2 characters to search</p>';
         return;
     }
-    
+
     searchTimeout = setTimeout(() => searchUsers(query), 300);
 });
 
 async function searchUsers(query) {
     const resultsContainer = document.getElementById('searchResults');
     resultsContainer.innerHTML = '<p class="search-hint">Searching...</p>';
-    
+
     try {
         const response = await fetch(`../actions/api_search_users.php?q=${encodeURIComponent(query)}`);
         const users = await response.json();
-        
+
         if (users.length === 0) {
             resultsContainer.innerHTML = '<p class="search-hint">No users found</p>';
             return;
         }
-        
+
         resultsContainer.innerHTML = '';
         users.forEach(user => {
             // Check if already added as co-founder
             const isAdded = coFounders.some(cf => cf.id === user.id);
-            
+
             const userDiv = document.createElement('div');
             userDiv.className = 'user-result' + (isAdded ? ' added' : '');
             userDiv.innerHTML = `
@@ -124,14 +124,14 @@ function addCoFounder(userId, username, firstname, lastname) {
     if (coFounders.some(cf => cf.id === userId)) {
         return;
     }
-    
+
     const coFounder = { id: userId, username, firstname, lastname };
     coFounders.push(coFounder);
-    
+
     // Update UI
     renderCoFounders();
     updateCoFoundersInput();
-    
+
     // Mark as added in search results
     const searchResults = document.querySelectorAll('.user-result');
     searchResults.forEach(result => {
@@ -152,12 +152,12 @@ function removeCoFounder(userId) {
 
 function renderCoFounders() {
     const container = document.getElementById('foundersContainer');
-    
+
     // Keep the current user chip (first child)
     const currentUserChip = container.firstElementChild;
     container.innerHTML = '';
     container.appendChild(currentUserChip);
-    
+
     // Add co-founders
     coFounders.forEach(cf => {
         const chip = document.createElement('div');
@@ -203,17 +203,17 @@ function closeAddRoleModal() {
 function addRole() {
     const roleInput = document.getElementById('roleName');
     const roleName = roleInput.value.trim();
-    
+
     if (!roleName) {
         alert('Please enter a role name');
         return;
     }
-    
+
     if (roles.includes(roleName)) {
         alert('This role already exists');
         return;
     }
-    
+
     roles.push(roleName);
     renderRoles();
     updateRolesInput();
@@ -228,12 +228,12 @@ function removeRole(roleName) {
 
 function renderRoles() {
     const container = document.getElementById('rolesContainer');
-    
+
     if (roles.length === 0) {
         container.innerHTML = '';
         return;
     }
-    
+
     container.innerHTML = '';
     roles.forEach(role => {
         const chip = document.createElement('div');
@@ -278,7 +278,7 @@ function escapeHtml(text) {
 window.addEventListener('click', (e) => {
     const membersModal = document.getElementById('addMembersModal');
     const roleModal = document.getElementById('addRoleModal');
-    
+
     if (e.target === membersModal) {
         closeAddMembersModal();
     }

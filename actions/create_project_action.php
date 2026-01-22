@@ -19,7 +19,7 @@ try {
     ProjectValidation::validateIntro($intro);
     ProjectValidation::validateDescription($description);
     ProjectValidation::validateTotalSlots($total_slots);
-    ProjectValidation::validateProjectName($db, $name);
+    ProjectValidation::validateProjectName($name);
     ProjectValidation::projectNameExists($db, $name);
 
     $image_url = null;

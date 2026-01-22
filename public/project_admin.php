@@ -138,7 +138,8 @@ include '../includes/header.php';
                 <small class="form-hint">Click to replace image (max 5MB)</small>
             </div>
         </section>
-        
+
+        <!-- LATEST NEWS SECTION -->
         <section class="form-section">
             <h2 class="section-title">Latest news</h2>
             
@@ -164,6 +165,109 @@ include '../includes/header.php';
                 <span class="material-icons-round">arrow_forward</span>
             </button>
         </section>
+
+        <!-- TEAM SECTION -->
+        <section class="form-section">
+            <h2 class="section-title">Team</h2>
+
+            <!-- Founders -->
+            <div class="team-subsection">
+                <h3 class="subsection-title">Founders</h3>
+                <div class="team-chips-container">
+                    <?php
+                    $members->data_seek(0); // Reset pointer
+                    while ($member = $members->fetch_assoc()):
+                        if ($member['membership_type'] === 'founder'):
+                    ?>
+                        <div class="team-chip founder-chip">
+                            <div class="chip-avatar">
+                                <span class="material-icons-round">person</span>
+                            </div>
+                            <div class="chip-info">
+                                <span class="chip-name"><?= htmlspecialchars($member['username']) ?></span>
+                                <span class="chip-role">Founder</span>
+                            </div>
+                        </div>
+                    <?php 
+                        endif;
+                    endwhile; 
+                    ?>
+                </div>
+            </div>
+
+            <!-- Members -->
+            <div class="team-subsection">
+                <h3 class="subsection-title">Members</h3>
+                <div class="team-members-container">
+                    <?php
+                    $members->data_seek(0); // Reset pointer
+                    $has_members = false;
+                    while ($member = $members->fetch_assoc()):
+                        if ($member['membership_type'] !== 'founder'):
+                            $has_members = true;
+                    ?>
+                        <div class="member-card">
+                            <div class="chip-avatar">
+                                <span class="material-icons-round">person</span>
+                            </div>
+                            <div class="chip-info">
+                                <span class="chip-name"><?= htmlspecialchars($member['username']) ?></span>
+                                <span class="chip-role">Founder</span>
+                            </div>
+                            <button type="button" class="member-menu-btn" onclick="openMemberMenu(<?= $member['user_id'] ?>, '<?= htmlspecialchars($member['username']) ?>')">
+                                <span class="material-icons-round">more_vert</span>
+                            </button>
+                        </div>
+                    <?php 
+                        endif;
+                    endwhile;
+                    
+                    if (!$has_members):
+                    ?>
+                        <p class="empty-members-text">No members yet. Users can join through open positions.</p>
+                    <?php endif; ?>
+                </div>
+            </div>
+
+            <!-- Open Positions -->
+            <div class="team-subsection">
+                <h3 class="subsection-title">Open positions</h3>
+                <div id="rolesContainer" class="roles-container">
+                    <?php while ($role = $roles->fetch_assoc()): ?>
+                        <div class="role-chip-large" data-role-id="<?= $role['id'] ?>">
+                            <div class="role-icon-container">
+                                <span class="material-icons-round">work</span>
+                            </div>
+                            <span class="role-name"><?= htmlspecialchars($role['role_name']) ?></span>
+                            <button type="button" class="role-menu-btn" onclick="openRoleMenu(<?= $role['id'] ?>, '<?= htmlspecialchars($role['role_name']) ?>')">
+                                <span class="material-icons-round">more_vert</span>
+                            </button>
+                        </div>
+                    <?php endwhile; ?>
+                </div>
+                
+                <button type="button" class="add-role-btn" onclick="openAddRoleModal()">
+                    <span class="material-icons-round">add_circle</span>
+                    <span>Add new roles</span>
+                    <span class="material-icons-round">arrow_forward</span>
+                </button>
+                <small class="form-hint">Expand the project reach</small>
+            </div>
+
+            <button type="button" class="add-members-btn" onclick="openApplicationsModal()">
+                <span class="material-icons-round">person_add</span>
+                <span>Add new Members</span>
+                <span class="material-icons-round">arrow_forward</span>
+            </button>
+            <small class="form-hint">Expand the project reach</small>
+        </section>
+
+        <button type="submit" class="btn-launch">
+            <span>Update project</span>
+            <span class="material-icons-round">arrow_forward</span>
+        </button>
+    </form>
+</div>
 
 </div>
 

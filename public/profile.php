@@ -4,21 +4,23 @@ require_once '../includes/UserHelper.php';
 include '../includes/header.php';
 
 if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
+    header("Location: landing.php");
     exit;
 }
 
 $user = UserHelper::getData($db, $_SESSION['user_id']);
 $stats = UserHelper::getStats($db, $_SESSION['user_id']);
 
-if (!$user) die("Errore utente");
+if (!$user)
+    die("Errore utente");
 ?>
 
 <div class="profile-page-container">
 
     <div class="profile-card main-stats-card">
         <div class="profile-identity">
-            <div class="profile-avatar-large" onclick="openUserProfile(<?= $_SESSION['user_id']?>)" style="cursor: pointer;">
+            <div class="profile-avatar-large" onclick="openUserProfile(<?= $_SESSION['user_id'] ?>)"
+                style="cursor: pointer;">
                 <span class="material-icons-round">person</span>
             </div>
             <h2 class="profile-username"><?= htmlspecialchars($user['username']) ?></h2>
@@ -34,7 +36,7 @@ if (!$user) die("Errore utente");
     </div>
 
     <div class="desktop-content-wrapper">
-        
+
         <div class="profile-grid-row">
             <div class="profile-card small-card">
                 <span class="big-number"><?= $stats['updates'] ?></span>
@@ -70,7 +72,8 @@ if (!$user) die("Errore utente");
                 <span class="material-icons-round arrow">chevron_right</span>
             </a>
             <a href="accessibility.php" class="setting-item">
-                <div class="setting-left"><span class="material-icons-round">accessibility_new</span><span>Accessibilità</span></div>
+                <div class="setting-left"><span
+                        class="material-icons-round">accessibility_new</span><span>Accessibilità</span></div>
                 <span class="material-icons-round arrow">chevron_right</span>
             </a>
             <a href="../actions/logout.php" class="setting-item">
@@ -79,7 +82,8 @@ if (!$user) die("Errore utente");
             </a>
         </div>
 
-    </div> <div class="mobile-only" style="height: 80px;"></div>
+    </div>
+    <div class="mobile-only" style="height: 80px;"></div>
 </div>
 
 <?php include '../includes/footer.php'; ?>

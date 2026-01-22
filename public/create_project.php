@@ -1,10 +1,12 @@
 <?php
 require_once '../includes/db.php';
+require_once '../includes/UserHelper.php';
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit;
 }
 
+$current_user = UserHelper::getData($db, $_SESSION['user_id']);
 $error = $_SESSION['create_project_error'] ?? null;
 $success = $_SESSION['create_project_success'] ?? null;
 unset($_SESSION['create_project_error'], $_SESSION['create_project_success']);
@@ -36,7 +38,7 @@ include '../includes/header.php';
         </div>
     <?php endif; ?>
 
-    <form action="../actions/create_project_action.php" method="POST" enctype="multipart/form-data" class="project-form">
+    <form action="../actions/create_project_action.php" method="POST" enctype="multipart/form-data" class="project-form" id="projectForm">
         
         <section class="form-section">
             <h2 class="section-title">Information</h2>
@@ -101,19 +103,30 @@ include '../includes/header.php';
                 </div>
                 <small class="form-hint">Recommended: 400x200px, max 5MB (JPEG, PNG, WebP)</small>
             </div>
+        </section>
 
-            <div class="form-group">
-                <label for="total_slots">Total Team Slots</label>
-                <input 
-                    type="number" 
-                    id="total_slots" 
-                    name="total_slots" 
-                    class="form-input" 
-                    value="5" 
-                    min="1" 
-                    max="50"
-                    required>
-                <small class="form-hint">Number of members needed (including founder)</small>
+        <!-- TEAM SECTION -->
+        <section class="form-section">
+            <h2 class="section-title">Team</h2>
+
+            <!-- Founders -->
+            <div class="team-subsection">
+                <h3 class="subsection-title">Founders</h3>
+                <div id="foundersContainer" class="team-chips-container">
+                    <!-- Current user as founder -->
+                    <div class="team-chip founder-chip">
+                        <div class="chip-avatar">
+                            <span class="material-icons-round">person</span>
+                        </div>
+                        <div class="chip-info">
+                            <span class="chip-name"><?= htmlspecialchars($current_user['firstname'] . ' ' . $current_user['lastname']) ?></span>
+                            <span class="chip-role">Founder</span>
+                        </div>
+                    </div>
+                    <!-- Co-founders will be added here dynamically -->
+                </div>
+                <!-- Hidden input to store co-founder IDs -->
+                <input type="hidden" name="co_founders" id="coFoundersInput" value="">
             </div>
         </section>
 

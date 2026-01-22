@@ -483,4 +483,104 @@
         /* Nasconde il testo in eccesso */
     }
 
+    .vertical-list {
+        max-width: 700px;
+        /* <--- Larghezza massima delle card */
+        margin: 0 auto;
+        /* <--- CENTRA IL BLOCCO ORIZZONTALMENTE */
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        /* Spazio tra una card e l'altra */
+        width: 100%;
+        /* Occupa il 100% fino a max-width */
+    }
+
+    /* Effetto Hover sulla card */
+    .card-discovery:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+        border-color: #d1d5db;
+    }
+
+    /* Gestione Immagine nella card */
+    .cd-image-container {
+        width: 100%;
+        height: 300px;
+        /* Altezza fissa per l'immagine */
+        overflow: hidden;
+        background-color: #f3f4f6;
+    }
+
+    .cd-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        /* Ritaglia l'immagine per riempire */
+        transition: transform 0.3s;
+    }
+
+    .card-discovery:hover .cd-image {
+        transform: scale(1.02);
+        /* Leggero zoom immagine all'hover */
+    }
+
+    /* Corpo della card (Testi) */
+    .cd-body {
+        padding: 25px;
+    }
+
+    .cd-title {
+        font-size: 1.4rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+        color: #1a1a1a;
+    }
+
+    .cd-desc {
+        color: #64748b;
+        margin-bottom: 20px;
+        line-height: 1.5;
+    }
+
+    /* Riga Statistiche */
+    .cd-stats-row {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        margin-bottom: 20px;
+        color: #64748b;
+        font-weight: 500;
+    }
+
+    .cd-stat {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    /* Bottone Unisciti Desktop */
+    .cd-action-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        background-color: #86efac;
+        color: white;
+        padding: 12px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: background 0.2s;
+    }
+
+    .cd-action-btn:hover {
+        background-color: #10b981;
+        /* Verde al passaggio */
+    }
+
+    .discovery-container {
+        background-color: transparent;
+
+    }
 }

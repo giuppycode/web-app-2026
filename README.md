@@ -1,5 +1,17 @@
-# web-app-2026
+# web-app-2026 / SeedRun
+
+![Brandlogo](./assets/img/brand/uniseed-light.jpg)
+
+Startup accelerator for students to collaborate form idea to mvp with the people closest to you.
+
+The app will provide a “social media” -esque experience for discovering, creating and collaborating on new project ideas by students of the same university, allowing for interdisciplinary collaboration and launching projects with the idea of evolving into a real startup.
+
+Aimed at founders in the pre-seed / seed stage of their idea, seeking collaboration with their peers from any faculty of the campus to give space
+to innovation and discovery, while promoting growth and experimentation.
+
 Project for the Web Technology Coursework at University of Bologna
+
+# How to run
 
 ## Deploy via xampp
 
@@ -30,4 +42,4 @@ To deploy the application via docker ensure the following:
 - Access project at http://localhost/public/index.php
 - phpmyadmin is accessible at http://localhost:8080
 
-note: User is bindided to the apache server, one may need to ensure persmissions are properly set or configure a proper user inside compose 
+Note: User is bindided to the apache server, one may need to ensure persmissions are properly set or configure a proper user inside compose 

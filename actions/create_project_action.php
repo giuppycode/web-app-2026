@@ -16,12 +16,33 @@ try {
     $description = trim($_POST['description'] ?? '');
     $total_slots = intval($_POST['total_slots'] ?? 1);
 
-    $stmt = $db->prepare("INSERT INTO projects (name, intro, description, total_slots) VALUES (?, ?, ?, ?)");
-    $stmt->bind_param("sssi", $name, $intro, $desc, $slots);
-    $stmt->execute();
-    $pid = $stmt->insert_id;
+    if (empty($name) || empty($intro) || empty($description)) {
+        throw new Exception("All fields are required.");
+    }
 
-    // set user as founder
+    if ($total_slots < 1 || $total_slots > 50) {
+        throw new Exception("Total slots must be between 1 and 50.");
+    }
+
+    if (strlen($intro) > 255) {
+        throw new Exception("Summary must not exceed 255 characters.");
+    }
+
+    if (ProjectValidation::projectNameExists($db, $name)) {
+        throw new Exception("A project with this name already exists. Please choose a different title.");
+    }
+
+    $stmt = $db->prepare("INSERT INTO projects (name, intro, description, image_url, total_slots, occupied_slots) VALUES (?, ?, ?, ?, ?, 1)");
+    $stmt->bind_param("ssssi", $name, $intro, $description, $image_url, $total_slots);
+    
+    if (!$stmt->execute()) {
+        throw new Exception("Failed to create project: " . $stmt->error);
+    }
+    
+    $project_id = $stmt->insert_id;
+    $stmt->close();
+
+    // Assign the user as Founder
     $stmt_member = $db->prepare("INSERT INTO project_members (project_id, user_id, membership_type) VALUES (?, ?, 'founder')");
     $stmt_member->bind_param("ii", $project_id, $user_id);
     

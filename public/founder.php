@@ -71,7 +71,7 @@ $notifications = ProjectsHelper::getFounderNotifications($db, $user_id);
     <?php if ($memberProjects->num_rows > 0): ?>
         <div class="project-pill-list">
             <?php while ($p = $memberProjects->fetch_assoc()): ?>
-                <a href="project.php?id=<?= $p['id'] ?>" class="project-pill">
+                <a href="project_member.php?id=<?= $p['id'] ?>" class="project-pill">
                     <span class="pill-title"><?= htmlspecialchars($p['name']) ?></span>
                     <span class="pill-action">manage</span> </a>
             <?php endwhile; ?>

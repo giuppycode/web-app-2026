@@ -9,7 +9,7 @@ class ProjectsHelper
         $filterAvailable = isset($filters['available']);
         $sortOrder = $filters['sort'] ?? 'newest';
 
-        $sql = "SELECT DISTINCT p.*, 
+        $sql = "SELECT DISTINCT p.id, p.name, p.intro, p.description, p.image_url, p.total_slots, p.occupied_slots, p.created_at,
                 (SELECT COUNT(*) FROM project_stars WHERE project_id = p.id AND user_id = ?) as is_starred,
                 (SELECT COUNT(*) FROM project_stars WHERE project_id = p.id) as star_count
                 FROM projects p 
@@ -69,9 +69,6 @@ class ProjectsHelper
         $stmt->execute();
         return $stmt->get_result();
     }
-
-    // In includes/ProjectsHelper.php
-
     // Aggiungiamo il parametro $search con default vuoto
     public static function getFavorites($db, $user_id, $filters = [])
     {
@@ -128,6 +125,7 @@ class ProjectsHelper
         $stmt->execute();
         return $stmt->get_result();
     }
+
     public static function getLatestNews($db, $project_id)
     {
         $stmt = $db->prepare("SELECT description, DATE_FORMAT(created_at, '%b %d') as date_fmt FROM project_news WHERE project_id = ? ORDER BY created_at DESC LIMIT 3");
@@ -153,10 +151,18 @@ class ProjectsHelper
         return $stmt->get_result();
     }
 
-    // --- ADMIN PAGE LOGIC ---
+
     public static function isFounder($db, $project_id, $user_id)
     {
         $stmt = $db->prepare("SELECT membership_type FROM project_members WHERE project_id = ? AND user_id = ? AND membership_type = 'founder'");
+        $stmt->bind_param("ii", $project_id, $user_id);
+        $stmt->execute();
+        return $stmt->get_result()->fetch_assoc();
+    }
+
+    public static function isMember($db, $project_id, $user_id)
+    {
+        $stmt = $db->prepare("SELECT membership_type FROM project_members WHERE project_id = ? AND user_id = ?");
         $stmt->bind_param("ii", $project_id, $user_id);
         $stmt->execute();
         return $stmt->get_result()->fetch_assoc();
@@ -193,12 +199,13 @@ class ProjectsHelper
                 ORDER BY n.created_at DESC";
         return $db->query($sql);
     }
+
     // --- FOUNDER PAGE ---
 
     // Recupera SOLO i progetti dove l'utente è Founder
     public static function getFoundedProjects($db, $user_id)
     {
-        $sql = "SELECT * FROM projects p 
+        $sql = "SELECT p.* FROM projects p 
                 JOIN project_members pm ON p.id = pm.project_id 
                 WHERE pm.user_id = ? AND pm.membership_type = 'founder'
                 ORDER BY p.created_at DESC";
@@ -222,6 +229,7 @@ class ProjectsHelper
         $stmt->execute();
         return $stmt->get_result();
     }
+
     // Recupera SOLO i progetti dove l'utente è Membro (NON Founder)
     public static function getMemberProjects($db, $user_id)
     {

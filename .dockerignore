@@ -1,0 +1,9 @@
+.git
+.gitignore
+.DS_Store
+node_modules
+*.log
+README.md
+*compose.yml
+*compose.yaml
+Dockerfile

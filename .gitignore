@@ -1,0 +1,4 @@
+.env
+
+# exclude user images from repo tracking
+assets/img/projects/project_*

@@ -19,7 +19,8 @@ if (!$user)
 <div class="profile-page-container">
     <div class="profile-card main-stats-card">
         <div class="profile-identity">
-            <div class="profile-avatar-large" onclick="openUserProfile(<?= $_SESSION['user_id']?>)" style="cursor: pointer;">
+            <div class="profile-avatar-large" onclick="openUserProfile(<?= $_SESSION['user_id'] ?>)"
+                style="cursor: pointer;">
                 <span class="material-icons-round">person</span>
             </div>
             <h2 class="profile-username"><?= htmlspecialchars($user['username']) ?></h2>
@@ -56,7 +57,7 @@ if (!$user)
         </div>
     </div>
 
-    <a href="create_project.php" class="profile-card promo-card">
+    <a href="founder.php" class="profile-card promo-card">
         <div class="promo-icon"><span class="material-icons-round">local_florist</span></div>
         <div class="promo-text"><strong>Become a founder</strong>
             <p>It's easy to launch your idea and find your team</p>
@@ -70,7 +71,8 @@ if (!$user)
             <span class="material-icons-round arrow">chevron_right</span>
         </a>
         <a href="accessibility.php" class="setting-item">
-            <div class="setting-left"><span class="material-icons-round">accessibility_new</span><span>Accessibility</span>
+            <div class="setting-left"><span
+                    class="material-icons-round">accessibility_new</span><span>Accessibility</span>
             </div>
             <span class="material-icons-round arrow">chevron_right</span>
         </a>
@@ -78,7 +80,7 @@ if (!$user)
             <div class="setting-left"><span class="material-icons-round">logout</span><span>Log out</span></div>
             <span class="material-icons-round arrow">chevron_right</span>
         </a>
-        
+
     </div>
     <div style="height: 80px;"></div>
 </div>

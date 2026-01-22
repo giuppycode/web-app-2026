@@ -12,18 +12,19 @@ if (!$project_id) {
 
 $user_id = $_SESSION['user_id'] ?? 0;
 
-if (!ProjectsHelper::isFounder($db, $project_id, $user_id)) {
-    header("Location: project_admin.php?id=" . $project_id);
+if (!ProjectsHelper::isMember($db, $project_id, $user_id)) {
+    header("Location: project_member.php?id=" . $project_id);
     exit;
 }
 
 $project = ProjectsHelper::getDetails($db, $project_id);
 $members = ProjectsHelper::getMembers($db, $project_id);
 $roles = ProjectsHelper::getRoles($db, $project_id);
+$is_founder = ProjectsHelper::isFounder($db, $project_id, $user_id);
 
-$error = $_SESSION['project_admin_error'] ?? null;
-$success = $_SESSION['project_admin_success'] ?? null;
-unset($_SESSION['project_admin_error'], $_SESSION['project_admin_success']);
+$error = $_SESSION['project_member_error'] ?? null;
+$success = $_SESSION['project_member_success'] ?? null;
+unset($_SESSION['project_member_error'], $_SESSION['project_member_success']);
 
 include '../includes/header.php';
 ?>
@@ -61,54 +62,84 @@ include '../includes/header.php';
 
             <div class="form-group">
                 <label>Title</label>
-                <div class="dropdown-input" onclick="toggleEdit('titleEdit')">
-                    <span id="titleDisplay" class="dropdown-display"><?= htmlspecialchars($project['name']) ?></span>
-                    <span class="material-icons-round">expand_more</span>
-                </div>
-                <div id="titleEdit" class="edit-container" style="display: none;">
-                    <input type="text" name="name" class="form-input" value="<?= htmlspecialchars($project['name']) ?>"
-                        maxlength="100" required>
-                </div>
+                <?php if ($is_founder): ?>
+                    <div class="dropdown-input" onclick="toggleEdit('titleEdit')">
+                        <span id="titleDisplay" class="dropdown-display"><?= htmlspecialchars($project['name']) ?></span>
+                        <span class="material-icons-round">expand_more</span>
+                    </div>
+                    <div id="titleEdit" class="edit-container" style="display: none;">
+                        <input type="text" name="name" class="form-input" value="<?= htmlspecialchars($project['name']) ?>"
+                            maxlength="100" required>
+                    </div>
+                <?php else: ?>
+                    <div class="dropdown-input disabled">
+                        <span class="dropdown-display"><?= htmlspecialchars($project['name']) ?></span>
+                        <span class="material-icons-round" style="color: var(--text-secondary);">lock</span>
+                    </div>
+                    <small class="form-hint" style="color: var(--text-secondary);">Only founder can modify this
+                        section</small>
+                <?php endif; ?>
             </div>
 
             <div class="form-group">
                 <label>Description</label>
-                <div class="dropdown-input" onclick="toggleEdit('descEdit')">
-                    <span id="descDisplay"
-                        class="dropdown-display"><?= substr(htmlspecialchars($project['description']), 0, 80) ?>...</span>
-                    <span class="material-icons-round">expand_more</span>
-                </div>
-                <div id="descEdit" class="edit-container" style="display: none;">
-                    <textarea name="description" class="form-textarea" rows="6"
-                        required><?= htmlspecialchars($project['description']) ?></textarea>
-                </div>
+                <?php if ($is_founder): ?>
+                    <div class="dropdown-input" onclick="toggleEdit('descEdit')">
+                        <span id="descDisplay"
+                            class="dropdown-display"><?= substr(htmlspecialchars($project['description']), 0, 80) ?>...</span>
+                        <span class="material-icons-round">expand_more</span>
+                    </div>
+                    <div id="descEdit" class="edit-container" style="display: none;">
+                        <textarea name="description" class="form-textarea" rows="6"
+                            required><?= htmlspecialchars($project['description']) ?></textarea>
+                    </div>
+                <?php else: ?>
+                    <div class="dropdown-input disabled">
+                        <span
+                            class="dropdown-display"><?= substr(htmlspecialchars($project['description']), 0, 80) ?>...</span>
+                        <span class="material-icons-round" style="color: var(--text-secondary);">lock</span>
+                    </div>
+                    <small class="form-hint" style="color: var(--text-secondary);">Only founder can modify this
+                        section</small>
+                <?php endif; ?>
             </div>
 
             <div class="form-group">
                 <label>Summary</label>
-                <div class="dropdown-input" onclick="toggleEdit('summaryEdit')">
-                    <span id="summaryDisplay" class="dropdown-display"><?= htmlspecialchars($project['intro']) ?></span>
-                    <span class="material-icons-round">expand_more</span>
-                </div>
-                <div id="summaryEdit" class="edit-container" style="display: none;">
-                    <textarea name="intro" class="form-textarea" rows="3" maxlength="255"
-                        required><?= htmlspecialchars($project['intro']) ?></textarea>
-                </div>
+                <?php if ($is_founder): ?>
+                    <div class="dropdown-input" onclick="toggleEdit('summaryEdit')">
+                        <span id="summaryDisplay" class="dropdown-display"><?= htmlspecialchars($project['intro']) ?></span>
+                        <span class="material-icons-round">expand_more</span>
+                    </div>
+                    <div id="summaryEdit" class="edit-container" style="display: none;">
+                        <textarea name="intro" class="form-textarea" rows="3" maxlength="255"
+                            required><?= htmlspecialchars($project['intro']) ?></textarea>
+                    </div>
+                <?php else: ?>
+                    <div class="dropdown-input disabled">
+                        <span class="dropdown-display"><?= htmlspecialchars($project['intro']) ?></span>
+                        <span class="material-icons-round" style="color: var(--text-secondary);">lock</span>
+                    </div>
+                    <small class="form-hint" style="color: var(--text-secondary);">Only founder can modify this
+                        section</small>
+                <?php endif; ?>
             </div>
 
             <div class="form-group">
                 <label>Project Image</label>
                 <div class="upload-area" id="uploadArea">
                     <input type="file" id="project_image" name="project_image"
-                        accept="image/jpeg,image/png,image/jpg,image/webp" class="file-input">
+                        accept="image/jpeg,image/png,image/jpg,image/webp" class="file-input" <?= !$is_founder ? 'disabled' : '' ?>>
 
                     <div class="current-image-container" id="currentImageContainer">
                         <img src="<?= htmlspecialchars(ImageHelper::getProjectImageUrl($project['image_url'])) ?>"
                             alt="Current project image" id="currentImage" class="current-project-image">
-                        <div class="image-overlay">
-                            <span class="material-icons-round">edit</span>
-                            <span>Change image</span>
-                        </div>
+                        <?php if ($is_founder): ?>
+                            <div class="image-overlay">
+                                <span class="material-icons-round">edit</span>
+                                <span>Change image</span>
+                            </div>
+                        <?php endif; ?>
                     </div>
 
                     <div class="preview-container" id="previewContainer" style="display: none;">
@@ -118,7 +149,12 @@ include '../includes/header.php';
                         </button>
                     </div>
                 </div>
-                <small class="form-hint">Click to replace image (max 5MB)</small>
+                <?php if ($is_founder): ?>
+                    <small class="form-hint">Click to replace image (max 5MB)</small>
+                <?php else: ?>
+                    <small class="form-hint" style="color: var(--text-secondary);">Only founder can modify this
+                        section</small>
+                <?php endif; ?>
             </div>
         </section>
 
@@ -197,10 +233,12 @@ include '../includes/header.php';
                                     <span class="chip-name"><?= htmlspecialchars($member['username']) ?></span>
                                     <span class="chip-role">Founder</span>
                                 </div>
-                                <button type="button" class="member-menu-btn"
-                                    onclick="openMemberMenu(<?= $member['user_id'] ?>, '<?= htmlspecialchars($member['username']) ?>')">
-                                    <span class="material-icons-round">more_vert</span>
-                                </button>
+                                <?php if ($is_founder): ?>
+                                    <button type="button" class="member-menu-btn"
+                                        onclick="openMemberMenu(<?= $member['user_id'] ?>, '<?= htmlspecialchars($member['username']) ?>')">
+                                        <span class="material-icons-round">more_vert</span>
+                                    </button>
+                                <?php endif; ?>
                             </div>
                             <?php
                         endif;
@@ -223,34 +261,45 @@ include '../includes/header.php';
                                 <span class="material-icons-round">work</span>
                             </div>
                             <span class="role-name"><?= htmlspecialchars($role['role_name']) ?></span>
-                            <button type="button" class="role-menu-btn"
-                                onclick="openRoleMenu(<?= $role['id'] ?>, '<?= htmlspecialchars($role['role_name']) ?>')">
-                                <span class="material-icons-round">more_vert</span>
-                            </button>
+                            <?php if ($is_founder): ?>
+                                <button type="button" class="role-menu-btn"
+                                    onclick="openRoleMenu(<?= $role['id'] ?>, '<?= htmlspecialchars($role['role_name']) ?>')">
+                                    <span class="material-icons-round">more_vert</span>
+                                </button>
+                            <?php endif; ?>
                         </div>
                     <?php endwhile; ?>
                 </div>
 
-                <button type="button" class="add-role-btn" onclick="openAddRoleModal()">
-                    <span class="material-icons-round">add_circle</span>
-                    <span>Add new roles</span>
+                <?php if ($is_founder): ?>
+                    <button type="button" class="add-role-btn" onclick="openAddRoleModal()">
+                        <span class="material-icons-round">add_circle</span>
+                        <span>Add new roles</span>
+                        <span class="material-icons-round">arrow_forward</span>
+                    </button>
+                    <small class="form-hint">Expand the project reach</small>
+                <?php else: ?>
+                    <small class="form-hint" style="color: var(--text-secondary); margin-top: 10px;">Only founder can modify
+                        this section</small>
+                <?php endif; ?>
+            </div>
+
+            <?php if ($is_founder): ?>
+                <button type="button" class="add-members-btn" onclick="openApplicationsModal()">
+                    <span class="material-icons-round">person_add</span>
+                    <span>Add new Members</span>
                     <span class="material-icons-round">arrow_forward</span>
                 </button>
                 <small class="form-hint">Expand the project reach</small>
-            </div>
-
-            <button type="button" class="add-members-btn" onclick="openApplicationsModal()">
-                <span class="material-icons-round">person_add</span>
-                <span>Add new Members</span>
-                <span class="material-icons-round">arrow_forward</span>
-            </button>
-            <small class="form-hint">Expand the project reach</small>
+            <?php endif; ?>
         </section>
 
-        <button type="submit" class="btn-launch">
-            <span>Update project</span>
-            <span class="material-icons-round">arrow_forward</span>
-        </button>
+        <?php if ($is_founder): ?>
+            <button type="submit" class="btn-launch">
+                <span>Update project</span>
+                <span class="material-icons-round">arrow_forward</span>
+            </button>
+        <?php endif; ?>
     </form>
 </div>
 

@@ -13,7 +13,9 @@
 - minimmum refactoring (last  to do)
 
 ## easy
-
+- verify accessibility project creation
+- fix why project with preset role if edited shows less slots than it should
+- refactor create_project_action.php query section to use UserHelper / role action
 
 ## bonus
 - view / search archived projects
@@ -22,12 +24,13 @@
 # Task
 
 ## art
-- project administration / modification page
-- project creation page
-- members administration
-- check discovery design / features
-- member roles for project
 - project view / join page
+- send request to join role
+- ~~members administration~~
+- ~~project administration / modification page~~
+- ~~project creation page~~
+- ~~check discovery design / features~~
+- ~~member roles for project~~
 
 ## giuppy
 - ~~founder page~~

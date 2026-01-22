@@ -6,6 +6,11 @@ require_once '../includes/ImageHelper.php';
 
 $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : 0;
 
+if ($user_id == 0) {
+    header("Location: login.php");
+    exit();
+}
+
 // Setup Variabili
 $searchQuery = $_GET['q'] ?? '';
 $filterTag = $_GET['tag'] ?? '';

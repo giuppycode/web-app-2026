@@ -53,13 +53,13 @@
             <span class="brand">Menu</span>
             <span class="drawer-close material-icons-round" onclick="toggleDrawer()">close</span>
         </div>
-        <a href="index.php"><span class="material-icons-round"
-                style="vertical-align: middle; margin-right: 10px;">explore</span> Discovery</a>
         <a href="activity.php"><span class="material-icons-round"
                 style="vertical-align: middle; margin-right: 10px;">rss_feed</span> News</a>
         <a href="search.php"><span class="material-icons-round"
                 style="vertical-align: middle; margin-right: 10px;">search</span> Cerca</a>
         <?php if (isset($_SESSION['user_id'])): ?>
+            <a href="index.php"><span class="material-icons-round"
+                    style="vertical-align: middle; margin-right: 10px;">explore</span> Discovery</a>
             <a href="create_project.php"><span class="material-icons-round"
                     style="vertical-align: middle; margin-right: 10px;">add_circle</span> Crea Progetto</a>
             <a href="profile.php"><span class="material-icons-round"

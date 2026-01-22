@@ -1,4 +1,5 @@
-</div> <?php
+</div>
+<?php
 $currentPage = basename($_SERVER['PHP_SELF']);
 ?>
 
@@ -7,10 +8,12 @@ $currentPage = basename($_SERVER['PHP_SELF']);
         <span class="material-icons-round">home</span>
         <span class="label">Home</span>
     </a>
+
     <a href="discovery.php" class="nav-item <?= $currentPage == 'discovery.php' ? 'active' : '' ?>">
         <span class="material-icons-round">search</span>
         <span class="label">Discovery</span>
     </a>
+
     <a href="create_project.php" class="nav-item <?= $currentPage == 'create_project.php' ? 'active' : '' ?>">
         <span class="material-icons-round">add</span>
         <span class="label">Create</span>
@@ -27,7 +30,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
 
 <div id="userProfileModal" class="modal-overlay" onclick="closeUserProfile(event)" style="display: none;">
     <div class="user-card-modal">
-        
+
         <div class="uc-header">
             <div class="uc-avatar-area">
                 <div class="uc-avatar" id="modalAvatar">
@@ -59,4 +62,5 @@ $currentPage = basename($_SERVER['PHP_SELF']);
 <script src="../assets/js/prova.js"></script>
 
 </body>
+
 </html>

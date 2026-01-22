@@ -1,7 +1,7 @@
 <?php
 require_once '../includes/db.php';
-require_once '../includes/ProjectsHelper.php'; // Fondamentale!
-include '../includes/header.php';
+require_once '../includes/ProjectsHelper.php';
+require_once '../includes/ImageHelper.php';
 
 $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : 0;
 
@@ -14,6 +14,8 @@ $sortOrder = $_GET['sort'] ?? 'newest';
 // Usa Helper
 $res = ProjectsHelper::getProjects($db, $user_id, $_GET);
 $allTags = ProjectsHelper::getAllTags($db);
+
+include '../includes/header.php';
 ?>
 
 <div class="discovery-container">

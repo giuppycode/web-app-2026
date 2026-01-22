@@ -2,14 +2,12 @@
     background: linear-gradient(180deg, #d8f5e5 0%, #a7f3d0 60%, #86efac 100%);
     min-height: 100vh;
 }
-
 .home-header {
     padding: 20px 20px 10px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-
 .notification-bell {
     background: white;
     width: 40px;
@@ -20,8 +18,6 @@
     justify-content: center;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
-
-
 .horizontal-scroll {
     display: flex;
     overflow-x: auto;
@@ -31,7 +27,6 @@
     margin-right: -20px;
     padding-right: 20px;
 }
-
 .card-participating {
     background: var(--white);
     min-width: 280px;
@@ -44,13 +39,11 @@
     text-decoration: none;
     color: inherit;
 }
-
 .cp-header {
     display: flex;
     align-items: center;
     margin-bottom: 15px;
 }
-
 .user-avatar {
     width: 40px;
     height: 40px;
@@ -62,29 +55,24 @@
     color: var(--primary-green);
     margin-right: 10px;
 }
-
 .user-role {
     font-weight: 600;
     font-size: 0.9rem;
     flex-grow: 1;
 }
-
 .arrow-icon {
     color: var(--text-muted);
 }
-
 .cp-title {
     font-size: 1.3rem;
     margin-bottom: 5px;
 }
-
 .cp-desc {
     font-size: 0.85rem;
     color: var(--text-muted);
     margin-bottom: 15px;
     line-height: 1.4;
 }
-
 .cp-footer {
     display: flex;
     gap: 15px;
@@ -92,26 +80,21 @@
     font-weight: 600;
     font-size: 0.9rem;
 }
-
 .cp-stat {
     display: flex;
     align-items: center;
     gap: 4px;
 }
-
 .cp-stat .material-icons-round {
     font-size: 1.1rem;
     color: #4b5563;
 }
-
-
 .section-header-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 10px;
 }
-
 .card-favorite {
     background: var(--white);
     border-radius: 24px;
@@ -119,40 +102,33 @@
     margin-bottom: 20px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.03);
 }
-
 .cf-header {
     display: flex;
     justify-content: space-between;
     align-items: start;
     margin-bottom: 15px;
 }
-
 .cf-title {
     font-size: 1.4rem;
     font-weight: 700;
 }
-
 .cf-stars {
     display: flex;
     align-items: center;
     font-weight: 600;
 }
-
 .star-icon {
     font-size: 1.2rem;
     margin-right: 2px;
 }
-
 .cf-news-section h4 {
     font-size: 1rem;
     margin-bottom: 10px;
     font-weight: 700;
 }
-
 .news-list {
     list-style: none;
 }
-
 .news-list li {
     border-bottom: 1px solid #f3f4f6;
     padding: 12px 0;
@@ -160,34 +136,27 @@
     justify-content: space-between;
     align-items: start;
 }
-
 .news-list li:last-child {
     border-bottom: none;
 }
-
 .news-list p {
     font-size: 0.9rem;
     color: #4b5563;
     flex: 1;
     margin-right: 10px;
 }
-
 .news-date {
     font-size: 0.8rem;
     color: #111;
     font-weight: 600;
     white-space: nowrap;
 }
-
-
-
 .auth-form {
     display: flex;
     flex-direction: column;
     gap: 15px;
     margin-top: 10px;
 }
-
 .auth-input {
     width: 100%;
     padding: 14px;
@@ -198,11 +167,9 @@
     outline: none;
     transition: border-color 0.3s;
 }
-
 .auth-input:focus {
     border-color: var(--primary-green);
 }
-
 .btn-full-width {
     width: 100%;
     padding: 14px;
@@ -215,38 +182,29 @@
     cursor: pointer;
     margin-top: 10px;
 }
-
-
-
-
 .auth-form {
     display: flex;
     flex-direction: column;
     gap: 15px;
     margin-top: 10px;
 }
-
 .auth-input {
     width: 100%;
     padding: 14px;
     border: 1px solid #e5e7eb;
     border-radius: 12px;
-    
     background: white;
     font-size: 1rem;
     outline: none;
     transition: border-color 0.2s;
 }
-
 .auth-input:focus {
     border-color: var(--primary-green);
 }
-
 .btn-full-width {
     width: 100%;
     padding: 14px;
     background-color: #1f2937;
-    
     color: white;
     border: none;
     border-radius: 12px;
@@ -255,14 +213,12 @@
     cursor: pointer;
     margin-top: 10px;
 }
-
 .auth-footer {
     margin-top: 30px;
     text-align: center;
     font-size: 0.95rem;
     color: #4b5563;
 }
-
 .link-highlight {
     color: var(--primary-green);
     font-weight: 700;
@@ -270,11 +226,8 @@
     display: inline-block;
     margin-top: 5px;
 }
-
 .row-2 {
     display: flex;
     gap: 10px;
-    
     margin-bottom: 8px;
-    
 }

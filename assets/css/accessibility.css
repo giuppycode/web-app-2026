@@ -2,7 +2,6 @@ body.high-contrast {
     background: #000000 !important;
     color: #ffff00 !important;
 }
-
 body.high-contrast *:not(img):not(video):not(.material-icons-round) {
     background-color: #000000 !important;
     background-image: none !important;
@@ -10,7 +9,6 @@ body.high-contrast *:not(img):not(video):not(.material-icons-round) {
     border-color: #ffff00 !important;
     box-shadow: none !important;
 }
-
 body.high-contrast .card-participating,
 body.high-contrast .card-favorite,
 body.high-contrast .home-header,
@@ -22,8 +20,6 @@ body.high-contrast .news-list li {
     border: 1px solid #ffff00 !important;
     margin-bottom: 15px !important;
 }
-
-
 body.high-contrast .filter-btn,
 body.high-contrast button,
 body.high-contrast .btn {
@@ -31,65 +27,50 @@ body.high-contrast .btn {
     color: #ffff00 !important;
     background-color: #000000 !important;
 }
-
 body.high-contrast .filter-badge {
     background-color: #ffff00 !important;
     border: none !important;
 }
-
 body.high-contrast input {
     background-color: #000000 !important;
     border: 1px solid #ffff00 !important;
     color: #ffff00 !important;
 }
-
 body.high-contrast a,
 body.high-contrast .cp-title,
 body.high-contrast .cf-title {
     color: #00ff00 !important;
     text-decoration: none !important;
 }
-
 body.high-contrast a:hover {
     text-decoration: underline !important;
 }
-
-
 body.high-contrast .material-icons-round {
     color: inherit !important;
     background: transparent !important;
 }
-
-
 body.high-contrast .user-avatar,
 body.high-contrast .cp-header .user-avatar {
     border: 1px solid #ffff00 !important;
     background-color: #333 !important;
 }
-
 body.large-text {
     font-size: 110% !important;
 }
-
 body.large-text h1,
 body.large-text h2,
 body.large-text h3 {
     line-height: 1.4 !important;
 }
-
-
 body.high-contrast .create-card {
     border: 3px solid #ffff00 !important;
     background-color: #000000 !important;
     border-radius: 12px !important;
 }
-
 body.high-contrast .plus-btn-circle {
     border: 2px solid #ffff00 !important;
     background-color: #000 !important;
 }
-
-
 body.high-contrast .project-pill {
     border: 2px solid #ffff00 !important;
     background-color: #000000 !important;
@@ -98,39 +79,30 @@ body.high-contrast .project-pill {
     justify-content: space-between !important;
     padding: 10px !important;
 }
-
-
 body.high-contrast .pill-action {
     color: #00ff00 !important;
     text-decoration: underline !important;
 }
-
 body.high-contrast .notifications-card {
     border: 2px solid #ffff00 !important;
     padding: 15px !important;
     margin-bottom: 20px !important;
 }
-
 body.high-contrast .notif-item {
     border-bottom: 1px dashed #ffff00 !important;
     padding-bottom: 10px !important;
     margin-bottom: 10px !important;
 }
-
 body.high-contrast .notif-item:last-child {
     border-bottom: none !important;
 }
-
-
 body.high-contrast .btn-action {
     border: 2px solid #ffff00 !important;
     background-color: #000 !important;
 }
-
 body.high-contrast .btn-action.check span {
     color: #00ff00 !important;
 }
-
 body.high-contrast .btn-action.close span {
     color: #ff0000 !important;
 }

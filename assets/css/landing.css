@@ -5,7 +5,6 @@ body {
     background: #f8fafc;
     color: #1e293b;
 }
-
 .hero {
     display: flex;
     flex-direction: column;
@@ -17,13 +16,11 @@ body {
     position: relative;
     overflow: hidden;
 }
-
 .hero-content {
     max-width: 800px;
     z-index: 10;
     animation: fadeIn Up 0.8s ease-out;
 }
-
 .hero-title {
     font-size: 2.5rem;
     font-weight: 800;
@@ -35,7 +32,6 @@ body {
     -webkit-text-fill-color: transparent;
     letter-spacing: -0.02em;
 }
-
 .hero-subtitle {
     font-size: 1.25rem;
     color: #64748b;
@@ -43,7 +39,6 @@ body {
     line-height: 1.6;
     font-weight: 400;
 }
-
 .cta-group {
     display: flex;
     flex-direction: column;
@@ -52,7 +47,6 @@ body {
     max-width: 320px;
     margin: 0 auto;
 }
-
 .btn-landing {
     display: inline-flex;
     align-items: center;
@@ -65,31 +59,26 @@ body {
     transition: all 0.3s ease;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
-
 .btn-primary-landing {
     background-color: var(--primary-green, #10b981);
     color: white;
     border: 2px solid transparent;
 }
-
 .btn-primary-landing:hover {
     background-color: #059669;
     transform: translateY(-2px);
     box-shadow: 0 10px 15px -3px rgba(16, 185, 129, 0.3);
 }
-
 .btn-secondary-landing {
     background-color: white;
     color: #334155;
     border: 2px solid #e2e8f0;
 }
-
 .btn-secondary-landing:hover {
     border-color: #cbd5e1;
     background-color: #f1f5f9;
     transform: translateY(-2px);
 }
-
 .features {
     display: grid;
     grid-template-columns: 1fr;
@@ -98,7 +87,6 @@ body {
     max-width: 1000px;
     margin: 0 auto;
 }
-
 .feature-card {
     background: white;
     padding: 2rem;
@@ -107,52 +95,43 @@ body {
     text-align: center;
     transition: transform 0.3s ease;
 }
-
 .feature-card:hover {
     transform: translateY(-5px);
 }
-
 .feature-icon {
     font-size: 3rem;
     color: var(--primary-green, #10b981);
     margin-bottom: 1rem;
 }
-
 .feature-title {
     font-size: 1.25rem;
     font-weight: 700;
     margin-bottom: 0.5rem;
     color: #0f172a;
 }
-
 .feature-desc {
     color: #64748b;
     line-height: 1.5;
 }
-
 @media (min-width: 768px) {
     .hero-title {
         font-size: 4rem;
     }
-
     .cta-group {
         flex-direction: row;
         max-width: none;
         justify-content: center;
         gap: 1.5rem;
     }
-
     .features {
         grid-template-columns: repeat(3, 1fr);
     }
 }
-
 @keyframes fadeInUp {
     from {
         opacity: 0;
         transform: translateY(20px);
     }
-
     to {
         opacity: 1;
         transform: translateY(0);

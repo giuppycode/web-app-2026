@@ -4,13 +4,10 @@
     padding: 20px;
     font-family: system-ui, -apple-system, sans-serif;
 }
-
-
 .acc-header {
     text-align: center;
     margin-bottom: 30px;
 }
-
 .acc-main-icon {
     font-size: 48px;
     color: #1f2937;
@@ -20,19 +17,16 @@
     margin-bottom: 15px;
     display: inline-block;
 }
-
 .acc-header h1 {
     margin: 10px 0 5px 0;
     font-size: 1.8rem;
     color: #111;
 }
-
 .acc-header p {
     color: #6b7280;
     margin: 0;
     font-size: 0.95rem;
 }
-
 .acc-card {
     background: #fff;
     border-radius: 20px;
@@ -41,7 +35,6 @@
     margin-bottom: 25px;
     border: 1px solid #f3f4f6;
 }
-
 .acc-card h2 {
     font-size: 1.1rem;
     margin-top: 0;
@@ -50,18 +43,15 @@
     border-bottom: 1px solid #eee;
     padding-bottom: 10px;
 }
-
 .acc-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
 }
-
 .acc-row:last-child {
     margin-bottom: 0;
 }
-
 .acc-label {
     display: flex;
     align-items: center;
@@ -70,7 +60,6 @@
     color: #1f2937;
     font-size: 1rem;
 }
-
 .acc-toggle-group {
     background: #f3f4f6;
     padding: 4px;
@@ -78,7 +67,6 @@
     display: flex;
     gap: 5px;
 }
-
 .acc-btn {
     border: none;
     background: transparent;
@@ -90,33 +78,27 @@
     transition: all 0.2s;
     font-size: 0.9rem;
 }
-
 .acc-btn.active {
     background: #fff;
     color: #111;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
-
-
 .acc-text p {
     color: #4b5563;
     line-height: 1.6;
     margin-bottom: 15px;
     font-size: 0.95rem;
 }
-
 .acc-text h3 {
     margin-top: 20px;
     font-size: 1rem;
     color: #111;
 }
-
 .contact-link {
     color: #10b981;
     font-weight: 700;
     text-decoration: none;
 }
-
 .back-link {
     display: flex;
     align-items: center;
@@ -128,7 +110,6 @@
     margin-top: 30px;
     transition: color 0.2s;
 }
-
 .back-link:hover {
     color: #111;
 }

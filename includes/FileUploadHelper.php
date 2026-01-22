@@ -3,7 +3,7 @@ class FileUploadHelper
 {
     // Maximum file size in bytes (5MB)
     const MAX_FILE_SIZE = 5 * 1024 * 1024;
-    
+
     // Allowed MIME types
     const ALLOWED_TYPES = [
         'image/jpeg',
@@ -11,10 +11,10 @@ class FileUploadHelper
         'image/png',
         'image/webp'
     ];
-    
+
     // Allowed extensions
     const ALLOWED_EXTENSIONS = ['jpg', 'jpeg', 'png', 'webp'];
-    
+
     /**
      * Upload a project image
      * 
@@ -58,11 +58,11 @@ class FileUploadHelper
 
             // Generate unique filename
             $unique_name = self::generateUniqueFilename($extension);
-            
+
             // Define upload directory and path
             $upload_dir = __DIR__ . '/../assets/img/projects/';
             $upload_path = $upload_dir . $unique_name;
-            
+
             // Create directory if it doesn't exist
             if (!is_dir($upload_dir)) {
                 if (!mkdir($upload_dir, 0755, true)) {
@@ -85,9 +85,8 @@ class FileUploadHelper
 
             // Return relative path for database storage
             $relative_path = 'assets/img/projects/' . $unique_name;
-            
-            return ['success' => true, 'path' => $relative_path, 'error' => null];
 
+            return ['success' => true, 'path' => $relative_path, 'error' => null];
         } catch (Exception $e) {
             return ['success' => false, 'path' => null, 'error' => 'Upload failed: ' . $e->getMessage()];
         }
@@ -128,5 +127,26 @@ class FileUploadHelper
                 return 'Unknown upload error';
         }
     }
+
+    /**
+     * Delete a project image file
+     * 
+     * @param string $file_path Relative path to file
+     * @return bool True if deleted successfully, false otherwise
+     */
+    public static function deleteProjectImage($file_path)
+    {
+        // Don't delete external URLs
+        if (filter_var($file_path, FILTER_VALIDATE_URL)) {
+            return true;
+        }
+
+        $full_path = __DIR__ . '/../' . $file_path;
+
+        if (file_exists($full_path)) {
+            return unlink($full_path);
+        }
+
+        return false;
+    }
 }
-?>

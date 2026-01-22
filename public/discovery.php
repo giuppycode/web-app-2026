@@ -2,7 +2,6 @@
 require_once '../includes/db.php';
 require_once '../includes/ProjectsHelper.php';
 require_once '../includes/ImageHelper.php';
-
 $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : 0;
 
 // Setup Variabili
@@ -34,7 +33,11 @@ include '../includes/header.php';
             <?php while ($p = $res->fetch_assoc()): ?>
                 <div class="card-discovery">
                     <div class="cd-image-container">
-                        <img src="https://picsum.photos/seed/<?= $p['id'] ?>/600/350" alt="Cover" class="cd-image">
+                        <img 
+                            src="<?= htmlspecialchars(ImageHelper::getProjectImageUrl($p['image_url'])) ?>" 
+                            alt="<?= htmlspecialchars($p['name']) ?>" 
+                            class="cd-image"
+                            onerror="this.src='<?= ImageHelper::getFallbackImageUrl($p['id']) ?>'">
                     </div>
                     <div class="cd-body">
                         <h3 class="cd-title"><?= htmlspecialchars($p['name']) ?></h3>

@@ -33,10 +33,8 @@ include '../includes/header.php';
             <?php while ($p = $res->fetch_assoc()): ?>
                 <div class="card-discovery">
                     <div class="cd-image-container">
-                        <img 
-                            src="<?= htmlspecialchars(ImageHelper::getProjectImageUrl($p['image_url'])) ?>" 
-                            alt="<?= htmlspecialchars($p['name']) ?>" 
-                            class="cd-image"
+                        <img src="<?= htmlspecialchars(ImageHelper::getProjectImageUrl($p['image_url'])) ?>"
+                            alt="<?= htmlspecialchars($p['name']) ?>" class="cd-image"
                             onerror="this.src='<?= ImageHelper::getFallbackImageUrl() ?>'">
                     </div>
                     <div class="cd-body">
@@ -53,7 +51,7 @@ include '../includes/header.php';
                                 <span><?= $p['star_count'] ?></span>
                             </a>
                         </div>
-                        <a href="project.php?id=<?= $p['id'] ?>" class="cd-action-btn">
+                        <a href="project_user.php?id=<?= $p['id'] ?>" class="cd-action-btn">
                             <span class="material-icons-round">person_add</span>
                             <span>Unisciti</span>
                         </a>

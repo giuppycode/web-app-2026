@@ -37,7 +37,7 @@ include '../includes/header.php';
                             src="<?= htmlspecialchars(ImageHelper::getProjectImageUrl($p['image_url'])) ?>" 
                             alt="<?= htmlspecialchars($p['name']) ?>" 
                             class="cd-image"
-                            onerror="this.src='<?= ImageHelper::getFallbackImageUrl($p['id']) ?>'">
+                            onerror="this.src='<?= ImageHelper::getFallbackImageUrl() ?>'">
                     </div>
                     <div class="cd-body">
                         <h3 class="cd-title"><?= htmlspecialchars($p['name']) ?></h3>

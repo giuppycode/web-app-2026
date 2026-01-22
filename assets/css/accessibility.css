@@ -78,7 +78,7 @@ body.high-contrast .material-icons-round {
 /* 8. Avatar utente */
 body.high-contrast .user-avatar,
 body.high-contrast .cp-header .user-avatar {
-    border: 1px solid #fff !important;
+    border: 1px solid #ffff00 !important;
     background-color: #333 !important; /* Grigio scuro per stacco */
 }
 
@@ -93,4 +93,66 @@ body.large-text h1,
 body.large-text h2, 
 body.large-text h3 {
     line-height: 1.4 !important;
+}
+
+/* 1. Riquadro per la Card "Create Project" */
+body.high-contrast .create-card {
+    border: 3px solid #ffff00 !important; /* Bordo giallo spesso */
+    background-color: #000000 !important;
+    border-radius: 12px !important; /* Mantiene un po' di stondatura se vuoi, o metti 0 per spigoli vivi */
+}
+
+/* Cerchio del bottone "+" dentro la card */
+body.high-contrast .plus-btn-circle {
+    border: 2px solid #ffff00 !important;
+    background-color: #000 !important;
+}
+
+/* 2. Riquadro per le Pillole dei Progetti (Project Pills) */
+body.high-contrast .project-pill {
+    border: 2px solid #ffff00 !important; /* Riquadro giallo */
+    background-color: #000000 !important;
+    margin-bottom: 10px !important; /* Spazio tra un progetto e l'altro */
+    display: flex !important; /* Mantiene l'allineamento */
+    justify-content: space-between !important;
+    padding: 10px !important;
+}
+
+/* Testo "manage" verde per distinguerlo */
+body.high-contrast .pill-action {
+    color: #00ff00 !important;
+    text-decoration: underline !important;
+}
+
+/* 3. Riquadro per le Notifiche */
+body.high-contrast .notifications-card {
+    border: 2px solid #ffff00 !important; /* Bordo attorno a tutto il blocco notifiche */
+    padding: 15px !important;
+    margin-bottom: 20px !important;
+}
+
+/* Singola notifica */
+body.high-contrast .notif-item {
+    border-bottom: 1px dashed #ffff00 !important; /* Linea divisoria tra le notifiche */
+    padding-bottom: 10px !important;
+    margin-bottom: 10px !important;
+}
+
+/* Rimuovi il bordo dall'ultima notifica per pulizia */
+body.high-contrast .notif-item:last-child {
+    border-bottom: none !important;
+}
+
+/* 4. Bottoni Azione (Check/Close) nelle notifiche */
+body.high-contrast .btn-action {
+    border: 2px solid #ffff00 !important;
+    background-color: #000 !important;
+}
+
+body.high-contrast .btn-action.check span {
+    color: #00ff00 !important; /* Spunta verde */
+}
+
+body.high-contrast .btn-action.close span {
+    color: #ff0000 !important; /* X rossa (o gialla se preferisci #ffff00) */
 }

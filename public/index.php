@@ -49,7 +49,7 @@ $favAvailable = isset($_GET['available_fav']);
                         <span class="material-icons-round note-icon"><?= $icon ?></span>
                         <p class="note-text"><?= $msg ?></p>
                     </div>
-                <?php
+                    <?php
                 endwhile;
             else:
                 ?>

@@ -8,8 +8,10 @@
     :root {
         --header-height: 72px;
         --bg-desktop: #f0f2f5;
-        --card-radius: 16px; /* Arrotondamento più moderno */
-        --container-width: 1150px; /* Un po' più largo per ospitare le due colonne */
+        --card-radius: 16px;
+        /* Arrotondamento più moderno */
+        --container-width: 1150px;
+        /* Un po' più largo per ospitare le due colonne */
     }
 
     body {
@@ -20,19 +22,20 @@
     }
 
     /* Container centrale */
-    .container, 
-    .home-container, 
+    .container,
+    .home-container,
     .profile-page-container {
         max-width: var(--container-width);
-        margin: 40px auto; /* Più aria sopra e sotto */
+        margin: 40px auto;
+        /* Più aria sopra e sotto */
         padding: 0 24px;
     }
 
     /* =========================================
        2. NASCONDI ELEMENTI MOBILE (INVARIATO)
        ========================================= */
-    .bottom-nav, 
-    .mobile-drawer, 
+    .bottom-nav,
+    .mobile-drawer,
     .top-menu-toggle,
     .mobile-only {
         display: none !important;
@@ -49,7 +52,7 @@
         width: 100%;
         height: var(--header-height);
         background: rgb(255, 246, 246);
-        box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
         padding: 0 max(24px, calc((100% - var(--container-width)) / 2));
         justify-content: space-between;
         align-items: center;
@@ -94,58 +97,66 @@
         margin-left: 10px;
         transition: transform 0.2s;
     }
+
     .desktop-links .btn-primary:hover {
         transform: translateY(-2px);
     }
 
-    .top-nav > a[href="search.php"] {
+    .top-nav>a[href="search.php"] {
         background: #f0f2f5;
         padding: 8px;
         border-radius: 50%;
         transition: background 0.2s;
     }
-    .top-nav > a[href="search.php"]:hover {
+
+    .top-nav>a[href="search.php"]:hover {
         background: #e4e6eb;
     }
 
     /* =========================================
        4. PROFILO UTENTE: STRUTTURA A 2 COLONNE
        ========================================= */
-    
+
     /* Il contenitore diventa Flexbox orizzontale */
     .profile-page-container {
-        display: flex; 
-        flex-direction: column; /* <--- QUESTA è la chiave: li impila verticalmente */
-        align-items: center;    /* Centra tutto */
-        gap: 40px; 
-        width: 100%;            /* Assicura che il container sia largo */
+        display: flex;
+        flex-direction: column;
+        /* <--- QUESTA è la chiave: li impila verticalmente */
+        align-items: center;
+        /* Centra tutto */
+        gap: 40px;
+        width: 100%;
+        /* Assicura che il container sia largo */
     }
 
     /* --- COLONNA SINISTRA (Sidebar Fissa) --- */
     .main-stats-card {
-        width: 340px; /* Larghezza fissa */
-        flex-shrink: 0; /* Impedisce di restringersi */
-        position: sticky; /* Magia: resta fissa mentre scrolli */
-        top: 100px; /* Distanza dall'alto quando si blocca */
-        width:100%;
-        
+        width: 340px;
+        /* Larghezza fissa */
+        flex-shrink: 0;
+        /* Impedisce di restringersi */
+        position: relative;
+        /* Magia: resta fissa mentre scrolli */
+        width: 100%;
+
         background: #fff;
         border: 1px solid #e1e4e8;
         border-radius: var(--card-radius);
         padding: 30px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
         z-index: 10;
     }
 
     /* Avatar più grande su desktop */
     .profile-avatar-large {
-        width: 100px; 
+        width: 100px;
         height: 100px;
     }
 
     /* --- COLONNA DESTRA (Wrapper Contenuto) --- */
     .desktop-content-wrapper {
-        width: 100%; /* Larghezza piena */
+        width: 100%;
+        /* Larghezza piena */
         display: flex;
         flex-direction: column;
         gap: 30px;
@@ -155,23 +166,27 @@
     /* -- 4A. Griglia Grafici (Dentro wrapper) -- */
     .profile-grid-row {
         display: grid;
-        grid-template-columns: 1fr 2fr; /* Card piccola 1/3, Grafico 2/3 */
+        grid-template-columns: 1fr 2fr;
+        /* Card piccola 1/3, Grafico 2/3 */
         gap: 25px;
     }
 
     .small-card {
-        margin: 0; /* Reset */
+        margin: 0;
+        /* Reset */
         background: #fff;
         border: 1px solid #e1e4e8;
         border-radius: var(--card-radius);
         padding: 25px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-        height: 100%; /* Altezza uniforme */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+        height: 100%;
+        /* Altezza uniforme */
     }
 
     /* -- 4B. Promo Card (Hero Banner) -- */
     .promo-card {
-        background: linear-gradient(120deg, #10b981 0%, #059669 100%); /* Verde professionale */
+        background: linear-gradient(120deg, #10b981 0%, #059669 100%);
+        /* Verde professionale */
         color: #fff;
         padding: 35px 40px;
         border-radius: var(--card-radius);
@@ -183,70 +198,99 @@
         text-decoration: none;
         transition: transform 0.2s;
     }
-    
+
     .promo-card:hover {
         transform: translateY(-3px);
     }
-    
-    .promo-card p { opacity: 0.9; color: #fff; }
-    .promo-icon { background: rgba(255,255,255,0.2); width: 60px; height: 60px; }
-    .promo-icon span { font-size: 32px; color: #fff; }
 
- .settings-list {
-        display: flex;           /* Usiamo Flex invece di Grid */
-        flex-direction: column;  /* Uno sotto l'altro */
-        gap: 15px;               /* Spazio tra i bottoni */
+    .promo-card p {
+        opacity: 0.9;
+        color: #fff;
+    }
+
+    .promo-icon {
+        background: rgba(255, 255, 255, 0.2);
+        width: 60px;
+        height: 60px;
+    }
+
+    .promo-icon span {
+        font-size: 32px;
+        color: #fff;
+    }
+
+    .settings-list {
+        display: flex;
+        /* Usiamo Flex invece di Grid */
+        flex-direction: column;
+        /* Uno sotto l'altro */
+        gap: 15px;
+        /* Spazio tra i bottoni */
         background: transparent;
         padding: 0;
         box-shadow: none;
         border: none;
-        width: 100%;             /* Forza larghezza piena */
+        width: 100%;
+        /* Forza larghezza piena */
     }
 
     .setting-item {
         background: #fff;
         border: 1px solid #e1e4e8;
         border-radius: var(--card-radius);
-        padding: 20px 25px;      /* Spaziatura interna */
+        padding: 20px 25px;
+        /* Spaziatura interna */
         display: flex;
-        flex-direction: row;     /* FONDAMENTALE: Icona a sinistra, testo a destra */
-        align-items: center;     /* Centra verticalmente */
-        justify-content: flex-start; /* Allinea tutto a sinistra */
+        flex-direction: row;
+        /* FONDAMENTALE: Icona a sinistra, testo a destra */
+        align-items: center;
+        /* Centra verticalmente */
+        justify-content: flex-start;
+        /* Allinea tutto a sinistra */
         text-align: left;
         gap: 20px;
-        height: auto;            /* Altezza naturale */
-        aspect-ratio: auto;      /* Rimuove la forzatura quadrata */
+        height: auto;
+        /* Altezza naturale */
+        aspect-ratio: auto;
+        /* Rimuove la forzatura quadrata */
         transition: all 0.2s;
     }
 
     .setting-item:hover {
         border-color: #10b981;
-        transform: translateY(-2px); /* Leggero sollevamento */
-        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        transform: translateY(-2px);
+        /* Leggero sollevamento */
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         background: #fff;
     }
 
     /* Gestione Icona e Testo */
     .setting-left {
         display: flex;
-        flex-direction: row;     /* Icona accanto al testo */
+        flex-direction: row;
+        /* Icona accanto al testo */
         align-items: center;
         gap: 15px;
-        width: 100%;             /* Occupa tutto lo spazio disponibile */
+        width: 100%;
+        /* Occupa tutto lo spazio disponibile */
     }
 
     .setting-left .material-icons-round {
-        font-size: 28px;         /* Icona proporzionata alla riga */
+        font-size: 28px;
+        /* Icona proporzionata alla riga */
         color: #64748b;
         background: #f1f5f9;
         padding: 10px;
         border-radius: 50%;
-        margin-bottom: 0;        /* Reset margine inferiore */
-        flex-shrink: 0;          /* L'icona non si schiaccia mai */
+        margin-bottom: 0;
+        /* Reset margine inferiore */
+        flex-shrink: 0;
+        /* L'icona non si schiaccia mai */
     }
 
     .setting-left span:last-child {
-        font-size: 1.05rem;      /* Testo leggermente più grande */
+        font-size: 1.05rem;
+        /* Testo leggermente più grande */
         font-weight: 600;
         color: #1e293b;
     }
@@ -255,15 +299,16 @@
         background: #10b981;
         color: #fff;
     }
-    
+
     /* Facciamo tornare la freccia a destra per un look professionale */
-    .arrow { 
-        display: block !important; 
+    .arrow {
+        display: block !important;
         color: #cbd5e1;
         font-size: 24px;
-        margin-left: auto; /* Spinge la freccia in fondo a destra */
+        margin-left: auto;
+        /* Spinge la freccia in fondo a destra */
     }
-    
+
     .setting-item:hover .arrow {
         color: #10b981;
     }
@@ -271,16 +316,21 @@
     /* =========================================
        5. HOME PAGE & DISCOVERY (Griglie)
        ========================================= */
-    .discovery-grid, .favorites-list {
+    .discovery-grid,
+    .favorites-list {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
         gap: 25px;
-        width: auto;           /* Lascia che si calcoli da solo */
-    margin-left: -24px;    /* Esce a sinistra ignorando il padding del padre */
-    margin-right: -24px;
+        width: auto;
+        /* Lascia che si calcoli da solo */
+        margin-left: -24px;
+        /* Esce a sinistra ignorando il padding del padre */
+        margin-right: -24px;
     }
 
-    .project-card, .card-favorite, .card-participating {
+    .project-card,
+    .card-favorite,
+    .card-participating {
         background: white;
         border: 1px solid #e1e4e8;
         border-radius: var(--card-radius);
@@ -291,9 +341,10 @@
         justify-content: space-between;
     }
 
-    .project-card:hover, .card-favorite:hover {
+    .project-card:hover,
+    .card-favorite:hover {
         transform: translateY(-4px);
-        box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
     }
 
     .horizontal-scroll {
@@ -302,11 +353,16 @@
         overflow-x: auto;
         padding-bottom: 20px;
         scrollbar-width: thin;
-        width: auto;           /* Lascia che si calcoli da solo */
-    margin-left: -24px;    /* Esce a sinistra ignorando il padding del padre */
-    margin-right: -24px;
+        width: auto;
+        /* Lascia che si calcoli da solo */
+        margin-left: -24px;
+        /* Esce a sinistra ignorando il padding del padre */
+        margin-right: -24px;
     }
-    .card-participating { min-width: 300px; }
+
+    .card-participating {
+        min-width: 300px;
+    }
 
     /* =========================================
        6. MODALE UTENTE (Popup Centrale)
@@ -332,78 +388,99 @@
         animation: modalPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
 
-    .user-card-modal::before { display: none; }
-
-    @keyframes modalPop {
-        from { transform: scale(0.95); opacity: 0; }
-        to { transform: scale(1); opacity: 1; }
+    .user-card-modal::before {
+        display: none;
     }
 
-    .update-profile-form{
+    @keyframes modalPop {
+        from {
+            transform: scale(0.95);
+            opacity: 0;
+        }
+
+        to {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+
+    .update-profile-form {
         width: 100%;
     }
 
     .roles-container {
-    display: flex;          
-    flex-direction: row;     
-    flex-wrap: wrap;         
-    gap: 10px;               
-    align-items: center;     
-    margin-top: 10px;        
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: center;
+        margin-top: 10px;
     }
 
-    .logout-button{
+    .logout-button {
         color: red;
         padding-left: 50;
     }
 
     .section-header-row {
-    background-color: #86efac;
-    border-radius: 25px;
-    
-    /* TRUCCO PER ALLARGARE: */
-    width: auto;           /* Lascia che si calcoli da solo */
-    margin-left: -24px;    /* Esce a sinistra ignorando il padding del padre */
-    margin-right: -24px;   /* Esce a destra */
-    
-    /* TRUCCO ESTETICO: */
-    padding: 15px 30px;    /* Aggiungi aria interna così il testo non tocca i bordi */
-    margin-bottom: 25px;   /* Spazio sotto */
-    
-    /* Mantieni il layout flex */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+        background-color: #86efac;
+        border-radius: 25px;
+
+        /* TRUCCO PER ALLARGARE: */
+        width: auto;
+        /* Lascia che si calcoli da solo */
+        margin-left: -24px;
+        /* Esce a sinistra ignorando il padding del padre */
+        margin-right: -24px;
+        /* Esce a destra */
+
+        /* TRUCCO ESTETICO: */
+        padding: 15px 30px;
+        /* Aggiungi aria interna così il testo non tocca i bordi */
+        margin-bottom: 25px;
+        /* Spazio sotto */
+
+        /* Mantieni il layout flex */
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
 
     .card-participating {
         min-width: 320px;
-        background-color: #f8fafc; /* Sfondo leggermente grigio per contrasto col bianco */
+        background-color: #f8fafc;
+        /* Sfondo leggermente grigio per contrasto col bianco */
         border: 1px solid #e2e8f0;
         border-radius: 12px;
-        box-shadow: none;          /* Rimuoviamo ombra card, usiamo quella del box */
+        box-shadow: none;
+        /* Rimuoviamo ombra card, usiamo quella del box */
         transition: transform 0.2s, background-color 0.2s;
     }
 
     .card-participating:hover {
         transform: translateY(-3px);
-        background-color: #fff;    /* Diventa bianca al passaggio */
-        border-color: #10b981;     /* Bordo verde */
+        background-color: #fff;
+        /* Diventa bianca al passaggio */
+        border-color: #10b981;
+        /* Bordo verde */
         box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
     }
+
     .cp-desc {
-    /* 1. Obbliga il testo ad andare a capo normalmente */
-    white-space: normal;
+        /* 1. Obbliga il testo ad andare a capo normalmente */
+        white-space: normal;
 
-    /* 2. Spezza le parole troppo lunghe per non rompere il layout */
-    overflow-wrap: break-word;
-    word-break: break-word;
+        /* 2. Spezza le parole troppo lunghe per non rompere il layout */
+        overflow-wrap: break-word;
+        word-break: break-word;
 
-    /* 3. Aggiunge i tre puntini (...) dopo 3 righe */
-    display: -webkit-box;
-    -webkit-line-clamp: 3;        /* Mostra massimo 3 righe */
-    -webkit-box-orient: vertical;
-    overflow: hidden;             /* Nasconde il testo in eccesso */
-}
+        /* 3. Aggiunge i tre puntini (...) dopo 3 righe */
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        /* Mostra massimo 3 righe */
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        /* Nasconde il testo in eccesso */
+    }
 
 }

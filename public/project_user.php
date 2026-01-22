@@ -6,7 +6,7 @@ require_once '../includes/ImageHelper.php';
 // Project id must be provided
 $project_id = $_GET['id'] ?? 0;
 if (!$project_id) {
-    header("Location: index.php");
+    header("Location: landing.php");
     exit;
 }
 

@@ -21,6 +21,34 @@ class ProjectValidation
     }
 
     /**
+     * Validate project name format
+     * 
+     * @param string $name Project name
+     * @return array ['valid' => bool, 'error' => string|null]
+     */
+    public static function validateProjectName($name)
+    {
+        if (empty($name)) {
+            return ['valid' => false, 'error' => 'Project name is required'];
+        }
+
+        if (strlen($name) > 100) {
+            return ['valid' => false, 'error' => 'Project name must not exceed 100 characters'];
+        }
+
+        if (strlen($name) < 3) {
+            return ['valid' => false, 'error' => 'Project name must be at least 3 characters'];
+        }
+
+        // Check for valid characters (letters, numbers, spaces, hyphens, underscores)
+        if (!preg_match('/^[a-zA-Z0-9\s\-_]+$/', $name)) {
+            return ['valid' => false, 'error' => 'Project name can only contain letters, numbers, spaces, hyphens and underscores'];
+        }
+
+        return ['valid' => true, 'error' => null];
+    }
+
+    /**
      * Validate summary text
      * 
      * @param string $summary Summary text

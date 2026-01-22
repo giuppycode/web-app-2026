@@ -29,6 +29,22 @@ class DatabaseHelper
         }
         return $stmt;
     }
+    public function begin_transaction()
+    {
+        $this->db->begin_transaction();
+    }
+    public function commit()
+    {
+        $this->db->commit();
+    }
+    public function rollback()
+    {
+        $this->db->rollback();
+    }
+    public function get_error()
+    {
+        return $this->db->error;
+    }
     public function close()
     {
         $this->db->close();

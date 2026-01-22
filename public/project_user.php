@@ -161,10 +161,98 @@ include '../includes/header.php';
 
 
 <script>
+    let currentRoleId = null;
+    const project_id = <?= $project_id ?>;
+
     function openApplicationModal(roleId) {
-        // Placeholder for future application logic
-        alert('Application feature coming soon for role ID: ' + roleId);
+        currentRoleId = roleId;
+        const modal = document.getElementById('applicationModal');
+        if (modal) {
+            modal.style.display = 'block';
+        } else {
+            // Se il modale non esiste (fallback), inviamo direttamente
+            if (confirm('Do you want to apply for this position?')) {
+                sendApplication();
+            }
+        }
+    }
+
+    function closeApplicationModal() {
+        document.getElementById('applicationModal').style.display = 'none';
+        currentRoleId = null;
+    }
+
+    async function sendApplication() {
+        if (!currentRoleId) return;
+
+        const btn = document.getElementById('confirmApplicationBtn');
+        const originalText = btn ? btn.innerText : '';
+        if (btn) btn.innerText = 'Sending...';
+
+        try {
+            const response = await fetch('../actions/apply_for_role.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    project_id: project_id,
+                    role_id: currentRoleId
+                })
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                alert('Application sent successfully!');
+                closeApplicationModal();
+                // Disable the button for this role
+                // const roleBtn = document.querySelector(`button[onclick="openApplicationModal(${currentRoleId})"]`);
+                // if(roleBtn) {
+                //     roleBtn.disabled = true;
+                //     roleBtn.innerText = 'Applied';
+                // }
+                window.location.reload(); // Reload to update state if needed
+            } else {
+                alert('Error: ' + data.message);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('An error occurred. Please try again.');
+        } finally {
+            if (btn) btn.innerText = originalText;
+        }
+    }
+
+    // Close modal when clicking outside
+    window.onclick = function (event) {
+        const modal = document.getElementById('applicationModal');
+        if (event.target == modal) {
+            closeApplicationModal();
+        }
     }
 </script>
+
+<!-- Application Confirmation Modal -->
+<div id="applicationModal" class="modal" style="display: none;">
+    <div class="modal-content modal-small">
+        <div class="modal-header">
+            <h3>Confirm Application</h3>
+            <button type="button" class="modal-close" onclick="closeApplicationModal()">
+                <span class="material-icons-round">close</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <p>Are you sure you want to apply for this position? The project founder will be notified.</p>
+            <div class="modal-actions">
+                <button type="button" class="btn-secondary" onclick="closeApplicationModal()">Cancel</button>
+                <button type="button" class="btn-primary" id="confirmApplicationBtn" onclick="sendApplication()">
+                    <span class="material-icons-round">send</span>
+                    <span>Send Application</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <?php include '../includes/footer.php'; ?>

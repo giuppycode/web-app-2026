@@ -216,17 +216,31 @@ class ProjectsHelper
         return $stmt->get_result();
     }
 
-    // Recupera le ultime news dai progetti fondati (per la sezione Notifications)
+    // Recupera le ultime news dai progetti fondati E le nuove candidature (per la sezione Notifications)
     public static function getFounderNotifications($db, $user_id)
     {
-        $sql = "SELECT n.description, p.name as project_name 
+        // 1. News dai progetti
+        $sqlNews = "SELECT n.description, p.name as project_name, n.created_at, 'news' as type, NULL as application_id
                 FROM project_news n
                 JOIN projects p ON n.project_id = p.id
                 JOIN project_members pm ON p.id = pm.project_id
-                WHERE pm.user_id = ? AND pm.membership_type = 'founder'
-                ORDER BY n.created_at DESC LIMIT 3";
-        $stmt = $db->prepare($sql);
-        $stmt->bind_param("i", $user_id);
+                WHERE pm.user_id = ? AND pm.membership_type = 'founder'";
+
+        // 2. Nuove candidature (Applications)
+        // Description formattata: "[Username] wants to join as [Role Name]"
+        $sqlApps = "SELECT CONCAT(u.username, ' wants to join as ', pr.role_name) as description, p.name as project_name, pa.created_at, 'application' as type, pa.id as application_id
+                FROM project_applications pa
+                JOIN projects p ON pa.project_id = p.id
+                JOIN users u ON pa.user_id = u.id
+                JOIN project_roles pr ON pa.role_id = pr.id
+                JOIN project_members pm ON p.id = pm.project_id
+                WHERE pm.user_id = ? AND pm.membership_type = 'founder' AND pa.status = 'pending'";
+
+        // Union e ordinamento
+        $finalSql = "($sqlNews) UNION ($sqlApps) ORDER BY created_at DESC LIMIT 5";
+
+        $stmt = $db->prepare($finalSql);
+        $stmt->bind_param("ii", $user_id, $user_id);
         $stmt->execute();
         return $stmt->get_result();
     }

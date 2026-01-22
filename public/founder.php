@@ -42,8 +42,23 @@ $notifications = ProjectsHelper::getFounderNotifications($db, $user_id);
         <?php if ($notifications->num_rows > 0): ?>
             <?php while ($notif = $notifications->fetch_assoc()): ?>
                 <div class="notif-item">
-                    <span class="notif-project"><?= htmlspecialchars($notif['project_name']) ?></span>
-                    <p class="notif-desc"><?= htmlspecialchars($notif['description']) ?></p>
+                    <div class="notif-content-wrapper">
+                        <span class="notif-project"><?= htmlspecialchars($notif['project_name']) ?></span>
+                        <p class="notif-desc"><?= htmlspecialchars($notif['description']) ?></p>
+                    </div>
+
+                    <?php if ($notif['type'] === 'application' && $notif['application_id']): ?>
+                        <div class="notif-actions">
+                            <button type="button" class="btn-action check"
+                                onclick="handleApplication(<?= $notif['application_id'] ?>, 'accept', this)">
+                                <span class="material-icons-round">check</span>
+                            </button>
+                            <button type="button" class="btn-action close"
+                                onclick="handleApplication(<?= $notif['application_id'] ?>, 'decline', this)">
+                                <span class="material-icons-round">close</span>
+                            </button>
+                        </div>
+                    <?php endif; ?>
                 </div>
             <?php endwhile; ?>
         <?php else: ?>
@@ -84,5 +99,40 @@ $notifications = ProjectsHelper::getFounderNotifications($db, $user_id);
 </div>
 
 
+<script>
+    async function handleApplication(appId, action, btnElement) {
+        if (!confirm('Are you sure you want to ' + action + ' this application?')) return;
+
+        try {
+            const response = await fetch('../actions/handle_application.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    application_id: appId,
+                    action: action
+                })
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                // Find the parent .notif-item and remove it or update it
+                const item = btnElement.closest('.notif-item');
+                if (item) {
+                    item.style.opacity = '0.5';
+                    item.innerHTML = '<p class="notif-desc">Application ' + action + 'ed</p>';
+                    setTimeout(() => item.remove(), 2000);
+                }
+            } else {
+                alert('Error: ' + data.message);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('An error occurred.');
+        }
+    }
+</script>
 
 <?php include '../includes/footer.php'; ?>

@@ -51,16 +51,16 @@ class ProjectValidation
     /**
      * Validate summary text
      * 
-     * @param string $summary Summary text
+     * @param string $intro Summary text
      * @return array ['valid' => bool, 'error' => string|null]
      */
-    public static function validateSummary($summary)
+    public static function validateSummary($intro)
     {
-        if (empty($summary)) {
+        if (empty($intro)) {
             return ['valid' => false, 'error' => 'Summary is required'];
         }
 
-        if (strlen($summary) > 255) {
+        if (strlen($intro) > 255) {
             return ['valid' => false, 'error' => 'Summary must not exceed 255 characters'];
         }
 

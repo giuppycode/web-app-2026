@@ -14,7 +14,17 @@ try {
     $name = trim($_POST['name'] ?? '');
     $intro = trim($_POST['intro'] ?? '');
     $description = trim($_POST['description'] ?? '');
-    $total_slots = intval($_POST['total_slots'] ?? 1);
+
+    // Parse co-founders and roles from JSON
+    $co_founders_json = $_POST['co_founders'] ?? '[]';
+    $roles_json = $_POST['roles'] ?? '[]';
+    $co_founders = json_decode($co_founders_json, true) ?? [];
+    $roles = json_decode($roles_json, true) ?? [];
+    
+    // Calculate total slots: 1 (creator) + co-founders + roles
+    $total_slots = 1 + count($co_founders) + count($roles);
+    // Creator + co-founders
+    $occupied_slots = 1 + count($co_founders); 
 
     ProjectValidation::validateIntro($intro);
     ProjectValidation::validateDescription($description);

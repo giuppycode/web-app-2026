@@ -2,6 +2,8 @@
 require_once '../includes/db.php';
 require_once '../includes/ProjectsHelper.php';
 require_once '../includes/ImageHelper.php';
+
+
 $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : 0;
 
 // Setup Variabili

@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>CampusLaunch</title>
-     
+
     <link rel="stylesheet" href="../assets/css/base.css">
     <link rel="stylesheet" href="../assets/css/components.css">
 
@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="../assets/css/founder.css">
     <link rel="stylesheet" href="../assets/css/desktop.css" media="(min-width: 769px)">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
-       <link rel="stylesheet" href="../assets/css/accessibility.css">
+    <link rel="stylesheet" href="../assets/css/accessibility.css">
 </head>
 
 <body>
@@ -31,11 +31,12 @@
         <div class="brand">CampusLaunch</div>
 
         <div class="desktop-links">
-            <a href="index.php">Discovery</a>
-            <a href="activity.php">News</a>
-            <a href="search.php">Cerca</a>
+
             <?php if (isset($_SESSION['user_id'])): ?>
+                <a href="index.php">Home</a>
+                <a href="discovery.php">Discovery</a>
                 <a href="create_project.php" class="btn-primary">Crea (+ )</a>
+                <a href="founder.php">Founder</a>
                 <a href="profile.php">Profilo</a>
                 <a href="../actions/logout.php" class="logout-button" style="color: red;">Logout</a>
             <?php else: ?>
@@ -44,8 +45,7 @@
             <?php endif; ?>
         </div>
 
-        <a href="search.php" class="material-icons-round"
-            style="color: var(--text-dark); text-decoration: none;">search</a>
+
     </nav>
 
     <div class="mobile-drawer" id="mobileDrawer">

@@ -32,8 +32,111 @@ $favAvailable = isset($_GET['available_fav']);
 
 <div class="home-header mobile-only">
     <span class="page-title">Home page</span>
-    <div class="notification-bell"><span class="material-icons-round">notifications</span></div>
+    <div class="notification-bell" onclick="toggleNotifications()">
+        <span class="material-icons-round">notifications</span>
+        <div id="notificationDropdown" class="notification-dropdown">
+            <?php
+            $userNotes = ProjectsHelper::getUserNotifications($db, $user_id);
+            if ($userNotes->num_rows > 0):
+                while ($note = $userNotes->fetch_assoc()):
+                    $statusClass = $note['status'] == 'accepted' ? 'note-accepted' : 'note-rejected';
+                    $icon = $note['status'] == 'accepted' ? 'check_circle' : 'cancel';
+                    $msg = $note['status'] == 'accepted'
+                        ? "Founder accepted your request for <strong>{$note['project_name']}</strong> as {$note['role_name']}"
+                        : "Founder declined your request for <strong>{$note['project_name']}</strong> as {$note['role_name']}";
+                    ?>
+                    <div class="notification-item <?= $statusClass ?>">
+                        <span class="material-icons-round note-icon"><?= $icon ?></span>
+                        <p class="note-text"><?= $msg ?></p>
+                    </div>
+                <?php
+                endwhile;
+            else:
+                ?>
+                <p class="empty-notifications">No new notifications</p>
+            <?php endif; ?>
+        </div>
+    </div>
 </div>
+
+<style>
+    .notification-bell {
+        position: relative;
+        cursor: pointer;
+    }
+
+    .notification-dropdown {
+        display: none;
+        position: absolute;
+        top: 40px;
+        right: 0;
+        width: 300px;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        padding: 10px;
+        z-index: 1000;
+        max-height: 400px;
+        overflow-y: auto;
+    }
+
+    .notification-dropdown.active {
+        display: block;
+    }
+
+    .notification-item {
+        display: flex;
+        align-items: flex-start;
+        padding: 10px;
+        border-bottom: 1px solid #eee;
+        gap: 10px;
+    }
+
+    .notification-item:last-child {
+        border-bottom: none;
+    }
+
+    .note-icon {
+        font-size: 20px;
+        margin-top: 2px;
+    }
+
+    .note-accepted .note-icon {
+        color: var(--primary-green);
+    }
+
+    .note-rejected .note-icon {
+        color: #dc3545;
+    }
+
+    .note-text {
+        font-size: 0.9rem;
+        color: #333;
+        margin: 0;
+        line-height: 1.4;
+    }
+
+    .empty-notifications {
+        padding: 15px;
+        text-align: center;
+        color: #999;
+        font-size: 0.9rem;
+    }
+</style>
+
+<script>
+    function toggleNotifications() {
+        const dropdown = document.getElementById('notificationDropdown');
+        dropdown.classList.toggle('active');
+    }
+    // Close when clicking outside
+    window.addEventListener('click', function (e) {
+        if (!e.target.closest('.notification-bell')) {
+            const dropdown = document.getElementById('notificationDropdown');
+            if (dropdown) dropdown.classList.remove('active');
+        }
+    });
+</script>
 
 <div class="home-container">
 

@@ -257,5 +257,22 @@ class ProjectsHelper
         $stmt->execute();
         return $stmt->get_result();
     }
+
+    public static function getUserNotifications($db, $user_id)
+    {
+        // Fetch applications where the user is the applicant and status is decided (accepted/rejected)
+        // We limit to recent ones (e.g. last 5)
+        $sql = "SELECT pa.status, p.name as project_name, pr.role_name, pa.updated_at
+                FROM project_applications pa
+                JOIN projects p ON pa.project_id = p.id
+                JOIN project_roles pr ON pa.role_id = pr.id
+                WHERE pa.user_id = ? AND pa.status IN ('accepted', 'rejected')
+                ORDER BY pa.updated_at DESC LIMIT 5";
+
+        $stmt = $db->prepare($sql);
+        $stmt->bind_param("i", $user_id);
+        $stmt->execute();
+        return $stmt->get_result();
+    }
 }
 ?>

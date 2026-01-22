@@ -192,6 +192,31 @@ include '../includes/header.php';
     </div>
 </div>
 
+<div id="addRoleModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>Add New Role</h3>
+            <button type="button" class="modal-close" onclick="closeAddRoleModal()">
+                <span class="material-icons-round">close</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <label for="roleName">Role Name</label>
+                <input 
+                    type="text" 
+                    id="roleName" 
+                    class="form-input" 
+                    placeholder="e.g., Frontend Developer, Designer..."
+                    maxlength="100">
+            </div>
+            <button type="button" class="btn-primary" onclick="addRole()">
+                <span class="material-icons-round">add</span>
+                <span>Add Role</span>
+            </button>
+        </div>
+    </div>
+</div>
 
 <script src="../assets/js/create_project.js"></script>
 

@@ -19,7 +19,9 @@ if (!$user)
 <div class="profile-page-container">
     <div class="profile-card main-stats-card">
         <div class="profile-identity">
-            <div class="profile-avatar-large"><span class="material-icons-round">person</span></div>
+            <div class="profile-avatar-large" onclick="openUserProfile(<?= $_SESSION['user_id']?>)" style="cursor: pointer;">
+                <span class="material-icons-round">person</span>
+            </div>
             <h2 class="profile-username"><?= htmlspecialchars($user['username']) ?></h2>
             <span class="profile-role-badge">founder</span>
         </div>
@@ -67,10 +69,16 @@ if (!$user)
             </div>
             <span class="material-icons-round arrow">chevron_right</span>
         </a>
+        <a href="accessibility.php" class="setting-item">
+            <div class="setting-left"><span class="material-icons-round">accessibility_new</span><span>Accessibility</span>
+            </div>
+            <span class="material-icons-round arrow">chevron_right</span>
+        </a>
         <a href="../actions/logout.php" class="setting-item">
             <div class="setting-left"><span class="material-icons-round">logout</span><span>Log out</span></div>
             <span class="material-icons-round arrow">chevron_right</span>
         </a>
+        
     </div>
     <div style="height: 80px;"></div>
 </div>

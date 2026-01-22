@@ -1,0 +1,96 @@
+/* assets/css/accessibility.css - VERSIONE INDEX FIX */
+
+/* ==============================================
+   1. CONTRASTO ELEVATO (FORCE MODE)
+   ============================================== */
+
+/* 1. Uccidiamo il gradiente del body */
+body.high-contrast {
+    /* Usiamo 'background' shorthand per sovrascrivere sia color che image (gradiente) */
+    background: #000000 !important; 
+    color: #ffff00 !important;
+}
+
+/* 2. Regola Universale: Tutto nero, testo bianco */
+body.high-contrast *:not(img):not(video):not(.material-icons-round) {
+    background-color: #000000 !important;
+    background-image: none !important; /* Rimuove sfumature dai div */
+    color: #ffff00 !important;
+    border-color: #ffff00 !important;
+    box-shadow: none !important;
+}
+
+/* 3. FIX SPECIFICO PER INDEX.PHP (Le Card) */
+/* Elenco tutte le classi che usi nella Home per forzarle */
+body.high-contrast .card-participating,
+body.high-contrast .card-favorite,
+body.high-contrast .home-header,
+body.high-contrast .searchbar-container,
+body.high-contrast .notification-bell,
+body.high-contrast .filter-panel,
+body.high-contrast .news-list li {
+    background-color: #000000 !important;
+    border: 1px solid #ffff00 !important; /* Bordo bianco obbligatorio per vedere i box */
+    margin-bottom: 15px !important;
+}
+
+/* 4. Bottoni e Filtri (Giallo) */
+body.high-contrast .filter-btn,
+body.high-contrast button,
+body.high-contrast .btn {
+    border: 2px solid #ffff00 !important;
+    color: #ffff00 !important;
+    background-color: #000000 !important;
+}
+
+/* Indicatore pallino rosso (filtro attivo) diventa giallo */
+body.high-contrast .filter-badge {
+    background-color: #ffff00 !important;
+    border: none !important;
+}
+
+/* 5. Input e Ricerca */
+body.high-contrast input {
+    background-color: #000000 !important;
+    border: 1px solid #ffff00 !important;
+    color: #ffff00 !important;
+}
+
+/* 6. Link e Testi cliccabili (Verde) */
+body.high-contrast a,
+body.high-contrast .cp-title,
+body.high-contrast .cf-title {
+    color: #00ff00 !important;
+    text-decoration: none !important;
+}
+
+/* Sottolineiamo i link veri per chiarezza */
+body.high-contrast a:hover {
+    text-decoration: underline !important;
+}
+
+/* 7. Icone (Devono essere visibili) */
+body.high-contrast .material-icons-round {
+    color: inherit !important; /* Prende il colore del testo genitore (bianco o giallo) */
+    background: transparent !important;
+}
+
+/* 8. Avatar utente */
+body.high-contrast .user-avatar,
+body.high-contrast .cp-header .user-avatar {
+    border: 1px solid #fff !important;
+    background-color: #333 !important; /* Grigio scuro per stacco */
+}
+
+/* ==============================================
+   2. TESTO GRANDE
+   ============================================== */
+body.large-text {
+    font-size: 110% !important;
+}
+
+body.large-text h1, 
+body.large-text h2, 
+body.large-text h3 {
+    line-height: 1.4 !important;
+}

@@ -28,7 +28,7 @@
 
     <nav class="top-nav">
         <span class="top-menu-toggle material-icons-round" onclick="toggleDrawer()">menu</span>
-        <div class="brand">🚀 CampusLaunch</div>
+        <div class="brand">CampusLaunch</div>
 
         <div class="desktop-links">
             <a href="index.php">Discovery</a>

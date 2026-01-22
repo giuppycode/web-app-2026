@@ -1,6 +1,6 @@
 <?php
 require_once '../includes/db.php';
-require_once '../includes/UserHelper.php'; // Fondamentale!
+require_once '../includes/UserHelper.php';
 include '../includes/header.php';
 
 if (!isset($_SESSION['user_id'])) {
@@ -8,19 +8,17 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
-// Usa Helper
 $user = UserHelper::getData($db, $_SESSION['user_id']);
 $stats = UserHelper::getStats($db, $_SESSION['user_id']);
 
-if (!$user)
-    die("Errore utente");
+if (!$user) die("Errore utente");
 ?>
 
 <div class="profile-page-container">
+
     <div class="profile-card main-stats-card">
         <div class="profile-identity">
-            <div class="profile-avatar-large" onclick="openUserProfile(<?= $_SESSION['user_id'] ?>)"
-                style="cursor: pointer;">
+            <div class="profile-avatar-large" onclick="openUserProfile(<?= $_SESSION['user_id']?>)" style="cursor: pointer;">
                 <span class="material-icons-round">person</span>
             </div>
             <h2 class="profile-username"><?= htmlspecialchars($user['username']) ?></h2>
@@ -35,53 +33,53 @@ if (!$user)
         </div>
     </div>
 
-    <div class="profile-grid-row">
-        <div class="profile-card small-card">
-            <span class="big-number"><?= $stats['updates'] ?></span>
-            <span class="small-label">Posted Updates<br>this week</span>
-        </div>
-        <div class="profile-card small-card chart-card-container">
-            <div class="chart-header">
-                <span class="chart-title">Starred</span>
-                <span class="chart-subtitle">in the past 7 days</span>
+    <div class="desktop-content-wrapper">
+        
+        <div class="profile-grid-row">
+            <div class="profile-card small-card">
+                <span class="big-number"><?= $stats['updates'] ?></span>
+                <span class="small-label">Posted Updates<br>this week</span>
             </div>
-            <div class="mini-bar-chart">
-                <div class="bar" style="height: 40%;"></div>
-                <div class="bar" style="height: 70%;"></div>
-                <div class="bar" style="height: 30%;"></div>
-                <div class="bar" style="height: 50%;"></div>
-                <div class="bar" style="height: 80%;"></div>
-                <div class="bar" style="height: 20%;"></div>
-                <div class="bar" style="height: 60%;"></div>
+            <div class="profile-card small-card chart-card-container">
+                <div class="chart-header">
+                    <span class="chart-title">Activity</span>
+                    <span class="chart-subtitle">last 7 days</span>
+                </div>
+                <div class="mini-bar-chart">
+                    <div class="bar" style="height: 40%;"></div>
+                    <div class="bar" style="height: 70%;"></div>
+                    <div class="bar" style="height: 30%;"></div>
+                    <div class="bar" style="height: 50%;"></div>
+                    <div class="bar" style="height: 80%;"></div>
+                    <div class="bar" style="height: 20%;"></div>
+                    <div class="bar" style="height: 60%;"></div>
+                </div>
             </div>
         </div>
-    </div>
 
-    <a href="founder.php" class="profile-card promo-card">
-        <div class="promo-icon"><span class="material-icons-round">local_florist</span></div>
-        <div class="promo-text"><strong>Become a founder</strong>
-            <p>It's easy to launch your idea and find your team</p>
-        </div>
-    </a>
-
-    <div class="settings-list">
-        <a href="edit_profile.php" class="setting-item">
-            <div class="setting-left"><span class="material-icons-round">settings</span><span>Account Settings</span>
+        <a href="create_project.php" class="profile-card promo-card">
+            <div class="promo-icon"><span class="material-icons-round">local_florist</span></div>
+            <div class="promo-text"><strong>Become a founder</strong>
+                <p>It's easy to launch your idea and find your team</p>
             </div>
-            <span class="material-icons-round arrow">chevron_right</span>
-        </a>
-        <a href="accessibility.php" class="setting-item">
-            <div class="setting-left"><span
-                    class="material-icons-round">accessibility_new</span><span>Accessibility</span>
-            </div>
-            <span class="material-icons-round arrow">chevron_right</span>
-        </a>
-        <a href="../actions/logout.php" class="setting-item">
-            <div class="setting-left"><span class="material-icons-round">logout</span><span>Log out</span></div>
-            <span class="material-icons-round arrow">chevron_right</span>
         </a>
 
-    </div>
-    <div style="height: 80px;"></div>
+        <div class="settings-list desktop-horizontal-settings">
+            <a href="edit_profile.php" class="setting-item">
+                <div class="setting-left"><span class="material-icons-round">settings</span><span>Account</span></div>
+                <span class="material-icons-round arrow">chevron_right</span>
+            </a>
+            <a href="accessibility.php" class="setting-item">
+                <div class="setting-left"><span class="material-icons-round">accessibility_new</span><span>Accessibilità</span></div>
+                <span class="material-icons-round arrow">chevron_right</span>
+            </a>
+            <a href="../actions/logout.php" class="setting-item">
+                <div class="setting-left"><span class="material-icons-round">logout</span><span>Log out</span></div>
+                <span class="material-icons-round arrow">chevron_right</span>
+            </a>
+        </div>
+
+    </div> <div class="mobile-only" style="height: 80px;"></div>
 </div>
+
 <?php include '../includes/footer.php'; ?>

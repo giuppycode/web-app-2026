@@ -18,7 +18,7 @@ $user = UserHelper::getData($db, $_SESSION['user_id']);
 <link rel="stylesheet" href="../assets/css/profile.css">
 
 <div class="profile-page-container" style="background: white;">
-    <form action="../actions/update_profile.php" method="POST">
+    <form action="../actions/update_profile.php" method="POST" class="update-profile-form">
 
         <div class="settings-header">
             <a href="profile.php" class="back-btn">

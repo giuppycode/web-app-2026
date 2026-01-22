@@ -1,6 +1,3 @@
-/* assets/css/project_admin.css */
-
-/* Dropdown-style inputs */
 .dropdown-input {
     display: flex;
     justify-content: space-between;
@@ -12,12 +9,10 @@
     cursor: pointer;
     transition: all 0.2s;
 }
-
 .dropdown-input:hover {
     border-color: var(--primary-green);
     background: #f9fafb;
 }
-
 .dropdown-display {
     flex: 1;
     font-size: 14px;
@@ -26,22 +21,18 @@
     text-overflow: ellipsis;
     white-space: nowrap;
 }
-
 .dropdown-input .material-icons-round {
     color: var(--text-medium);
     font-size: 20px;
     transition: transform 0.2s;
 }
-
 .dropdown-input.open .material-icons-round {
     transform: rotate(180deg);
 }
-
 .edit-container {
     margin-top: 12px;
     animation: slideDown 0.2s ease;
 }
-
 @keyframes slideDown {
     from {
         opacity: 0;
@@ -52,8 +43,6 @@
         transform: translateY(0);
     }
 }
-
-/* Current image display */
 .current-image-container {
     position: relative;
     width: 100%;
@@ -63,14 +52,12 @@
     overflow: hidden;
     cursor: pointer;
 }
-
 .current-project-image {
     width: 100%;
     height: auto;
     display: block;
     border-radius: 12px;
 }
-
 .image-overlay {
     position: absolute;
     top: 0;
@@ -89,16 +76,12 @@
     font-size: 14px;
     font-weight: 500;
 }
-
 .current-image-container:hover .image-overlay {
     opacity: 1;
 }
-
 .image-overlay .material-icons-round {
     font-size: 32px;
 }
-
-/* News section */
 .news-display {
     display: flex;
     flex-direction: column;
@@ -110,7 +93,6 @@
     background: var(--bg-light);
     border-radius: 12px;
 }
-
 .news-item {
     display: flex;
     flex-direction: column;
@@ -120,21 +102,18 @@
     border-radius: 8px;
     border-left: 3px solid var(--primary-green);
 }
-
 .news-date {
     font-size: 12px;
     color: var(--text-medium);
     font-weight: 600;
     text-transform: uppercase;
 }
-
 .news-text {
     font-size: 14px;
     color: var(--text-dark);
     line-height: 1.5;
     margin: 0;
 }
-
 .empty-state-text {
     text-align: center;
     color: var(--text-light);
@@ -143,7 +122,6 @@
     background: var(--bg-light);
     border-radius: 8px;
 }
-
 .post-update-btn {
     width: 100%;
     padding: 16px 20px;
@@ -157,30 +135,24 @@
     justify-content: space-between;
     gap: 12px;
 }
-
 .post-update-btn:hover {
     background: linear-gradient(135deg, #a7f3d0 0%, #86efac 100%);
     transform: translateY(-1px);
     box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
 }
-
 .post-update-btn > span:first-child {
     font-size: 16px;
     font-weight: 600;
     color: var(--text-dark);
 }
-
 .update-subtitle {
     font-size: 12px;
     color: var(--text-medium);
     margin-left: auto;
 }
-
 .post-update-btn .material-icons-round {
     color: var(--primary-green);
 }
-
-/* Role chips (larger for admin) */
 .role-chip-large {
     display: flex;
     align-items: center;
@@ -191,12 +163,10 @@
     border-radius: 12px;
     transition: all 0.2s;
 }
-
 .role-chip-large:hover {
     border-color: var(--primary-green);
     box-shadow: 0 2px 8px rgba(16, 185, 129, 0.1);
 }
-
 .role-icon-container {
     width: 40px;
     height: 40px;
@@ -207,14 +177,12 @@
     justify-content: center;
     color: var(--text-medium);
 }
-
 .role-name {
     flex: 1;
     font-size: 14px;
     font-weight: 500;
     color: var(--text-dark);
 }
-
 .role-menu-btn {
     background: none;
     border: none;
@@ -224,23 +192,18 @@
     border-radius: 50%;
     transition: all 0.2s;
 }
-
 .role-menu-btn:hover {
     background: var(--bg-light);
     color: var(--text-dark);
 }
-
-/* Modal variations */
 .modal-small .modal-content {
     max-width: 360px;
 }
-
 .action-list {
     display: flex;
     flex-direction: column;
     gap: 8px;
 }
-
 .action-item {
     width: 100%;
     padding: 14px 16px;
@@ -256,31 +219,24 @@
     font-weight: 500;
     color: var(--text-dark);
 }
-
 .action-item:hover {
     background: var(--bg-light);
     border-color: var(--primary-green);
 }
-
 .action-item.danger {
     color: var(--error-color);
 }
-
 .action-item.danger:hover {
     background: #fee2e2;
     border-color: var(--error-color);
 }
-
 .action-item .material-icons-round {
     font-size: 20px;
 }
-
-/* Responsive */
 @media (max-width: 768px) {
     .current-image-container {
         max-width: 100%;
     }
-    
     .news-display {
         max-height: 200px;
     }

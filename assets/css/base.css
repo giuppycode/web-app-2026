@@ -1,11 +1,9 @@
-/* --- RESET & VARS --- */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
     -webkit-tap-highlight-color: transparent;
 }
-
 :root {
     --primary-green: #28a745;
     --light-green-bg: #dcfce7;
@@ -16,7 +14,6 @@
     --text-muted: #6b7280;
     --nav-height: 70px;
 }
-
 body {
     font-family: 'Segoe UI', sans-serif;
     color: var(--text-dark);
@@ -24,27 +21,20 @@ body {
     padding-bottom: calc(var(--nav-height) + 20px);
     background-color: #f0fdf4;
 }
-
-/* Nasconde scrollbar orizzontali sgradevoli ma permette lo scroll */
 ::-webkit-scrollbar {
     width: 0px;
     background: transparent;
 }
-
-/* Nasconde Header Desktop su Mobile */
 @media (max-width: 768px) {
-
     .top-nav,
     .mobile-drawer,
     .mobile-drawer.active {
         display: none !important;
     }
 }
-
 .container {
     padding: 20px;
 }
-
 h2.section-title {
     font-size: 1.4rem;
     font-weight: 700;
@@ -52,14 +42,11 @@ h2.section-title {
     margin-top: 10px;
     color: #111;
 }
-
 .page-title {
     font-size: 1.2rem;
     color: #4b5563;
     font-weight: 500;
 }
-
-/* Assicura che chi usa la tastiera veda dove si trova */
 button:focus-visible,
 a:focus-visible,
 input:focus-visible {

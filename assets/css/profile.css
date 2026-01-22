@@ -1,11 +1,8 @@
-/* --- PROFILE PAGE CONTAINER --- */
 .profile-page-container {
     padding: 20px;
     /* Grigio default, sovrascritto a bianco nella edit page */
     min-height: 100vh;
 }
-
-/* --- CARD BASE --- */
 .profile-card {
     background: white;
     border-radius: 20px;
@@ -13,21 +10,17 @@
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
     margin-bottom: 15px;
 }
-
-/* --- MAIN STATS (Avatar, Username, Follower) --- */
 .main-stats-card {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-
 .profile-identity {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 40%;
 }
-
 .profile-avatar-large {
     width: 80px;
     height: 80px;
@@ -39,58 +32,47 @@
     margin-bottom: 10px;
     color: #166534;
 }
-
 .profile-avatar-large .material-icons-round {
     font-size: 3rem;
 }
-
 .profile-username {
     font-size: 1.1rem;
     font-weight: 700;
     margin-bottom: 2px;
     text-align: center;
 }
-
 .profile-role-badge {
     font-size: 0.8rem;
     color: #6b7280;
 }
-
 .profile-numbers {
     width: 55%;
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
-
 .stat-row {
     display: flex;
     flex-direction: column;
 }
-
 .stat-row strong {
     font-size: 1.1rem;
     font-weight: 800;
 }
-
 .stat-row span {
     font-size: 0.85rem;
     color: #4b5563;
 }
-
 .stat-divider {
     height: 1px;
     background-color: #e5e7eb;
     width: 100%;
 }
-
-/* --- GRID STATS (Piccole card quadrate) --- */
 .profile-grid-row {
     display: flex;
     gap: 15px;
     margin-bottom: 15px;
 }
-
 .small-card {
     flex: 1;
     display: flex;
@@ -100,43 +82,35 @@
     text-align: center;
     padding: 15px;
 }
-
 .big-number {
     font-size: 2.5rem;
     font-weight: 800;
     line-height: 1;
     margin-bottom: 5px;
 }
-
 .small-label {
     font-size: 0.8rem;
     color: #4b5563;
     line-height: 1.2;
 }
-
-/* --- CHARTS --- */
 .chart-card-container {
     align-items: flex-start;
     text-align: left;
 }
-
 .chart-header {
     margin-bottom: 10px;
 }
-
 .chart-title {
     font-weight: 700;
     display: block;
     font-size: 0.9rem;
 }
-
 .chart-subtitle {
     font-size: 0.7rem;
     color: #6b7280;
     display: block;
     line-height: 1.1;
 }
-
 .mini-bar-chart {
     display: flex;
     align-items: flex-end;
@@ -144,15 +118,12 @@
     height: 50px;
     width: 100%;
 }
-
 .bar {
     flex: 1;
     background-color: #86efac;
     border-radius: 4px;
     opacity: 0.8;
 }
-
-/* --- PROMO CARD & SETTINGS LIST --- */
 .promo-card {
     display: flex;
     align-items: center;
@@ -160,11 +131,9 @@
     color: inherit;
     transition: transform 0.2s;
 }
-
 .promo-card:active {
     transform: scale(0.98);
 }
-
 .promo-icon {
     width: 50px;
     height: 50px;
@@ -177,23 +146,19 @@
     margin-right: 15px;
     flex-shrink: 0;
 }
-
 .promo-text strong {
     display: block;
     font-size: 1rem;
     margin-bottom: 2px;
 }
-
 .promo-text p {
     font-size: 0.8rem;
     color: #6b7280;
     margin: 0;
 }
-
 .settings-list {
     margin-top: 10px;
 }
-
 .setting-item {
     display: flex;
     justify-content: space-between;
@@ -203,11 +168,9 @@
     color: #1f2937;
     transition: background 0.2s;
 }
-
 .setting-item:hover {
     background-color: rgba(0, 0, 0, 0.02);
 }
-
 .setting-left {
     display: flex;
     align-items: center;
@@ -215,12 +178,9 @@
     font-weight: 500;
     font-size: 0.95rem;
 }
-
 .setting-item .arrow {
     color: #9ca3af;
 }
-
-/* --- USER SEARCH (Per la pagina search) --- */
 .search-card {
     background: white;
     padding: 20px;
@@ -228,7 +188,6 @@
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
     margin-bottom: 20px;
 }
-
 .user-result-item {
     display: flex;
     align-items: center;
@@ -236,11 +195,9 @@
     border-bottom: 1px solid #f3f4f6;
     transition: background 0.2s;
 }
-
 .user-result-item:last-child {
     border-bottom: none;
 }
-
 .user-checkbox {
     width: 20px;
     height: 20px;
@@ -248,7 +205,6 @@
     accent-color: #28a745;
     cursor: pointer;
 }
-
 .user-avatar-small {
     width: 35px;
     height: 35px;
@@ -260,7 +216,6 @@
     margin-right: 10px;
     color: #166534;
 }
-
 .results-container {
     max-height: 250px;
     overflow-y: auto;
@@ -269,15 +224,12 @@
     border-radius: 10px;
     display: none;
 }
-
 .results-container.active {
     display: block;
 }
-
 .selected-users-area {
     margin-top: 30px;
 }
-
 .selected-chip {
     display: inline-flex;
     align-items: center;
@@ -290,7 +242,6 @@
     font-weight: 600;
     font-size: 0.9rem;
 }
-
 .remove-chip {
     margin-left: 8px;
     cursor: pointer;
@@ -298,7 +249,6 @@
     display: flex;
     align-items: center;
 }
-
 .add-btn {
     width: 100%;
     background: #28a745;
@@ -311,13 +261,6 @@
     cursor: pointer;
     display: none;
 }
-
-
-/* ============================================================
-   --- EDIT PROFILE / SETTINGS PAGE STYLES (NUOVI) ---
-   ============================================================ */
-
-/* Header specifico con freccia indietro */
 .settings-header {
     display: flex;
     align-items: center;
@@ -325,14 +268,12 @@
     margin-bottom: 30px;
     padding-bottom: 10px;
 }
-
 .settings-header h2 {
     font-size: 1.1rem;
     font-weight: 600;
     margin: 0;
     color: #1f2937;
 }
-
 .back-btn {
     background: none;
     border: none;
@@ -342,8 +283,6 @@
     align-items: center;
     padding: 0;
 }
-
-/* Titoli delle sezioni (Personal info, Contact...) */
 .settings-section-title {
     font-size: 1.2rem;
     font-weight: 800;
@@ -351,8 +290,6 @@
     margin-top: 30px;
     margin-bottom: 15px;
 }
-
-/* Righe di input stile "List Item" */
 .input-row {
     display: flex;
     justify-content: space-between;
@@ -360,21 +297,17 @@
     padding: 15px 0;
     border-bottom: 1px solid #f3f4f6;
 }
-
 .input-group {
     display: flex;
     flex-direction: column;
     width: 100%;
 }
-
 .input-label {
     font-size: 0.85rem;
     color: #4b5563;
     margin-bottom: 4px;
     font-weight: 500;
 }
-
-/* L'input sembra testo normale ma è modificabile */
 .input-field-clean {
     border: none;
     background: transparent;
@@ -385,26 +318,20 @@
     outline: none;
     padding: 0;
 }
-
 .input-field-clean:focus {
     border-bottom: 2px solid var(--primary-green);
 }
-
 .edit-icon {
     color: #9ca3af;
     margin-left: 10px;
 }
-
-/* Box Biografia */
 .bio-container {
     background-color: #fce7f3;
-    /* Rosa chiarissimo del mockup */
     border: 1px solid rgba(0, 0, 0, 0.05);
     border-radius: 16px;
     padding: 15px;
     margin-top: 10px;
 }
-
 .bio-textarea {
     width: 100%;
     background: transparent;
@@ -416,15 +343,12 @@
     outline: none;
     font-family: inherit;
 }
-
-/* Roles / Tags */
 .roles-container {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
     margin-top: 10px;
 }
-
 .role-tag {
     padding: 8px 16px;
     border-radius: 20px;
@@ -436,20 +360,16 @@
     cursor: pointer;
     transition: all 0.2s;
 }
-
 .role-tag.active {
     background-color: #86efac;
     color: #064e3b;
     border-color: #86efac;
     font-weight: 600;
 }
-
-/* Bottone Salva */
 .save-btn-container {
     margin-top: 40px;
     padding-bottom: 30px;
 }
-
 .save-btn-primary {
     width: 100%;
     background: #000;

@@ -1,103 +1,269 @@
+/* assets/css/desktop.css - VERSIONE COMPLETA */
+
 @media (min-width: 769px) {
 
-    /* RIPRISTINO HEADER SU DESKTOP */
-    .top-nav {
-        display: flex !important;
-        /* Torna visibile su schermi grandi */
+    /* =========================================
+       1. RESET STRUTTURALE & LAYOUT BASE
+       ========================================= */
+    :root {
+        --header-height: 72px;
+        --bg-desktop: #f0f2f5;
+        --card-radius: 12px;
+        --container-width: 1120px;
     }
 
-    /* Nascondiamo invece la Bottom Bar che su PC non serve */
-    .bottom-nav {
+    body {
+        background-color: var(--bg-desktop);
+        padding-top: var(--header-height); /* Spazio per l'header fisso */
+        padding-bottom: 0 !important; /* Rimuove spazio bottom nav */
+        overflow-y: scroll; /* Scrollbar sempre visibile per evitare salti */
+    }
+
+    /* Container centrale limitato (stile LinkedIn/Facebook) */
+    .container, 
+    .home-container, 
+    .profile-page-container {
+        max-width: var(--container-width);
+        margin: 30px auto;
+        padding: 0 24px;
+    }
+
+    /* =========================================
+       2. NASCONDI ELEMENTI MOBILE
+       ========================================= */
+    .bottom-nav, 
+    .mobile-drawer, 
+    .top-menu-toggle,
+    .mobile-only {
         display: none !important;
     }
 
-    /* Reset del padding del body per desktop */
-    body {
-        padding-top: 0;
-    }
-
-    :root {
-        --nav-height: 70px;
-    }
-
-    body {
-        padding-bottom: 0;
-        background-color: #f4f7f6;
-    }
-
-    .container {
-        max-width: 1000px;
-        margin: 30px auto;
-        padding: 0 20px;
-    }
-
-    /* --- HEADER DESKTOP --- */
+    /* =========================================
+       3. HEADER DESKTOP (Trasformazione .top-nav)
+       ========================================= */
     .top-nav {
-        padding: 15px 20px;
-        background: #2c3e50;
-        color: white;
-    }
-
-    .brand {
-        color: white;
-        font-size: 1.4rem;
-    }
-
-    .top-menu-toggle {
-        display: none;
-    }
-
-    .desktop-links {
-        display: flex;
+        display: flex !important;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: var(--header-height);
+        background: #ffffff;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        padding: 0 max(24px, calc((100% - var(--container-width)) / 2)); /* Allinea col content */
+        justify-content: space-between;
         align-items: center;
+        z-index: 1000;
+        box-sizing: border-box;
+    }
+
+    /* Brand Logo */
+    .brand {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: #1a1a1a; /* Scuro su sfondo bianco */
+        letter-spacing: -0.5px;
+    }
+
+    /* Link di Navigazione */
+    .desktop-links {
+        display: flex !important; /* Forza visibilità */
+        align-items: center;
+        gap: 32px;
+        height: 100%;
     }
 
     .desktop-links a {
-        color: #ecf0f1;
-        margin-left: 20px;
-        font-weight: 500;
+        text-decoration: none;
+        color: #65676b;
+        font-weight: 600;
+        font-size: 0.95rem;
         transition: color 0.2s;
+        display: flex;
+        align-items: center;
+        gap: 6px;
     }
 
     .desktop-links a:hover {
-        color: var(--primary-green);
+        color: var(--primary-green, #10b981);
     }
 
+    /* Bottone CTA nell'header */
     .desktop-links .btn-primary {
-        margin-top: 0;
-        width: auto;
-        padding: 8px 15px;
-        font-size: 0.9rem;
-        margin-left: 15px;
+        background-color: #1a1a1a;
+        color: #fff !important;
+        padding: 8px 20px;
+        border-radius: 8px;
+        margin-left: 10px;
+        transition: transform 0.2s;
+    }
+    .desktop-links .btn-primary:hover {
+        transform: translateY(-2px);
     }
 
-    /* --- NASCONDI ELEMENTI MOBILE --- */
-    .bottom-nav,
-    .mobile-drawer {
-        display: none !important;
+    /* Icona Cerca a destra */
+    .top-nav > a[href="search.php"] {
+        background: #f0f2f5;
+        padding: 8px;
+        border-radius: 50%;
+        transition: background 0.2s;
+    }
+    .top-nav > a[href="search.php"]:hover {
+        background: #e4e6eb;
     }
 
-    /* --- LAYOUT A GRIGLIA --- */
+    /* =========================================
+       4. PROFILO UTENTE (Dashboard Layout)
+       ========================================= */
+    /* Trasformiamo la colonna unica in una griglia 2 colonne */
+    .profile-page-container {
+        display: grid;
+        grid-template-columns: 360px 1fr; /* Sidebar fissa | Content fluido */
+        gap: 24px;
+        align-items: start;
+    }
+
+    /* Colonna Sinistra (Card Principale) */
+    .main-stats-card {
+        grid-column: 1 / 2;
+        grid-row: 1 / 4; /* Occupa altezza verticale */
+        position: sticky;
+        top: calc(var(--header-height) + 24px); /* Fissa durante lo scroll */
+        height: auto;
+    }
+
+    /* Colonna Destra (Contenuti) */
+    .profile-grid-row {
+        grid-column: 2 / 3;
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* Due card affiancate */
+        gap: 24px;
+    }
+
+    .promo-card, 
+    .settings-list {
+        grid-column: 2 / 3; /* Sposta a destra */
+        margin-bottom: 0;
+    }
+
+    /* Stile Card Desktop più raffinato */
+    .profile-card, .settings-list {
+        background: #fff;
+        border: 1px solid #e1e4e8;
+        border-radius: var(--card-radius);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        padding: 24px;
+    }
+
+    /* Settings List - Miglioramento visuale */
+    .setting-item {
+        padding: 16px;
+        border-radius: 8px;
+        transition: background 0.2s;
+        border-bottom: 1px solid #f0f2f5;
+    }
+    .setting-item:hover {
+        background-color: #f9fafb;
+    }
+    .settings-list .setting-item:last-child {
+        border-bottom: none;
+    }
+
+    /* =========================================
+       5. HOME PAGE & DISCOVERY (Griglie)
+       ========================================= */
+    
+    /* Discovery Grid */
     .discovery-grid {
         display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 24px;
+    }
+
+    /* Home Page Favorites - Da lista a griglia */
+    .favorites-list {
+        display: grid;
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 25px;
+        gap: 24px;
     }
 
-    .project-card {
-        transition: transform 0.2s, box-shadow 0.2s;
+    /* Card Progetti */
+    .project-card, .card-favorite, .card-participating {
+        background: white;
         border: 1px solid #e1e4e8;
+        border-radius: var(--card-radius);
+        transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+        height: 100%; /* Altezza uniforme */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
     }
 
-    .project-card:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    .project-card:hover, .card-favorite:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 24px rgba(0,0,0,0.06);
+        border-color: #d1d5db;
     }
 
-    /* --- BOTTONI DESKTOP --- */
-    .btn-primary,
-    .btn-outline {
-        width: auto;
-        display: inline-block;
+    /* Participating (Scroll Orizzontale migliorato) */
+    .horizontal-scroll {
+        display: flex;
+        gap: 20px;
+        overflow-x: auto;
+        padding-bottom: 20px;
+        scrollbar-width: thin;
+        scrollbar-color: #cbd5e1 transparent;
+    }
+    
+    .card-participating {
+        min-width: 300px; /* Larghezza fissa per le card nello scroll */
+    }
+
+    /* =========================================
+       6. MODALE UTENTE (Popup Centrale)
+       ========================================= */
+    /* Importante: Sovrascriviamo lo stile full-screen mobile */
+    .modal-overlay {
+        align-items: center; /* Centra verticalmente */
+        justify-content: center; /* Centra orizzontalmente */
+        background-color: rgba(0, 0, 0, 0.65); /* Sfondo scuro elegante */
+        padding: 0;
+        z-index: 9999 !important;
+    }
+
+    .user-card-modal {
+        width: 100%;
+        max-width: 480px; /* Larghezza massima contenuta */
+        height: auto;
+        max-height: 85vh;
+        background: #fff;
+        border-radius: 16px;
+        position: relative;
+        bottom: auto;
+        margin: auto;
+        transform: none; /* Rimuovi slide-up mobile */
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        border: 1px solid rgba(255,255,255,0.2);
+        animation: modalPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    /* Rimuoviamo la "pillola" di trascinamento mobile */
+    .user-card-modal::before {
+        display: none;
+    }
+
+    @keyframes modalPop {
+        from { transform: scale(0.9); opacity: 0; }
+        to { transform: scale(1); opacity: 1; }
+    }
+
+    /* Bottone chiudi nel modale desktop */
+    .btn-close-modal {
+        margin-top: 20px;
+        background: #f3f4f6;
+        color: #111;
+    }
+    .btn-close-modal:hover {
+        background: #e5e7eb;
     }
 }

@@ -43,7 +43,7 @@ class UserHelper
     {
         // Cerca utenti che contengono la parola chiave ($query)
         // LIMIT 10 per non intasare la lista
-        $stmt = $db->prepare("SELECT id, username, email FROM users WHERE username LIKE ? AND id != ? LIMIT 10");
+        $stmt = $db->prepare("SELECT id, username, email, firstname, lastname FROM users WHERE username LIKE ? AND id != ? LIMIT 10");
         $searchTerm = "%" . $query . "%";
         $stmt->bind_param("si", $searchTerm, $exclude_user_id);
         $stmt->execute();

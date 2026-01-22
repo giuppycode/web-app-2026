@@ -1,6 +1,6 @@
-/* --- FOUNDER PAGE STYLES --- */
 
-/* Titolo "Welcome Founder" */
+
+
 .founder-title {
     font-size: 1.8rem;
     font-weight: 800;
@@ -10,7 +10,7 @@
     line-height: 1.2;
 }
 
-/* 1. CARD "CREATE NEW" */
+
 .create-card {
     background: white;
     border-radius: 24px;
@@ -41,7 +41,6 @@
     height: 55px;
     border-radius: 50%;
     border: 2px solid #000;
-    /* Bordo nero sottile come mockup */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -50,7 +49,7 @@
     color: #000;
 }
 
-/* 2. NOTIFICATIONS SECTION */
+
 .section-label {
     font-size: 1.3rem;
     font-weight: 700;
@@ -92,7 +91,7 @@
     line-height: 1.5;
 }
 
-/* 3. YOUR PROJECTS (Pill Cards) */
+
 .project-pill-list {
     display: flex;
     flex-direction: column;
@@ -102,7 +101,6 @@
 .project-pill {
     background: white;
     border-radius: 50px;
-    /* Bordo a pillola */
     padding: 15px 30px;
     display: flex;
     justify-content: space-between;
@@ -128,7 +126,7 @@
     font-weight: 500;
 }
 
-/* Empty State */
+
 .empty-founder {
     text-align: center;
     padding: 40px 20px;

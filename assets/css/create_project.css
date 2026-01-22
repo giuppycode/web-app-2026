@@ -50,7 +50,6 @@
     padding: 24px 20px;
 }
 
-/* Alert Messages */
 .alert {
     display: flex;
     align-items: center;
@@ -77,7 +76,7 @@
     font-size: 20px;
 }
 
-/* Form Styles */
+
 .project-form {
     background: white;
     border-radius: 16px;
@@ -141,7 +140,7 @@
     margin-top: 6px;
 }
 
-/* Upload Area */
+
 .upload-area {
     border: 2px dashed var(--border-color);
     border-radius: 12px;
@@ -223,7 +222,7 @@
     font-size: 20px;
 }
 
-/* Team Section Styles */
+
 .team-subsection {
     margin-bottom: 32px;
 }
@@ -235,7 +234,7 @@
     margin-bottom: 16px;
 }
 
-/* Team Chips (Founders) */
+
 .team-chips-container {
     display: flex;
     flex-wrap: wrap;
@@ -302,7 +301,7 @@
     background: rgba(239, 68, 68, 0.1);
 }
 
-/* Team Members */
+
 .team-members-container {
     display: flex;
     flex-direction: column;
@@ -351,7 +350,7 @@
     color: var(--text-dark);
 }
 
-/* Add Members/Roles Buttons */
+
 .add-members-btn,
 .add-role-btn {
     width: 100%;
@@ -377,7 +376,6 @@
     background: #f0fdf4;
 }
 
-/* Roles Container */
 .roles-container {
     display: flex;
     flex-wrap: wrap;
@@ -422,7 +420,7 @@
     color: var(--error-color);
 }
 
-/* Modal Styles */
+
 .modal {
     position: fixed;
     top: 0;
@@ -483,7 +481,6 @@
     overflow-y: auto;
 }
 
-/* Search Box */
 .search-box {
     position: relative;
     margin-bottom: 20px;
@@ -513,7 +510,6 @@
     box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
 }
 
-/* Search Results */
 .search-results {
     max-height: 400px;
     overflow-y: auto;
@@ -594,7 +590,6 @@
     background: var(--text-light);
 }
 
-/* Primary Button */
 .btn-primary {
     width: 100%;
     padding: 12px 20px;
@@ -621,7 +616,6 @@
     cursor: not-allowed;
 }
 
-/* Launch Button */
 .btn-launch {
     width: 100%;
     padding: 16px 24px;
@@ -655,8 +649,6 @@
     font-size: 20px;
 }
 
-
-/* Responsive */
 @media (max-width: 768px) {
     .create-project-container {
         padding: 16px;

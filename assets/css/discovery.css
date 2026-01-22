@@ -12,7 +12,7 @@
     margin-top: 10px;
 }
 
-/* Card Grande Discovery */
+
 .vertical-list {
     display: flex;
     flex-direction: column;
@@ -99,7 +99,7 @@
     margin-right: 8px;
 }
 
-/* Star Button */
+
 .star-btn {
     text-decoration: none;
     cursor: pointer;

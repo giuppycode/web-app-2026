@@ -21,7 +21,7 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
-/* Slider Orizzontale */
+
 .horizontal-scroll {
     display: flex;
     overflow-x: auto;
@@ -104,7 +104,7 @@
     color: #4b5563;
 }
 
-/* Favorites List */
+
 .section-header-row {
     display: flex;
     justify-content: space-between;
@@ -179,13 +179,12 @@
     white-space: nowrap;
 }
 
-/* --- AUTH PAGES (Login & Register) --- */
+
 
 .auth-form {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    /* Spazio tra gli input */
     margin-top: 10px;
 }
 
@@ -194,7 +193,6 @@
     padding: 14px;
     border: 1px solid #e5e7eb;
     border-radius: 12px;
-    /* Coerente con il resto dell'app */
     background: white;
     font-size: 1rem;
     outline: none;
@@ -209,7 +207,6 @@
     width: 100%;
     padding: 14px;
     background-color: #1f2937;
-    /* Grigio scuro/Nero elegante */
     color: white;
     border: none;
     border-radius: 12px;
@@ -220,13 +217,12 @@
 }
 
 
-/* --- AUTH PAGES (Login & Register) --- */
+
 
 .auth-form {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    /* Spazio tra gli input */
     margin-top: 10px;
 }
 
@@ -235,7 +231,7 @@
     padding: 14px;
     border: 1px solid #e5e7eb;
     border-radius: 12px;
-    /* Coerente con il resto dell'app */
+    
     background: white;
     font-size: 1rem;
     outline: none;
@@ -250,7 +246,7 @@
     width: 100%;
     padding: 14px;
     background-color: #1f2937;
-    /* Grigio scuro/Nero elegante */
+    
     color: white;
     border: none;
     border-radius: 12px;
@@ -278,7 +274,7 @@
 .row-2 {
     display: flex;
     gap: 10px;
-    /* Spazio tra i due input */
+    
     margin-bottom: 8px;
-    /* Spazio sotto la riga */
+    
 }

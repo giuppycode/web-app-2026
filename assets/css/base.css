@@ -1,4 +1,3 @@
-/* --- RESET & VARS --- */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -25,13 +24,11 @@ body {
     background-color: #f0fdf4;
 }
 
-/* Nasconde scrollbar orizzontali sgradevoli ma permette lo scroll */
 ::-webkit-scrollbar {
     width: 0px;
     background: transparent;
 }
 
-/* Nasconde Header Desktop su Mobile */
 @media (max-width: 768px) {
 
     .top-nav,
@@ -59,7 +56,6 @@ h2.section-title {
     font-weight: 500;
 }
 
-/* Assicura che chi usa la tastiera veda dove si trova */
 button:focus-visible,
 a:focus-visible,
 input:focus-visible {

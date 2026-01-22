@@ -1,23 +1,21 @@
-/* =========================================
-   MODAL USER PROFILE (Overlay)
-   ========================================= */
 
-/* 1. Lo sfondo scuro che copre tutto */
+
+
 .modal-overlay {
-    display: none; /* Nascosto di default, il JS lo mette a flex */
-    position: fixed; /* Rimane fermo mentre scorri */
+    display: none; 
+    position: fixed; 
     top: 0; 
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.6); /* Nero semi-trasparente */
-    z-index: 9999; /* FONDAMENTALE: Deve essere sopra a tutto! */
+    background-color: rgba(0, 0, 0, 0.6); 
+    z-index: 9999; 
     align-items: center;
     justify-content: center;
-    backdrop-filter: blur(4px); /* Effetto sfocato moderno */
+    backdrop-filter: blur(4px); 
 }
 
-/* 2. La card bianca centrale */
+
 .user-card-modal {
     background: #fff;
     width: 90%;
@@ -27,17 +25,17 @@
     box-shadow: 0 20px 50px rgba(0,0,0,0.3);
     position: relative;
     
-    /* Animazione di entrata */
+    
     animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-/* Keyframes Animazione */
+
 @keyframes popIn {
     from { transform: scale(0.9) translateY(20px); opacity: 0; }
     to { transform: scale(1) translateY(0); opacity: 1; }
 }
 
-/* 3. Header della Modal (Avatar + Nome + Facoltà) */
+
 .uc-header {
     margin-bottom: 20px;
 }
@@ -52,12 +50,12 @@
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    background-color: #f3f4f6; /* Grigio chiaro neutro */
+    background-color: #f3f4f6; 
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #4b5563; /* Icona grigia scura */
-    flex-shrink: 0; /* Evita che l'avatar si schiacci */
+    color: #4b5563; 
+    flex-shrink: 0; 
 }
 
 .uc-avatar .material-icons-round {
@@ -71,14 +69,14 @@
     color: #111;
 }
 
-/* Stile per la Facoltà sotto il nome */
+
 .uc-info p {
     margin: 2px 0 0 0;
     font-size: 0.9rem;
-    color: #6b7280; /* Grigio testo secondario */
+    color: #6b7280; 
 }
 
-/* 4. Sezioni Generiche (Titoli h4) */
+
 .uc-section {
     margin-bottom: 20px;
 }
@@ -92,30 +90,30 @@
     margin-bottom: 10px;
 }
 
-/* 5. GESTIONE BIOGRAFIA (Il pezzo fondamentale) */
+
 .user-bio {
-    /* Logica per i tre puntini ... */
+    
     display: -webkit-box;
-    -webkit-line-clamp: 4; /* Numero massimo di righe visibili */
+    -webkit-line-clamp: 4; 
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
     
-    /* Stile testo */
+    
     font-size: 0.95rem;
     color: #374151;
     line-height: 1.5;
     margin: 0;
 }
 
-/* 6. Lista Progetti */
+
 .uc-projects-list {
     display: flex;
     flex-direction: column;
     gap: 8px;
 }
 
-/* Stile dei div generati dal JS per i progetti */
+
 .uc-projects-list div {
     background-color: #f9fafb;
     border: 1px solid #e5e7eb;
@@ -128,7 +126,7 @@
     gap: 8px;
 }
 
-/* Messaggio se non ci sono progetti */
+
 .uc-projects-list p {
     font-size: 0.9rem;
     color: #9ca3af;
@@ -136,11 +134,11 @@
     margin: 0;
 }
 
-/* 7. Bottone Chiudi */
+
 .btn-close-modal {
     width: 100%;
     padding: 14px;
-    background: #86efac; /* Nero/Grigio scuro elegante */
+    background: #86efac; 
     color: #064e3b;
     border: none;
     border-radius: 12px;

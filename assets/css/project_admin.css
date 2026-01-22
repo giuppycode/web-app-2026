@@ -1,6 +1,6 @@
-/* assets/css/project_admin.css */
 
-/* Dropdown-style inputs */
+
+
 .dropdown-input {
     display: flex;
     justify-content: space-between;
@@ -53,7 +53,7 @@
     }
 }
 
-/* Current image display */
+
 .current-image-container {
     position: relative;
     width: 100%;
@@ -98,7 +98,7 @@
     font-size: 32px;
 }
 
-/* News section */
+
 .news-display {
     display: flex;
     flex-direction: column;
@@ -180,7 +180,7 @@
     color: var(--primary-green);
 }
 
-/* Role chips (larger for admin) */
+
 .role-chip-large {
     display: flex;
     align-items: center;
@@ -230,7 +230,7 @@
     color: var(--text-dark);
 }
 
-/* Modal variations */
+
 .modal-small .modal-content {
     max-width: 360px;
 }
@@ -275,7 +275,7 @@
     font-size: 20px;
 }
 
-/* Responsive */
+
 @media (max-width: 768px) {
     .current-image-container {
         max-width: 100%;

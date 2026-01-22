@@ -168,6 +168,31 @@ include '../includes/header.php';
     </form>
 </div>
 
+<div id="addMembersModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>Add Co-Founders</h3>
+            <button type="button" class="modal-close" onclick="closeAddMembersModal()">
+                <span class="material-icons-round">close</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="search-box">
+                <span class="material-icons-round">search</span>
+                <input 
+                    type="text" 
+                    id="memberSearch" 
+                    placeholder="Search users by name or username..."
+                    class="search-input">
+            </div>
+            <div id="searchResults" class="search-results">
+                <p class="search-hint">Start typing to search for users</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <script src="../assets/js/create_project.js"></script>
 
 <?php include '../includes/footer.php'; ?>

@@ -80,6 +80,29 @@ include '../includes/header.php';
             </div>
 
             <div class="form-group">
+                <label>Project Image</label>
+                <div class="upload-area" id="uploadArea">
+                    <input 
+                        type="file" 
+                        id="project_image" 
+                        name="project_image" 
+                        accept="image/jpeg,image/png,image/jpg,image/webp"
+                        class="file-input">
+                    <div class="upload-content">
+                        <span class="material-icons-round upload-icon">file_upload</span>
+                        <span class="upload-text">Add an image banner</span>
+                    </div>
+                    <div class="preview-container" id="previewContainer" style="display: none;">
+                        <img id="imagePreview" src="" alt="Preview">
+                        <button type="button" class="remove-image-btn" id="removeImageBtn">
+                            <span class="material-icons-round">close</span>
+                        </button>
+                    </div>
+                </div>
+                <small class="form-hint">Recommended: 400x200px, max 5MB (JPEG, PNG, WebP)</small>
+            </div>
+
+            <div class="form-group">
                 <label for="total_slots">Total Team Slots</label>
                 <input 
                     type="number" 

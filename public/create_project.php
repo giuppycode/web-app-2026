@@ -90,7 +90,7 @@ include '../includes/header.php';
                         class="file-input">
                     <div class="upload-content">
                         <span class="material-icons-round upload-icon">file_upload</span>
-                        <span class="upload-text">Add an image banner</span>
+                        <span class="upload-text">Add an image</span>
                     </div>
                     <div class="preview-container" id="previewContainer" style="display: none;">
                         <img id="imagePreview" src="" alt="Preview">
@@ -123,5 +123,7 @@ include '../includes/header.php';
         </button>
     </form>
 </div>
+
+<script src="../assets/js/create_project.js"></script>
 
 <?php include '../includes/footer.php'; ?>
